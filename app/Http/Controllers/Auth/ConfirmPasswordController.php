@@ -12,8 +12,8 @@ class ConfirmPasswordController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // } // TODO uncomment it
 }
