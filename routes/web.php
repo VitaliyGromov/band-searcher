@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Advertisements\AdvertismentController;
+use App\Http\Controllers\Advertisments\BandController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +11,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/advertisments', [AdvertismentController::class, 'index'])->name('advertisments');
-
-Route::get('/advertisments/create/musicion', [AdvertismentController::class, 'advertismentFromMusicionView'])->name('advertisments.create.musicion');
-Route::get('/advertisments/create/band', [AdvertismentController::class, 'advertismentFromBandView'])->name('advertisments.create.band');
+Route::get('ads', [HomeController::class, 'index'])->name('advertisments');
