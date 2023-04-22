@@ -26,6 +26,7 @@ class RouteServiceProvider extends ServiceProvider
                     require base_path('routes/web.php');
                     require base_path('routes/band.php');
                     require base_path('routes/artist.php');
+                    require base_path('routes/profile.php');
                 });
         });
     }

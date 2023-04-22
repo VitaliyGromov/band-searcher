@@ -52,7 +52,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('account.settings').submit();">
-                                        {{ __('Настройки аккаунта') }}
+                                        {{ __('Мой профиль') }}
                                     </a>
 
                                     <form id="account.settings" action="{{ route('logout') }}" method="POST" class="d-none">

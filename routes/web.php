@@ -11,4 +11,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('ads', [HomeController::class, 'index'])->name('advertisments');
+Route::get('ads', [HomeController::class, 'index'])->name('ads');
