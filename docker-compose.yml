@@ -28,11 +28,10 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports:
-      - "5433:5433"
+      - "5432:5432"
     
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=metallica
-      - POSTGRES_DB=bandsearcher
       - PGDATA=/var/lib/postgresql/data/some_name/ 
     container_name: database
