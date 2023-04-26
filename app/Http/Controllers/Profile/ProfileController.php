@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\UpdateProfileRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -21,8 +20,10 @@ class ProfileController extends Controller
 
     public function update(User $user, UpdateProfileRequest $request)
     {
-        dd($request->all());
+        $validated = $request->validated();
 
-        return $this->success('profile.index','Profile updated successfully!');
+        $user->update($validated);
+
+        return redirect('profile');
     }
 }

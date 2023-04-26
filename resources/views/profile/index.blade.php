@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-              <form class="row g-3 mt-2" action="{{route('profile.update', auth()->id())}}" method="POST">
+              <form class="row g-3 mt-2" action="{{ route('profile.update', Auth::user()->id) }}" method="POST">
+                @method('PUT')
+                @csrf
                 <div class="row">
                   <div class="col">
                     <input type="text" class="form-control" placeholder="{{__('Имя')}}" aria-label="name" name="name" value="{{Auth::user()->name}}">
@@ -21,17 +23,11 @@
                     <label for="inputEmail4" class="form-label">{{__('Телефон')}}</label>
                     <input type="number" class="form-control" id="phone" name="phone" value="{{Auth::user()->phone}}">
                 </div>
-                {{-- <div class="col-md-6">
-                  <label for="inputCity" class="form-label">{{__('Город')}}</label>
-                  <select id="inputState" class="form-select" name="city">
-                    <option selected>{{__('Чебоксары')}}</option>
-                    <option>...</option>
-                  </select>
-                </div> --}}
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary">{{__('Сохранить')}}</button>
+                  <button type="submit" class="btn btn-primary">
+                    {{__('Сохранить')}}
+                  </button>
                 </div>
-                @csrf
               </form>
         </div>
     </div>
