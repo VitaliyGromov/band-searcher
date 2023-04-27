@@ -28,9 +28,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">
                         @auth
-                            <x-button-link href="{{ route('ads') }}" color="light">
-                                {{__('Создать')}}
-                            </x-button-link>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary m-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{__('Создать')}}
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('ads.artist.create') }}">{{__('Объявление от артиста')}}</a></li>
+                                <li><a class="dropdown-item" href="#">{{__('Объявление от музыканта')}}</a></li>
+                                </ul>
+                            </div>
                         @endauth
                     </ul>
                     <ul class="navbar-nav ms-auto">

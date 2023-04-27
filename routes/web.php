@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Advertisments\BandController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Ads\AdController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,4 +10,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('ads', [HomeController::class, 'index'])->name('ads');
+Route::get('ads', [AdController::class, 'index'])->name('ads');
