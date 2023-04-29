@@ -17,14 +17,9 @@ class AdController extends Controller
         return view('ads.index');
     }
 
-    public function showAdFromBand()
+    public function show()
     {
-        return view('ads.band.show');
-    }
-
-    public function showAdFromArtist()
-    {
-        return view('ads.artist.show');
+        return view('ads.show');
     }
 
     public function createAdFromBand()
@@ -42,14 +37,9 @@ class AdController extends Controller
         return 'ad store request';
     }
 
-    public function editAdFromBand()
+    public function edit()
     {
-        return view('ads.band.edit');
-    }
-
-    public function editAdFromArtist()
-    {
-        return view('ads.artist.edit');
+        return view('ads.edit');
     }
 
     public function update()

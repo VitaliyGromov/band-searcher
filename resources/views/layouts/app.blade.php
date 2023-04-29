@@ -34,7 +34,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('ads.artist.create') }}">{{__('Объявление от артиста')}}</a></li>
-                                <li><a class="dropdown-item" href="#">{{__('Объявление от музыканта')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('ads.band.create') }}">{{__('Объявление от групп')}}</a></li>
                                 </ul>
                             </div>
                         @endauth
