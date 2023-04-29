@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         return view('ads.index');
