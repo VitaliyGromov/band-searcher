@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ads;
 
 use App\Http\Controllers\Controller;
+use App\Services\VkApiService;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
@@ -24,7 +25,11 @@ class AdController extends Controller
 
     public function createAdFromArtist()
     {
-        return view('ads.artist.create');
+        $vkApiService = new VkApiService();
+        
+        $cities = $vkApiService->getCitiesFromVkApi();
+
+        return view('ads.artist.create', compact('cities'));
     }
 
     public function store()

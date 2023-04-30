@@ -8,8 +8,14 @@
         </div>
         <form>
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">{{__('Населенный пункт')}}</label>
-              <input type="text" class="form-control" id="city" name="city">
+              <label for="exampleInputEmail1" class="form-label">{{__('Город')}}</label>
+              <select name="city" class="form-control">
+                @foreach ($cities as $city)
+                    <option value="{{$city['id']}}">
+                      {{$city['title']}}
+                    </option>
+                @endforeach
+              </select>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">{{__('Что вы умеете?')}}</label>
