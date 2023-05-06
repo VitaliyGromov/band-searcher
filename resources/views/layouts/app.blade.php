@@ -10,6 +10,9 @@
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    @livewireStyles
 
     @vite(['resources/js/app.js'])
 </head>
@@ -90,4 +93,5 @@
         </main>
     </div>
 </body>
+@livewireScripts
 </html>

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Ads;
 
 use App\Http\Controllers\Controller;
-use App\Services\VkApiService;
-use Illuminate\Http\Request;
+use App\Services\HhruApi\HhRuApiClient;
 
 class AdController extends Controller
 {
@@ -25,11 +24,13 @@ class AdController extends Controller
 
     public function createAdFromArtist()
     {
-        $vkApiService = new VkApiService();
-        
-        $cities = $vkApiService->getCitiesFromVkApi();
+        $api = new HhRuApiClient();
 
-        return view('ads.artist.create', compact('cities'));
+        $data = $api->getRegions();
+
+        $regions = $data->areas;
+
+        return view('ads.artist.create', compact('regions'));
     }
 
     public function store()
