@@ -10,7 +10,7 @@ class VerificationController extends Controller
 {
     use VerifiesEmails;
 
-    protected $redirectTo = RouteServiceProvider::ADS;
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     public function __construct()
     {

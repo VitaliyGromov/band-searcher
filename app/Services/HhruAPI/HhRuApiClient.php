@@ -18,9 +18,9 @@ class HhRuApiClient
         ]);
     }
 
-    public function getRegions(): mixed
+    public function getRegionsInRussia(): mixed
     {
-        $request = $this->hhRuApiClient->request('GET', 'areas/113');
+        $request = $this->hhRuApiClient->request('GET', 'areas/113'); // Russia's id is 113
 
         $respounse = json_decode($request->getBody()->getContents());
 

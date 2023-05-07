@@ -10,5 +10,5 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectTo = RouteServiceProvider::ADS;
+    protected $redirectTo = RouteServiceProvider::HOME;
 }

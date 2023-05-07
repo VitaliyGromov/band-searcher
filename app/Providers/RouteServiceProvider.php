@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const ADS = '/ads';
+    public const HOME = '/ads';
 
     public function boot(): void
     {

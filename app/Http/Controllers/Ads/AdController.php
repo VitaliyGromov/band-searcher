@@ -24,13 +24,7 @@ class AdController extends Controller
 
     public function createAdFromArtist()
     {
-        $api = new HhRuApiClient();
-
-        $data = $api->getRegions();
-
-        $regions = $data->areas;
-
-        return view('ads.artist.create', compact('regions'));
+        return view('ads.artist.create');
     }
 
     public function store()
