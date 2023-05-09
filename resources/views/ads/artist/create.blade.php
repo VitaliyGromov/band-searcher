@@ -7,11 +7,8 @@
             <h1>Ad from artist</h1>
         </div>
         <form>
-          @livewire('region-city-component')
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">{{__('Что вы умеете?')}}</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" name="skill">
-          </div>
+          @livewire('region-city')
+          @livewire('skill-select')
           <div class="md-3">
               <label for="skill" class="form-label">{{__('Ваш опыт')}}</label>
               <x-experience-list/>
