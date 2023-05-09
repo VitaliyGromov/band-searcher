@@ -3,11 +3,17 @@
 namespace App\Http\Livewire;
 
 use App\Models\Skill;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class SkillSelect extends Component
 {
     public $skills;
+
+    protected $rules = [
+        'skills.*.id' => 'required',
+        'skills.*.name' => 'required',
+    ];
 
     public function mount()
     {
@@ -19,4 +25,3 @@ class SkillSelect extends Component
         return view('livewire.skill-select');
     }
 }
-//TODO тут какую-то валидацию хочет

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Ads;
 
 use App\Http\Controllers\Controller;
-use App\Services\HhruApi\HhRuApiClient;
 
 class AdController extends Controller
 {
