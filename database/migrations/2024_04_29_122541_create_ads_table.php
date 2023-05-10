@@ -22,9 +22,11 @@ return new class extends Migration
             $table->integer('salary');
             $table->string('sex');
 
-            $table->string('city');
-            $table->string('experience');
-            $table->string('concert_experience');
+            $table->string('own_experience');
+            $table->string('own_concert_experience');
+
+            $table->string('applicant_experience');
+            $table->string('applicant_concert_experience');
 
             $table->boolean('own_instrument');
             $table->boolean('ready_to_move');
