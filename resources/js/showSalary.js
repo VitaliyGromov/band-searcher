@@ -1,3 +1,1 @@
-function showSalary(){
-    
-}
+// TODO перенести сюда функцию 
