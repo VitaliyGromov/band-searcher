@@ -93,5 +93,6 @@
         </main>
     </div>
 </body>
+@stack('scripts')
 @livewireScripts
 </html>

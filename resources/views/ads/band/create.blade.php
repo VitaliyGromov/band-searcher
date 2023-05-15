@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <form action="{{ route('ads.store') }}" method="POST">
             @csrf
-            <h2>{{__('Информация о вас')}}</h2>
+            <h2>{{__('Информация о вашей группе')}}</h2>
+            <div class="mt-3">
+              <label class="form-check-label" for="group_name">{{__('Название группы')}}</label>
+              <input name="group_name" type="text" class="form-control"/>
+            </div>
             @livewire('region-city')
             <div class="mt-3">
                 <x-experience name="own_experience">{{__('Ваш опыт')}}</x-select>
@@ -18,6 +22,10 @@
                 <x-genres/>
             </div>
             <x-band-checkboxes/>
+            <div class="mt-3 d-none" id="salary">
+              <label class="form-check-label" for="salary">{{__('Сколько дадите деняк?)')}}</label>
+              <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях"/>
+            </div>
             <div class="mt-3">
               <h2>{{__('Требования к соискателю')}}</h2>
             </div>
@@ -31,10 +39,6 @@
               <h3>{{__('Дополнительная информация')}}</h3>
             </div>
             <x-musician-checkboxes/>
-            <div class="mt-3 d-none" id="salary">
-              <label class="form-check-label" for="salary">{{__('Сколько хотите деняк?)')}}</label>
-              <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях"/>
-            </div>
             <div class="mt-3">
               <label class="form-check-label" for="additional_info">{{__('Если у вас есть пожелания, укажите их')}}</label>
               <x-textarea name="additional_info"></x-textarea>
@@ -45,4 +49,11 @@
           </form>
     </div>
 </div>
+<script>
+  document.getElementById('commercial_project').addEventListener('change', showSalary);
+
+  function showSalary(){
+      document.getElementById('salary').classList.toggle('d-none');
+  }
+</script>
 @endsection

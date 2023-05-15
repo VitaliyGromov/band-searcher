@@ -1,5 +1,5 @@
 <div class="mt-3">
-    <h2>{{__('Контактныя информация')}}</h2>
+    <h2>{{__('Контактная информация')}}</h2>
   </div>
 <div class="mt-3">
     <label class="form-check-label" for="name">{{__('Имя')}}</label>

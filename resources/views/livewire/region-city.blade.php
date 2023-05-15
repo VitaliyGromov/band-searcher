@@ -1,7 +1,7 @@
 <div>
 
     <div class="mb-3">
-        <label for="region" class="form-label">{{__('Регион')}}</label>
+        <label for="region" class="form-check-label">{{__('Регион')}}</label>
         <select wire:model="selectedRussianRegion" name="region" class="form-control">
           <option value="" selected>{{__('Выберите регион')}}</option>
           @foreach ($russianRegions as $region)
