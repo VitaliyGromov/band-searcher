@@ -50,8 +50,9 @@ return new class extends Migration
             $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
+            $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');
 
-            $table->string('type');
+            $table->boolean('type');
 
         });
     }

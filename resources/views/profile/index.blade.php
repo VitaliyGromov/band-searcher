@@ -12,20 +12,24 @@
                   <div class="col">
                     <label for="inputEmail4" class="form-check-label">{{__('Имя')}}</label>
                     <input type="text" class="form-control" placeholder="{{__('Имя')}}" aria-label="name" name="name" value="{{Auth::user()->name}}">
+                    <x-error name="name"/>
                   </div>
                   <div class="col">
                     <label for="inputEmail4" class="form-check-label">{{__('Фамилия')}}</label>
                     <input type="text" class="form-control" placeholder="{{__('Фамилия')}}" aria-label="last_name" name="last_name" value="{{Auth::user()->last_name}}">
+                    <x-error name="last_name"/>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col mt-3">
                     <label for="inputEmail4" class="form-check-label">{{__('Email')}}</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{Auth::user()->email}}">
+                    <x-error name="email"/>
                   </div>
                   <div class="col mt-3">
                       <label for="inputEmail4" class="form-check-label">{{__('Телефон')}}</label>
                       <input type="number" class="form-control" id="phone" name="phone" value="{{Auth::user()->phone}}">
+                      <x-error name="phone"/>
                   </div>
                 </div>
                 <div class="col-12">
@@ -38,4 +42,3 @@
     </div>
 </div>
 @endsection
-{{-- //TODO добавить тут тексты ошибок --}}

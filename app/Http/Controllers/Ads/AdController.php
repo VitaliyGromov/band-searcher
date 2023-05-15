@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ads;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Ads\AdStoreRequest;
 
 class AdController extends Controller
 {
@@ -26,8 +27,12 @@ class AdController extends Controller
         return view('ads.artist.create');
     }
 
-    public function store()
+    public function store(AdStoreRequest $request)
     {
+        $data = $request->all();
+
+        dd($data);
+
         return 'ad store request';
     }
 
