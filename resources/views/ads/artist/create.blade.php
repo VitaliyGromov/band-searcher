@@ -44,6 +44,7 @@
           </div>
           <x-links-fields/>
           <x-contact-fields/>
+          <input type="hidden" name="type" value="1">
           <button type="submit" class="btn btn-primary mt-3">{{__('Создать')}}</button>
         </form>
     </div>

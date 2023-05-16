@@ -30,6 +30,9 @@
               <h2>{{__('Требования к соискателю')}}</h2>
             </div>
             <div class="mt-3">
+              <x-skills/>
+            </div>
+            <div class="mt-3">
               <x-experience name="applicant_experience">{{__('Опыт')}}</x-select>
             </div>
             <div class="mt-3">
@@ -45,6 +48,7 @@
             </div>
             <x-links-fields/>
             <x-contact-fields/>
+            <input type="hidden" name="type" value="0">
             <button type="submit" class="btn btn-primary mt-3">{{__('Создать')}}</button>
           </form>
     </div>
