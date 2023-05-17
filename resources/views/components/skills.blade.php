@@ -1,6 +1,6 @@
-<label for="skill" class="form-label">{{__('Ваш навык')}}</label>
-<select name="skill" class="form-control">
-    <option value="" selected>{{__('Выберите ваш навык')}}</option>
+<label for="skill_id" class="form-check-label">{{__('Навык')}}</label>
+<select name="skill_id" class="form-control">
+    <option value="" selected>{{__('Выберите навык')}}</option>
     @foreach ($skills as $skill)
         <option value="{{$skill->id}}">{{$skill->name}}</option>
     @endforeach

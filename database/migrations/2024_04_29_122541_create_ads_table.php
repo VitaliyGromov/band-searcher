@@ -35,7 +35,7 @@ return new class extends Migration
             $table->boolean('cower_band');
             $table->boolean('commercial_project');
 
-            $table->string('group_name');
+            $table->string('band_name');
 
             $table->string('vk');
             $table->string('youtube');

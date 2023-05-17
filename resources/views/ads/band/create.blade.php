@@ -7,7 +7,7 @@
             @csrf
             <h2>{{__('Информация о вашей группе')}}</h2>
             <div class="mt-3">
-              <label class="form-check-label" for="group_name">{{__('Название группы')}}</label>
+              <label class="form-check-label" for="band_name">{{__('Название группы')}}</label>
               <input name="group_name" type="text" class="form-control"/>
             </div>
             @livewire('region-city')
