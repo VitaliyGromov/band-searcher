@@ -8,7 +8,8 @@
             <h2>{{__('Информация о вашей группе')}}</h2>
             <div class="mt-3">
               <label class="form-check-label" for="band_name">{{__('Название группы')}}</label>
-              <input name="group_name" type="text" class="form-control"/>
+              <input name="band_name" type="text" class="form-control"/>
+              <x-error name="band_name"/>
             </div>
             @livewire('region-city')
             <div class="mt-3">
@@ -20,6 +21,10 @@
             <div class="mt-3">
                 <label class="form-check-label" for="genres">{{__('Жанр')}}</label>
                 <x-genres/>
+            </div>
+            <div class="mt-3">
+              <label class="form-check-label" for="description">{{__('Расскажите что-нибудь о вашей группе')}}</label>
+              <x-textarea name="description"></x-textarea>
             </div>
             <x-band-checkboxes/>
             <div class="mt-3 d-none" id="salary">

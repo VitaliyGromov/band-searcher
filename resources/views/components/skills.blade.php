@@ -5,3 +5,4 @@
         <option value="{{$skill->id}}">{{$skill->name}}</option>
     @endforeach
 </select>
+<x-error name="skill_id"/>

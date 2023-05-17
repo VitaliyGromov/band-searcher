@@ -8,6 +8,7 @@
               <option value="{{$region->id}}">{{$region->name}}</option>
           @endforeach
         </select>
+        <x-error name="region_id"/>
     </div>
 
     @if (!is_null($selectedRussianRegion))
@@ -19,7 +20,7 @@
                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                 @endforeach
             </select>
+            <x-error name="city_id"/>
         </div>
     @endif
-
 </div>

@@ -39,8 +39,8 @@ return new class extends Migration
 
             $table->string('vk');
             $table->string('youtube');
-            $table->string('description');
-            $table->string('additional_info');
+            $table->text('description');
+            $table->text('additional_info');
 
             $table->integer('age_from');
             $table->integer('age_to');

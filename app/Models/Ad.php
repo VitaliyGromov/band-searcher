@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Ad extends Model
 {
     use HasFactory;
+
+    protected array $fillable = [
+        'region_id',
+    ];
 }

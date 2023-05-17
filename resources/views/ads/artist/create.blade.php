@@ -16,6 +16,10 @@
           <div class="mt-3">
             <x-experience name="own_concert_experience">{{__('Ваш концертный опыт')}}</x-select>
           </div>
+          <div class="mt-3">
+            <label class="form-check-label" for="description">{{__('Расскажите что-нибудь о себе')}}</label>
+            <x-textarea name="description"></x-textarea>
+          </div>
           <x-musician-checkboxes/>
           <div class="mt-3">
             <h2>{{__('Требования к группе')}}</h2>
