@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Ads;
 
+use App\Actions\Ads\AdStoreAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Ads\AdStoreRequest;
-use App\Models\Ad;
-use App\Models\Status;
-use Illuminate\Support\Facades\Auth;
 
 class AdController extends Controller
 {
@@ -30,15 +28,13 @@ class AdController extends Controller
         return view('ads.artist.create');
     }
 
-    public function store(AdStoreRequest $request)
+    public function store(AdStoreRequest $request, AdStoreAction $adStoreAction)
     {
         $validated = $request->validated();
 
-        $status_id = Status::getStatusIdByStatusName('на проверке');
+        $adStoreAction->handle($validated);
 
-        Ad::create([...$validated, 'user_id'=> Auth::id(), 'status_id' => $status_id]);
-
-        return redirect()->route('ads'); // TODO создать под это Action class
+        return redirect()->route('ads');
     }
 
     public function edit()

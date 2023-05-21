@@ -11,6 +11,10 @@ class Status extends Model
 
     public static function getStatusIdByStatusName(string $statusName):int
     {
-        return self::where('name', $statusName)->id;
+        $arrayOfStatusFields = self::where('name', $statusName)->first()->toArray();
+
+        $statusId = $arrayOfStatusFields['id'];
+
+        return $statusId;
     }
 }

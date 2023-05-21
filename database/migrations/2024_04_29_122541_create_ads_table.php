@@ -14,36 +14,35 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('last_name');
-            $table->timestamp('birthday');
 
             $table->string('email');
             $table->string('phone');
 
-            $table->integer('salary');
+            $table->integer('salary')->nullable();
 
-            $table->string('own_experience');
-            $table->string('own_concert_experience');
+            $table->boolean('own_instrument')->nullable();
+            $table->boolean('ready_to_move')->nullable();
+            $table->boolean('ready_to_tour')->nullable();
 
-            $table->string('applicant_experience');
-            $table->string('applicant_concert_experience');
+            $table->boolean('own_music')->nullable();
+            $table->boolean('cower_band')->nullable();
+            $table->boolean('commercial_project')->nullable();
 
-            $table->boolean('own_instrument');
-            $table->boolean('ready_to_move');
-            $table->boolean('ready_to_tour');
-
-            $table->boolean('own_music');
-            $table->boolean('cower_band');
-            $table->boolean('commercial_project');
-
-            $table->string('band_name');
+            $table->string('band_name')->nullable();
 
             $table->string('vk');
             $table->string('youtube');
-            $table->text('description');
-            $table->text('additional_info');
+            $table->text('description')->nullable();
+            $table->text('additional_info')->nullable();
 
-            $table->integer('age_from');
-            $table->integer('age_to');
+            $table->integer('age_from')->nullable();
+            $table->integer('age_to')->nullable();
+
+            $table->foreignId('own_experience')->constrained('experiences')->nullable();
+            $table->foreignId('own_concert_experience')->constrained('experiences')->nullable();
+
+            $table->foreignId('applicant_experience')->constrained('experiences')->nullable();
+            $table->foreignId('applicant_concert_experience')->constrained('experiences')->nullable();
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');

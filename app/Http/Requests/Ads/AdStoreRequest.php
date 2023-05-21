@@ -11,22 +11,55 @@ class AdStoreRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'own_instrument' => $this->has('own_instrument')?true:false,
+            'ready_to_move' => $this->has('ready_to_move')?true:false,
+            'ready_to_tour' => $this->has('ready_to_tour')?true:false,
+
+            'own_music' => $this->has('own_music')?true:false,
+            'cower_band' => $this->has('cower_band')?true:false,
+            'commercial_project' => $this->has('commercial_project')?true:false,
+
+            'type'=> boolval($this->input('type')),
+        ]);
+    }
+
     public function rules(): array
     {
-        if(request()->type == 1){  // typ of bands is 0, type of artist is 1
-            $bandNameRule = 'sometimes';
-        } else {
-            $bandNameRule = 'required';
-        }
-
         return [
             'region_id' => ['required'],
             'city_id' => ['required'],
             'skill_id' => ['required'],
+            'type' => ['required', 'boolean'],
+
+            'own_experience' => ['required'],
+            'own_concert_experience' => ['required'],
+
+            'description' => ['nullable', 'string'],
+            'additional_info' => ['nullable', 'string'],
+
+            'applicant_experience' => ['required'],
+            'applicant_concert_experience' => ['required'],
+
+            'own_instrument' => ['nullable'],
+            'ready_to_move' => ['nullable'],
+            'ready_to_tour' => ['nullable'],
+
+            'own_music' => ['nullable'],
+            'cower_band' => ['nullable'],
+            'commercial_project' => ['nullable'],
+
+            'salary' => ['nullable', 'numeric'],
+
+            'genre_id' => ['required'],
+
+            'vk' => ['required', 'string'],
+            'youtube' => ['required', 'string'],
 
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'band_name' => [$bandNameRule, 'string', 'max:256'],
 
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'regex:/^8|\+7[0-9]{10}/']
