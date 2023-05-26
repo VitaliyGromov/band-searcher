@@ -13,6 +13,10 @@ class AdStoreRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
+        if($this->input('band_name') == null){
+            $this->request->remove('band_name');
+        }
+
         $this->merge([
             'own_instrument' => $this->has('own_instrument')?true:false,
             'ready_to_move' => $this->has('ready_to_move')?true:false,
@@ -29,6 +33,7 @@ class AdStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'band_name' => ['sometimes', 'string', 'max:255'],
             'region_id' => ['required'],
             'city_id' => ['required'],
             'skill_id' => ['required'],

@@ -35,9 +35,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('additional_info')->nullable();
 
-            $table->integer('age_from')->nullable();
-            $table->integer('age_to')->nullable();
-
             $table->foreignId('own_experience')->constrained('experiences')->nullable();
             $table->foreignId('own_concert_experience')->constrained('experiences')->nullable();
 

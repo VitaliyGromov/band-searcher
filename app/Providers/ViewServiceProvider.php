@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Experience;
 use App\Models\Genre;
 use App\Models\Skill;
+use App\Models\Ad;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +28,10 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('components.genres', function($view){
             $view->with('genres', Genre::all());
+        });
+
+        View::composer('ads.index', function($view){
+            $view->with('ads', Ad::all());
         });
     }
 }

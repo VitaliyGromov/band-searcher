@@ -9,9 +9,11 @@ class AdStoreAction
 {
     public function handle(array $validated)
     {
-        $status_id = Status::getStatusIdByStatusName('на проверке');
+        $statusId = Status::getStatusIdByStatusName('на проверке');
 
-        Ad::create([...$validated, 'user_id' => Auth::id(), 'status_id' => $status_id]);
+        $userId = Auth::id();
+
+        Ad::create([...$validated, 'user_id' => $userId, 'status_id' => $statusId]);
     }
 }
 
