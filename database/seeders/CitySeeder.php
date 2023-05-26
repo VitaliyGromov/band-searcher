@@ -10,27 +10,27 @@ class CitySeeder extends Seeder
 {
     public function run(): void
     {
-        // $hhRuApiClient = new HhRuApiClient();
+        $hhRuApiClient = new HhRuApiClient();
 
-        // $cities = [];
+        $cities = [];
 
-        // $regions = $hhRuApiClient->getRegionsInRussia();
+        $regions = $hhRuApiClient->getRegionsInRussia();
 
-        // foreach($regions->areas as $region){
-        //     $citiesByRegion = $hhRuApiClient->getCitiesByRegionId($region->id);
+        foreach($regions->areas as $region){
+            $citiesByRegion = $hhRuApiClient->getCitiesByRegionId($region->id);
 
-        //     foreach($citiesByRegion->areas as $city){
-        //         array_push($cities, $city);
-        //     }
-        // }
+            foreach($citiesByRegion->areas as $city){
+                array_push($cities, $city);
+            }
+        }
 
-        // foreach($cities as $city){
-        //     City::create([
-        //         'id' => intval($city->id),
-        //         'name' => $city->name,
-        //         'region_id' => intval($city->parent_id),
-        //     ]);
-        // }
+        foreach($cities as $city){
+            City::create([
+                'id' => intval($city->id),
+                'name' => $city->name,
+                'region_id' => intval($city->parent_id),
+            ]);
+        }
 
         City::create([
             'name' => 'Москва',

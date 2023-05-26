@@ -13,8 +13,6 @@ class Status extends Model
     {
         $arrayOfStatusFields = self::where('name', $statusName)->first()->toArray();
 
-        $statusId = $arrayOfStatusFields['id'];
-
-        return $statusId;
+        return $arrayOfStatusFields['id'];
     }
 }
