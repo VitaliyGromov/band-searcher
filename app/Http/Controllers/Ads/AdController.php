@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ads;
 use App\Actions\Ads\AdStoreAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Ads\AdStoreRequest;
+use App\Models\Ad;
 
 class AdController extends Controller
 {
@@ -13,9 +14,9 @@ class AdController extends Controller
         return view('ads.index');
     }
 
-    public function show()
+    public function show(Ad $ad)
     {
-        return view('ads.show');
+        return view('ads.show', compact('ad'));
     }
 
     public function createAdFromBand()

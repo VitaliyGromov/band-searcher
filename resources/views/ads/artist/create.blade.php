@@ -42,10 +42,6 @@
             <label class="form-check-label" for="salary">{{__('Сколько хотите деняк?)')}}</label>
             <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях"/>
           </div>
-          <div class="mt-3">
-            <label class="form-check-label" for="additional_info">{{__('Если у вас есть пожелания, укажите их')}}</label>
-            <x-textarea name="additional_info"></x-textarea>
-          </div>
           <x-links-fields/>
           <x-contact-fields/>
           <input type="hidden" name="type" value="1">
