@@ -1,3 +1,9 @@
+@php
+
+$title = $ad->type ? 'группе' : 'себе';
+
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
