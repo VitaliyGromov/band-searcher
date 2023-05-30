@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Region extends Model
 {
     use HasFactory;
+
+    public static function getRegionNameById(int $regionId): string
+    {
+        $arrayOfRegionFields = self::where('id', $regionId)->first()->toArray();
+
+        return $arrayOfRegionFields['name'];
+    }
 }

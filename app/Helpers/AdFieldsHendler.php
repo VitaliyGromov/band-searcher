@@ -2,8 +2,6 @@
 namespace App\Helpers;
 
 use App\Models\Ad;
-use App\Models\Genre;
-use App\Models\Skill;
 
 class AdFieldsHendler 
 {
@@ -12,16 +10,6 @@ class AdFieldsHendler
     public function __construct(Ad $ad)
     {
         $this->ad = $ad;
-    }
-
-    public function getGenreNameByIdInAd(): string
-    {
-        return Genre::getGenreNameById($this->ad->genre_id);
-    }
-
-    public function getSkillNameByIdInAd(): string
-    {
-        return Skill::getSkillNameById($this->ad->skill_id);
     }
 
     public function isOwnMusic(): string
@@ -53,5 +41,4 @@ class AdFieldsHendler
     {
         return yesOrNo($this->ad->ready_to_move);
     }
-
 }
