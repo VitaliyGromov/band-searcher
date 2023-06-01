@@ -25,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(function(){
                     require base_path('routes/web.php');
                     require base_path('routes/profile.php');
+                    require base_path('routes/admin.php');
                 });
         });
     }

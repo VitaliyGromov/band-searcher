@@ -30,7 +30,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('genres', Genre::all());
         });
 
-        View::composer('ads.index', function($view){
+        View::composer(['ads.index', 'admin.index'], function($view){
             $view->with('ads', Ad::all());
         });
     }

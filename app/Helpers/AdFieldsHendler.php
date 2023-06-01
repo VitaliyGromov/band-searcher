@@ -41,4 +41,9 @@ class AdFieldsHendler
     {
         return yesOrNo($this->ad->ready_to_move);
     }
+
+    public function handleType(): string
+    {
+        return $this->ad->type ? 'от ариста' : 'от группы';
+    }
 }
