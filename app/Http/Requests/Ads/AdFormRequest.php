@@ -4,7 +4,7 @@ namespace App\Http\Requests\Ads;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdStoreRequest extends FormRequest
+class AdFormRequest extends FormRequest
 {
     public function authorize(): bool
     {

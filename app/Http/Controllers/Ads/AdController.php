@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Ads;
 
 use App\Actions\Ads\AdStoreAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Ads\AdStoreRequest;
+use App\Http\Requests\Ads\AdFormRequest;
 use App\Models\Ad;
 
 class AdController extends Controller
@@ -29,7 +29,7 @@ class AdController extends Controller
         return view('ads.artist.create');
     }
 
-    public function store(AdStoreRequest $request, AdStoreAction $adStoreAction)
+    public function store(AdFormRequest $request, AdStoreAction $adStoreAction)
     {
         $validated = $request->validated();
 

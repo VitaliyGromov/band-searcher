@@ -1,10 +1,5 @@
 @props(['value' => ''])
 
-<label class="form-check-label" {{$attributes->merge([
-  'for' => 'value'
-]) }}>
-  {{ $slot }}
-</label>
 <select class="form-select" {{$attributes->merge([
     'name' => 'value',
 ])}}>

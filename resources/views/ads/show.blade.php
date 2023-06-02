@@ -63,6 +63,10 @@ $title = $ad->type ? 'себе' : 'группе';
             </x-ads.section-title>
 
             <x-ads.contacts :ad="$ad"/>
+
+            <x-modal id="ad_edit" modalName="Редактировать">
+                <x-ads.form :ad="$ad" :title="$title"/>
+            </x-modal>
         </div>
     </div>
 </div>

@@ -4,18 +4,20 @@ use App\Helpers\AdFieldsHendler;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Skill;
+use App\Models\Status;
 
 @endphp
 
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">id</th>
-        <th scope="col">Регион</th>
-        <th scope="col">Город</th>
-        <th scope="col">Навык</th>
-        <th scope="col">Название группы</th>
-        <th scope="col">Тип</th>
+        <th scope="col">{{ __('id') }}</th>
+        <th scope="col">{{ __('Регион') }}</th>
+        <th scope="col">{{ __('Город') }}</th>
+        <th scope="col">{{ __('Навык') }}</th>
+        <th scope="col">{{ __('Название группы')}}</th>
+        <th scope="col">{{ __('Тип') }}</th>
+        <th scope="col">{{ __('Статус') }}</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -37,6 +39,7 @@ use App\Models\Skill;
           <td>-</td>
         @endif
           <td>{{ $adFieldsHendler->handleType() }}</td>
+          <td> {{Status::getStatusNameById($ad->status_id) }} </td>
         <td>
           <x-button-link href="{{ route('ads.show', $ad->id) }}">
             {{ __('Перейти к объявлению')}}
