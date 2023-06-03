@@ -48,6 +48,11 @@ class AdController extends Controller
         return 'ad update request';
     }
 
+    public function chageStatus()
+    {
+        return 'status changed';
+    }
+
     public function destroy()
     {
         return 'ad delete request';

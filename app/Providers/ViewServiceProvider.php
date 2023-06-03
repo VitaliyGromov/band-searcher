@@ -6,6 +6,7 @@ use App\Models\Experience;
 use App\Models\Genre;
 use App\Models\Skill;
 use App\Models\Ad;
+use App\Models\Status;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,10 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer(['ads.index', 'admin.index'], function($view){
             $view->with('ads', Ad::all());
+        });
+
+        View::composer('components.statuses', function($view){
+            $view->with('statuses', Status::all());
         });
     }
 }

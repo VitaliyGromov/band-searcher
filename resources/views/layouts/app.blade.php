@@ -24,9 +24,11 @@
                 </x-button-link>
 
                 @auth
-                <x-button-link href="{{ route('admin.index') }}" color="light">
-                    {{ __('Админка') }}
-                </x-button-link>
+                    @role('admin')
+                        <x-button-link href="{{ route('admin.index') }}" color="light">
+                            {{ __('Админка') }}
+                        </x-button-link>
+                    @endrole
                 @endauth
                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -95,7 +97,6 @@
     </div>
 </body>
 
-@stack('scripts')
 @livewireScripts
 
 </html>

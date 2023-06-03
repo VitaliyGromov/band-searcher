@@ -9,7 +9,7 @@ class StatusSeeder extends Seeder
 {
     public function run(): void
     {
-        $statuses = ['активно', 'закрыто', 'на проверке', 'отменено'];
+        $statuses = ['активно', 'закрыто', 'на проверке', 'отклонено'];
 
         foreach($statuses as $status){
             Status::firstOrCreate([

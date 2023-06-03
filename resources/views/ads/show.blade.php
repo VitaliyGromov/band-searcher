@@ -27,8 +27,10 @@ $title = $ad->type ? 'себе' : 'группе';
             <x-ads.section-title>
                 {{ __('Требования к соискателю')}}
             </x-ads.section-title>
-  
-           <x-ads.skill :ad="$ad"/>
+
+            @if (!$ad->type)
+                <x-ads.skill :ad="$ad"/>
+            @endif
 
            <x-ads.genre :ad="$ad"/>
 
@@ -43,6 +45,10 @@ $title = $ad->type ? 'себе' : 'группе';
             <x-ads.section-title>
                 {{ __("О $title") }}
             </x-ads.section-title>
+
+            @if ($ad->type)
+                <x-ads.skill :ad="$ad"/>
+            @endif
 
             <x-ads.genre :ad="$ad"/>
 
@@ -64,9 +70,17 @@ $title = $ad->type ? 'себе' : 'группе';
 
             <x-ads.contacts :ad="$ad"/>
 
-            <x-modal id="ad_edit" modalName="Редактировать">
-                <x-ads.form :ad="$ad" :title="$title"/>
-            </x-modal>
+            @if (Auth::id() == $ad->user_id)
+                <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
+                    <x-form.form :ad="$ad" :title="$title"/>
+                </x-modal>
+            @endif
+
+            @role('admin')
+                <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
+                    <x-form.form :ad="$ad" :title="$title"/>
+                </x-modal>
+            @endrole
         </div>
     </div>
 </div>
