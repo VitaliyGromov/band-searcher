@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Region;
 use Illuminate\Database\Seeder;
-use App\Services\HhruApi\HhRuApiClient;
+use App\API\HhruApi\HhRuApiClient;
 
 class RegionSeeder extends Seeder
 {

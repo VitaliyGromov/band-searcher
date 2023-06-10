@@ -4,11 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="row">
-            @foreach ($ads as $ad)
-                <div class="col-12 col-md-4">
-                    <x-ads.card :ad="$ad"/>
+            @if (sizeof($ads) == 0)
+                <div class="text-center">
+                    <h3>{{__('Пока нет объявлений')}}</h3>
                 </div>
-            @endforeach
+            @else
+                @foreach ($ads as $ad)
+                    <div class="col-12 col-md-4">
+                        <x-ads.card :ad="$ad"/>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </div>

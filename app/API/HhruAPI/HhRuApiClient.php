@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\HhruApi;
+namespace App\API\HhruApi;
 
 use GuzzleHttp\Client;
-use \Psr\Http\Message\ResponseInterface;
 
 class HhRuApiClient 
 {

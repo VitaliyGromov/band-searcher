@@ -41,11 +41,13 @@ use App\Models\Status;
           <td>{{ $adFieldsHendler->handleType() }}</td>
           <td> {{Status::getStatusNameById($ad->status_id) }} </td>
         <td>
-          <x-button-link href="{{ route('ads.show', $ad->id) }}">
+          <x-button-link href="{{ route($routeForButton, $ad->id) }}">
             {{ __('Перейти к объявлению')}}
           </x-button-link>
         </td>
       </tr>
       @endforeach
     </tbody>
-  </table>
+</table>
+
+@props(['routeForButton' => ''])

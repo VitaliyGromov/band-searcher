@@ -18,7 +18,7 @@ class RegionCity extends Component
     public function mount()
     {
         $this->russianRegions = Region::all();
-        $this->citesByRegion = collect();
+        $this->citesByRegion = City::all();
     }
     
     public function render()

@@ -75,7 +75,7 @@
                                         {{ __('Мой профиль') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="{{ route('user.ads') }}">
                                         {{ __('Мои объявления') }}
                                     </a>
                                     <form action="{{ route('logout') }}" method="POST">

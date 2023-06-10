@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\City;
-use App\Services\HhruApi\HhRuApiClient;
+use App\API\HhruApi\HhRuApiClient;
 use Illuminate\Database\Seeder;
 
 class CitySeeder extends Seeder

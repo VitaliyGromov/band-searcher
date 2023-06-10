@@ -2,16 +2,35 @@
 
 namespace App\Http\Controllers\Ads;
 
-use App\Actions\Ads\AdStoreAction;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Ads\AdFormRequest;
 use App\Models\Ad;
+use App\Actions\Ads\AdStoreAction;
+use App\Actions\Ads\AdUpdateAction;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Ads\AdFormRequest;
+use App\Models\Status;
 
 class AdController extends Controller
 {
     public function index()
     {
-        return view('ads.index');
+        $idOfActiveStatus = Status::getStatusIdByStatusName('активно');
+
+        $ads = Ad::where('status_id', $idOfActiveStatus)->get();
+
+        return view('ads.index', compact('ads'));
+    }
+
+    public function adminAds()
+    {
+        return view('admin.ads');
+    }
+
+    public function userAds()
+    {
+        $ads = Ad::where('user_id', Auth::id())->get();
+
+        return view('user.ads', compact('ads'));
     }
 
     public function show(Ad $ad)
@@ -38,19 +57,13 @@ class AdController extends Controller
         return redirect()->route('ads');
     }
 
-    public function edit()
+    public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $action)
     {
-        return view('ads.edit');
-    }
+        $validated = $request->validated();
 
-    public function update()
-    {
-        return 'ad update request';
-    }
+        $action->handle($validated, $ad);
 
-    public function chageStatus()
-    {
-        return 'status changed';
+        return redirect('ads');
     }
 
     public function destroy()

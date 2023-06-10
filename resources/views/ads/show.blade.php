@@ -70,17 +70,16 @@ $title = $ad->type ? 'себе' : 'группе';
 
             <x-ads.contacts :ad="$ad"/>
 
-            @if (Auth::id() == $ad->user_id)
+            @if (Route::is('admin.ads.show'))
                 <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
                     <x-form.form :ad="$ad" :title="$title"/>
                 </x-modal>
             @endif
-
-            @role('admin')
+            @if (Route::is('user.ads.show'))
                 <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
                     <x-form.form :ad="$ad" :title="$title"/>
                 </x-modal>
-            @endrole
+            @endif
         </div>
     </div>
 </div>
