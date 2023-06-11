@@ -1,5 +1,5 @@
 <?php
-namespace App\Traits;
+namespace App\Models\Traits;
 
 use App\Http\Filters\FilterContract;
 use Illuminate\Database\Eloquent\Builder;

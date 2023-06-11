@@ -3,9 +3,12 @@
 namespace App\Http\Requests\Ads;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Ads\Traits\HasValidationFields;
 
 class AdFormRequest extends FormRequest
 {
+    use HasValidationFields;
+
     public function authorize(): bool
     {
         return true;

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class AdFilter extends AbstractFilter
 {
-    public const Id = 'id';
-
     public const APPLICANT_EXPERIENCE = 'applicant_experience';
 
     public const APPLICANT_EXPERIENCE_CONCERT_EXPERIENCE = 'applicant_concert_experience';
@@ -27,18 +25,14 @@ class AdFilter extends AbstractFilter
     public function getCallbacks(): array
     {
         return [
-            self::Id => 'id',
-            self::APPLICANT_EXPERIENCE => 'applicantExperience',
-            self::APPLICANT_EXPERIENCE_CONCERT_EXPERIENCE => 'applicantConcertExperience',
-            self::OWN_MUSIC => 'ownMusic',
-            self::COVER_BAND => 'coverBand',
-            self::SALARY => 'salary',
+            self::APPLICANT_EXPERIENCE => [$this, 'applicantExperience'],
+            self::APPLICANT_EXPERIENCE_CONCERT_EXPERIENCE => [$this, 'applicantConcertExperience'],
+            self::OWN_MUSIC => [$this, 'ownMusic'],
+            self::COVER_BAND => [$this, 'coverBand'],
+            self::SALARY => [$this, 'salary'],
+            self::REGION_ID => [$this, 'regionId'],
+            self::CITY_ID => [$this, 'cityId'],
         ];
-    }
-
-    public function id(Builder $builder, $value)
-    {
-        $builder->where('id', $value);
     }
 
     public function applicantExperience(Builder $builder, $value)
@@ -58,6 +52,12 @@ class AdFilter extends AbstractFilter
 
     public function coverBand(Builder $builder, $value)
     {
+        if($value == 'true'){
+            $value = true;
+        } else {
+            $value = false;
+        }
+
         $builder->where('cover_band', $value);
     }
 

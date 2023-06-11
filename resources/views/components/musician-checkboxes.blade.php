@@ -8,7 +8,7 @@
 <div class="mt-3">
   <div class="form-check">
     <x-label for="ready_to_move">{{ __('Готов к переезду') }}</x-label>
-  <x-checkbox name="ready_to_move"/>
+    <x-checkbox name="ready_to_move"/>
   </div>
 </div>
 

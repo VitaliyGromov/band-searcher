@@ -9,7 +9,7 @@ class AdStoreAction
 {
     public function handle(array $validated)
     {
-        $statusId = Status::getStatusIdByStatusName('на проверке');
+        $statusId = Status::getStatusIdByStatusName(config('ads.default_status'));
 
         $userId = Auth::id();
 

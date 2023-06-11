@@ -47,14 +47,7 @@
               <x-label for="applicant_concert_experience">{{__('Концертный опыт')}}</x-label>
               <x-experience name="applicant_concert_experience"/>
             </div>
-            <div class="mt-3">
-              <h3>{{__('Дополнительная информация')}}</h3>
-            </div>
             <x-musician-checkboxes/>
-            <div class="mt-3">
-              <x-label for="additional_info">{{__('Если у вас есть пожелания, укажите их')}}</x-label>
-              <x-textarea name="additional_info"></x-textarea>
-            </div>
             <x-links-fields/>
             <x-contact-fields/>
             <input type="hidden" name="type" value="0">

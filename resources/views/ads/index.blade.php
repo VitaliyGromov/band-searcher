@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="row">
+            <x-filters.index/>
             @if (sizeof($ads) == 0)
                 <div class="text-center">
                     <h3>{{__('Пока нет объявлений')}}</h3>

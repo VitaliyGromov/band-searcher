@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('vk');
             $table->string('youtube');
             $table->text('description')->nullable();
-            $table->text('additional_info')->nullable();
+
 
             $table->foreignId('own_experience')->constrained('experiences')->nullable();
             $table->foreignId('own_concert_experience')->constrained('experiences')->nullable();
