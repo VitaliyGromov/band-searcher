@@ -2,23 +2,13 @@
 
 namespace App\Http\Requests\Ads;
 
-use App\Http\Requests\Ads\Traits\HasValidationFields;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdFilterRequest extends FormRequest
 {
-    use HasValidationFields;
-
     public function authorize(): bool
     {
         return true;
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            $this->getFieldsForPrepareForValidation(),
-        ]);
     }
 
     public function rules(): array
@@ -31,6 +21,8 @@ class AdFilterRequest extends FormRequest
             'city_id' => ['nullable', 'integer'],
 
             'cover_band' => ['nullable', 'string'],
+
+            'type' => ['nullable', 'integer']
         ];
     }
 }

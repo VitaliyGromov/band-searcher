@@ -17,7 +17,7 @@
               <x-experience name="own_experience"/>
             </div>
             <div class="mt-3">
-              <x-label for="own_concert_experience">{{__('Ваш опыт')}}</x-label>
+              <x-label for="own_concert_experience">{{__('Ваш концернтый опыт')}}</x-label>
               <x-experience name="own_concert_experience"/>
             </div>
             <div class="mt-3">
@@ -55,11 +55,4 @@
           </form>
     </div>
 </div>
-<script>
-  document.getElementById('commercial_project').addEventListener('change', showSalary);
-
-  function showSalary(){
-      document.getElementById('salary').classList.toggle('d-none');
-  }
-</script>
 @endsection

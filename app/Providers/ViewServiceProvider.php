@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\Experience;
 use App\Models\Genre;
 use App\Models\Skill;
-use App\Models\Ad;
 use App\Models\Status;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -29,10 +28,6 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('components.genres', function($view){
             $view->with('genres', Genre::all());
-        });
-
-        View::composer(['admin.ads'], function($view){
-            $view->with('ads', Ad::all());
         });
 
         View::composer('components.statuses', function($view){

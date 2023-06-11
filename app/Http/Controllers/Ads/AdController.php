@@ -43,8 +43,6 @@ class AdController extends Controller
 
         $ads = $filteredAds->get();
 
-        dd($ads);
-
         return view('admin.ads', compact('ads'));
     }
 

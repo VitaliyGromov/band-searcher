@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <x-filters.index routeName="admin.ads"/>
         <x-table :ads="$ads" routeForButton="admin.ads.show"/>
     </div>
 </div>

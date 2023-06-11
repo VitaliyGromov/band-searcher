@@ -2,4 +2,4 @@ document.getElementById('commercial_project').addEventListener('change', showSal
 
 function showSalary(){
     document.getElementById('salary').classList.toggle('d-none');
-} 
+}

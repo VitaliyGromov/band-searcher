@@ -98,5 +98,4 @@
 </body>
 
 @livewireScripts
-
 </html>
