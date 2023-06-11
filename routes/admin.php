@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Ads\AdController;
 use Illuminate\Support\Facades\Route;
 

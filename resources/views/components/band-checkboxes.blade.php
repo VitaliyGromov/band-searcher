@@ -7,8 +7,8 @@
 
 <div class="mt-3">
   <div class="form-check">
-    <x-label for="cower_band">{{ __('Кавер-группа') }}</x-label>
-    <x-checkbox name="cower_band"/>
+    <x-label for="cover_band">{{ __('Кавер-группа') }}</x-label>
+    <x-checkbox name="cover_band"/>
   </div>
 </div>
 

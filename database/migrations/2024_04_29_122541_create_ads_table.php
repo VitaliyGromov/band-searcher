@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('ready_to_tour')->nullable();
 
             $table->boolean('own_music')->nullable();
-            $table->boolean('cower_band')->nullable();
+            $table->boolean('cover_band')->nullable();
             $table->boolean('commercial_project')->nullable();
 
             $table->string('band_name')->nullable();

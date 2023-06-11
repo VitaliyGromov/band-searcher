@@ -19,7 +19,7 @@ class AdFieldsHendler
 
     public function isCoverBand(): string
     {
-        return yesOrNo($this->ad->cower_band);
+        return yesOrNo($this->ad->cover_band);
     }
 
     public function isCommercialProject(): string

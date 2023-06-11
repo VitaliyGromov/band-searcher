@@ -3,7 +3,7 @@
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Кавер группа') }}">
-    <x-checkbox name="cower_band" boolValue="{{$ad->cower_band}}"/>
+    <x-checkbox name="cover_band" boolValue="{{$ad->cover_band}}"/>
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Коммерческий проект') }}">
