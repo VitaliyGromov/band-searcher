@@ -20,7 +20,18 @@ class AdFilterRequest extends FormRequest
             'region_id' => ['nullable', 'integer'],
             'city_id' => ['nullable', 'integer'],
 
-            'cover_band' => ['nullable', 'string'],
+            'skill_id' => ['nullable', 'integer'],
+            'genre_id' => ['nullable', 'integer'],
+
+            'cover_band' => ['nullable', 'integer'],
+            'own_music' => ['nullable', 'integer'],
+            'commercial_project' => ['nullable', 'integer'],
+
+            'own_instrument' => ['nullable', 'integer'],
+            'ready_to_tour' => ['nullable', 'integer'],
+            'ready_to_move' => ['nullable', 'integer'],
+
+            'salary' => ['nullable', 'integer'],
 
             'type' => ['nullable', 'integer']
         ];

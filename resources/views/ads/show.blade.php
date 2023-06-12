@@ -2,10 +2,14 @@
 
 use App\Helpers\AdFieldsHendler;
 use App\Models\Genre;
+use App\Models\Status;
 
 $adFieldsHendler = new AdFieldsHendler($ad);
 
 $title = $ad->type ? 'себе' : 'группе';
+
+$idOfCloseStatus = Status::getStatusIdByStatusName('закрыто');
+
 
 @endphp
 
@@ -76,9 +80,37 @@ $title = $ad->type ? 'себе' : 'группе';
                 </x-modal>
             @endif
             @if (Route::is('user.ads.show'))
-                <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
-                    <x-form.form :ad="$ad" :title="$title"/>
-                </x-modal>
+                <div class="row">
+                    <div class="col-sm">
+                        <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
+                            <x-form.form :ad="$ad" :title="$title"/>
+                        </x-modal>
+                    </div>
+                    @if ($ad->status_id == Status::getStatusIdByStatusName('активно'))
+                        <div class="col-sm">
+                            <form action="{{route('user.ads.change.status', $ad->id)}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="status_id" value="{{$idOfCloseStatus}}">
+                                <button class="btn btn-danger" type="submit">{{__('Закрыть')}}</button>
+                            </form>
+                        </div>
+                    @endif
+                    @if ($ad->status_id == $idOfCloseStatus)
+                        <div class="col-sm">
+                            <x-modal id="ad_edit" modalName="Возобновить" title="{{ __('Возобновить объявление') }}">
+                                <x-form.form :ad="$ad" :title="$title"/>
+                            </x-modal>
+                        </div>
+                        <div class="col-sm">
+                            <form action="{{route('ads.destroy', $ad->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">{{__('Удалить')}}</button>
+                            </form>
+                        </div>
+                    @endif
+                </div>
             @endif
         </div>
     </div>

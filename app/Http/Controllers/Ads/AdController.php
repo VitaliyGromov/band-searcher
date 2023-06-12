@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\Ads\AdFilterRequest;
-
+use App\Http\Requests\Ads\ChangeAdStatusRequest;
 
 class AdController extends Controller
 {
@@ -21,7 +21,7 @@ class AdController extends Controller
     {
         $validated = $request->validated();
 
-        $filter = app()->make(AdFilter::class, ['queryParams' => array_filter($validated)]);
+        $filter = app()->make(AdFilter::class, ['queryParams' => array_filter($validated, 'strlen')]);
 
         return Ad::filter($filter);
     }
@@ -86,6 +86,15 @@ class AdController extends Controller
         $action->handle($validated, $ad);
 
         return redirect('ads');
+    }
+
+    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request)
+    {
+        $validated = $request->validated();
+
+        $ad->update($validated);
+
+        return redirect()->back();
     }
 
     public function destroy(Ad $ad)

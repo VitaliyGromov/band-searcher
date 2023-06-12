@@ -4,19 +4,19 @@
     <div class="mb-3">
         <x-label for="type">{{__('Тип объявлений')}}</x-label>
         <select class="form-control" name="type">
-            <option value="">{{__('Укажите тип')}}</option>
-            <option value="0">{{__('От групп')}}</option>
-            <option value="1">{{__('От артистов')}}</option>
+            <option value="" selected>{{__('Укажите тип')}}</option>
+            <option value="0" @if (request('type') == 0) selected @endif>{{__('От групп')}}</option>
+            <option value="1" @if (request('type') == 1) selected @endif>{{__('От артистов')}}</option>
         </select>
         @livewire('region-city', ['selectedRussianRegion' => request('region_id'), 'selectedCityByRegion' => request('city_id')])
         <div class="row">
             <div class="col-sm">
                 <x-label for="genre_id">{{__('Жанр')}}</x-label>
-                <x-genres/>
+                <x-genres selectedGenre="{{request('genre_id')}}"/>
             </div>
             <div class="col-sm">
                 <x-label for="skill_id">{{__('Навык')}}</x-label>
-                <x-skills/>
+                <x-skills skill_id="{{request('skill_id')}}"/>
             </div>
         </div>
         <div class="row">

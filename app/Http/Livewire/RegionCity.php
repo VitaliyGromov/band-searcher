@@ -6,7 +6,6 @@ use App\Models\Region;
 use App\Models\City;
 use Livewire\Component;
 
-
 class RegionCity extends Component
 {
     public $russianRegions;

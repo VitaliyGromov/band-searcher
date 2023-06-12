@@ -6,32 +6,28 @@ use Illuminate\Database\Eloquent\Builder;
 
 class AdFilter extends AbstractFilter
 {
-    // public const APPLICANT_EXPERIENCE = 'applicant_experience';
-
-    // public const APPLICANT_EXPERIENCE_CONCERT_EXPERIENCE = 'applicant_concert_experience';
-
-    // public const OWN_MUSIC = 'own_music';
-
-    // public const COVER_BAND = 'cover_band';
-
-    // public const COMMERCIAL_PROJECT = 'commercial_project';
-
-    // public const SALARY = 'salary';
-
-    // public const REGION_ID = 'region_id';
-
-    // public const CITY_ID = 'city_id';
-    
     public function getCallbacks(): array
     {
         return [
             'applicant_experience' => [$this, 'applicantExperience'],
             'applicant_concert_experience' => [$this, 'applicantConcertExperience'],
-            'own_music' => [$this, 'ownMusic'],
-            'cover_band' => [$this, 'coverBand'],
-            'salary' => [$this, 'salary'],
+
             'region_id' => [$this, 'regionId'],
             'city_id' => [$this, 'cityId'],
+
+            'skill_id' => [$this, 'skillId'],
+            'genre_id' => [$this, 'genreId'],
+
+            'cover_band' => [$this, 'coverBand'],
+            'own_music' => [$this, 'ownMusic'],
+            'commercial_project' => [$this, 'commercialProject'],
+
+            'own_instrument' => [$this, 'ownInstrument'],
+            'ready_to_tour' => [$this, 'readuToTour'],
+            'ready_to_move' => [$this, 'readyToMove'],
+
+            'salary' => [$this, 'salary'],
+
             'type' => [$this, 'type'],
         ];
     }
@@ -46,21 +42,6 @@ class AdFilter extends AbstractFilter
         $builder->where('applicant_concert_experience', $value);
     }
 
-    public function ownMusic(Builder $builder, $value)
-    {
-        $builder->where('own_music', filter_var($value, FILTER_VALIDATE_BOOLEAN));
-    }
-
-    public function coverBand(Builder $builder, $value)
-    {
-        $builder->where('cover_band', filter_var($value, FILTER_VALIDATE_BOOLEAN));
-    }
-
-    public function salary(Builder $builder, $value)
-    {
-        $builder->where('salary', $value);
-    }
-
     public function regionId(Builder $builder, $value)
     {
         $builder->where('region_id', $value);
@@ -69,6 +50,51 @@ class AdFilter extends AbstractFilter
     public function cityId(Builder $builder, $value)
     {
         $builder->where('city_id', $value);
+    }
+
+    public function skillId(Builder $builder, $value)
+    {
+        $builder->where('skill_id', $value);
+    }
+
+    public function genreId(Builder $builder, $value)
+    {
+        $builder->where('genre_id', $value);
+    }
+
+    public function coverBand(Builder $builder, $value)
+    {
+        $builder->where('cover_band', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function ownMusic(Builder $builder, $value)
+    {
+        $builder->where('own_music', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function commercialProject(Builder $builder, $value)
+    {
+        $builder->where('commercial_project', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function ownInstrument(Builder $builder, $value)
+    {
+        $builder->where('own_instrument', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function readyToTour(Builder $builder, $value)
+    {
+        $builder->where('readu_to_tour', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function readyToMove(Builder $builder, $value)
+    {
+        $builder->where('ready_to_move', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function salary(Builder $builder, $value)
+    {
+        $builder->where('salary', $value);
     }
 
     public function type(Builder $builder, $value)
