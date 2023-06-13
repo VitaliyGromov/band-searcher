@@ -23,7 +23,7 @@ class AdFilter extends AbstractFilter
             'commercial_project' => [$this, 'commercialProject'],
 
             'own_instrument' => [$this, 'ownInstrument'],
-            'ready_to_tour' => [$this, 'readuToTour'],
+            'ready_to_tour' => [$this, 'readyToTour'],
             'ready_to_move' => [$this, 'readyToMove'],
 
             'salary' => [$this, 'salary'],

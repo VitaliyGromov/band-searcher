@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Experience;
 use App\Models\Genre;
 use App\Models\Skill;
 use App\Models\Status;
+use App\Models\Experience;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
