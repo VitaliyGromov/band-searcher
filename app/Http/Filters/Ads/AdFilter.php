@@ -18,6 +18,8 @@ class AdFilter extends AbstractFilter
             'skill_id' => [$this, 'skillId'],
             'genre_id' => [$this, 'genreId'],
 
+            'band_name' => [$this, 'bandName'],
+
             'cover_band' => [$this, 'coverBand'],
             'own_music' => [$this, 'ownMusic'],
             'commercial_project' => [$this, 'commercialProject'],
@@ -29,6 +31,8 @@ class AdFilter extends AbstractFilter
             'salary' => [$this, 'salary'],
 
             'type' => [$this, 'type'],
+
+            'status_id' => [$this, 'statusId'],
         ];
     }
 
@@ -60,6 +64,11 @@ class AdFilter extends AbstractFilter
     public function genreId(Builder $builder, $value)
     {
         $builder->where('genre_id', $value);
+    }
+
+    public function bandName(Builder $builder, $value)
+    {
+        $builder->where('band_name', 'like', "%$value%");
     }
 
     public function coverBand(Builder $builder, $value)
@@ -100,6 +109,11 @@ class AdFilter extends AbstractFilter
     public function type(Builder $builder, $value)
     {
         $builder->where('type', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+    }
+
+    public function statusId(Builder $builder, $value)
+    {
+        $builder->where('status_id', $value);
     }
 }
 

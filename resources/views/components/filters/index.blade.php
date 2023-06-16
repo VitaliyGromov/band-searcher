@@ -2,13 +2,27 @@
 
 <form action="" method="GET">
     <div class="mb-3">
-        <x-label for="type">{{__('Тип объявлений')}}</x-label>
-        <select class="form-control" name="type">
-            <option value="" selected>{{__('Укажите тип')}}</option>
-            <option value="0" @if (request('type') == 0) selected @endif>{{__('От групп')}}</option>
-            <option value="1" @if (request('type') == 1) selected @endif>{{__('От артистов')}}</option>
-        </select>
-        @livewire('region-city', ['selectedRussianRegion' => request('region_id'), 'selectedCityByRegion' => request('city_id')])
+        <div class="row">
+            <div class="col-sm">
+                <x-label for="type">{{__('Тип объявлений')}}</x-label>
+                <x-type/>
+            </div>
+            @if (!Route::is('ads'))
+            <div class="col-sm">
+                <x-label for="type">{{__('Статус')}}</x-label>
+                <x-statuses selectedStatus="{{request('status_id')}}"/>
+            </div>
+            @endif
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                @livewire('region-city', ['selectedRussianRegion' => request('region_id'), 'selectedCityByRegion' => request('city_id')])
+            </div>
+            <div class="col-sm mt-3">
+                <label for="band_name">{{__('Название группы')}}</label>
+                <input class="form-control" name="band_name" value="{{request('band_name')}}" type="text"/>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm">
                 <x-label for="genre_id">{{__('Жанр')}}</x-label>

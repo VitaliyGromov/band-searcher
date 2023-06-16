@@ -23,6 +23,8 @@ class AdFilterRequest extends FormRequest
             'skill_id' => ['nullable', 'integer'],
             'genre_id' => ['nullable', 'integer'],
 
+            'band_name' => ['nullable', 'string'],
+
             'cover_band' => ['nullable', 'integer'],
             'own_music' => ['nullable', 'integer'],
             'commercial_project' => ['nullable', 'integer'],
@@ -33,7 +35,9 @@ class AdFilterRequest extends FormRequest
 
             'salary' => ['nullable', 'integer'],
 
-            'type' => ['nullable', 'integer']
+            'type' => ['nullable', 'integer'],
+
+            'status_id' => ['nullable', 'integer'],
         ];
     }
 }

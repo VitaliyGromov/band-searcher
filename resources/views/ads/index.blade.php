@@ -10,11 +10,13 @@
                     <h3>{{__('Пока нет объявлений')}}</h3>
                 </div>
             @else
-                @foreach ($ads as $ad)
-                    <div class="col-12 col-md-4">
-                        <x-ads.card :ad="$ad"/>
-                    </div>
-                @endforeach
+                <div class="col">
+                    @foreach ($ads as $ad)
+                        <div class="mt-3">
+                            <x-card.card :ad="$ad"/>
+                        </div>
+                    @endforeach
+                </div>
             @endif
         </div>
     </div>
