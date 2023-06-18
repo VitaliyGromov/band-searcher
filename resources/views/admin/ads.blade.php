@@ -22,7 +22,7 @@ use App\Models\Status;
                 <th scope="col">{{ __('Тип') }}</th>
                 <th scope="col">{{ __('Статус') }}</th>
                 <th scope="col"></th>
-                </x-table.thead>
+              </x-table.thead>
                 <x-table.tbody>
                     @foreach ($ads as $ad)
                     @php

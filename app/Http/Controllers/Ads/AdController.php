@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ads;
 
 use App\Models\Ad;
+use App\Models\User;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Filters\Ads\AdFilter;
@@ -72,18 +73,14 @@ class AdController extends Controller
 
     public function store(AdFormRequest $request, AdStoreAction $adStoreAction)
     {
-        $validated = $request->validated();
-
-        $adStoreAction->handle($validated);
+        $adStoreAction->handle($request);
 
         return redirect()->route('ads');
     }
 
-    public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $action)
+    public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $adUpdateAction)
     {
-        $validated = $request->validated();
-
-        $action->handle($validated, $ad);
+        $adUpdateAction->handle($request, $ad);
 
         return redirect('ads');
     }
