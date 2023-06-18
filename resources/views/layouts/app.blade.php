@@ -20,7 +20,9 @@
         <main class="py-4">
             @yield('content')
         </main>
-        @include('include.footer')
+        @if (Route::is('ads'))
+            @include('include.footer')
+        @endif
     </div>
 </body>
 

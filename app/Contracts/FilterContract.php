@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Filters;
+namespace App\Contracts;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 

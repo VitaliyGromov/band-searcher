@@ -1,7 +1,7 @@
 <?php
 namespace App\Models\Traits;
 
-use App\Http\Filters\FilterContract;
+use App\Contracts\FilterContract;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasFilter

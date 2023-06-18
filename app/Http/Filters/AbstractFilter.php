@@ -2,6 +2,7 @@
 namespace App\Http\Filters;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Contracts\FilterContract;
 
 abstract class AbstractFilter implements FilterContract
 {

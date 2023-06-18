@@ -35,4 +35,5 @@ class HhRuApiClient
         return $respounse;
     }
 }
-?>
+
+?> 
