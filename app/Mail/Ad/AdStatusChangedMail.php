@@ -19,10 +19,13 @@ class AdStatusChangedMail extends Mailable
 
     public User $user;
 
-    public function __construct(Ad $ad, User $user)
+    public string $message;
+
+    public function __construct(Ad $ad, User $user, string $message = '')
     {
         $this->ad = $ad;
         $this->user = $user;
+        $this->message = $message;
     }
 
     public function envelope(): Envelope
@@ -39,6 +42,7 @@ class AdStatusChangedMail extends Mailable
 
             with:[
                 'status' => Status::getStatusNameById($this->ad->status_id),
+                'message' => $this->message,
             ]
         );
     }

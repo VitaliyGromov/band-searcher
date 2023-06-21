@@ -1,6 +1,6 @@
 @props(['selectedStatus' => ''])
 
-<select class="form-select" name="status_id">
+<select class="form-select" name="status_id" id="status_id">
   <option value="" selected></option>
   @foreach ($statuses as $status)
       <option value="{{$status->id}}" @if ($selectedStatus == $status->id) selected @endif>

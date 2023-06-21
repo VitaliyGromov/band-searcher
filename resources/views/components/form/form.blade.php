@@ -114,19 +114,6 @@
             {{$ad->description}}
         </x-textarea>
     </div>
-    
-    @role('admin')
-        <x-ads.list-element name="{{ __('Статус') }}">
-            <x-statuses selectedStatus="{{$ad->status_id}}"/>
-        </x-ads.list-element>
-
-        <div id="message" class="d-none">
-            <x-label for="message">{{__('Пояснительная записка')}}</x-label>
-            <x-textarea name="message">
-                {{__('Добрый день, ')}} {{$ad->name}} {{$ad->last_name}}
-            </x-textarea>
-        </div>
-    @endrole
 
     <input type="hidden" name="type" value="{{ intval($ad->type) }}">
     

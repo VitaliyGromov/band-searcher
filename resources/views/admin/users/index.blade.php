@@ -27,9 +27,25 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ yesOrNo($user->active)}}</td>
                 @if ($user->active)
-                  <td><button class="btn btn-danger">{{__('Деактивировать')}}</button></td>
+                  <td>
+                    <form action="{{route('admin.change.user.activity.status', $user->id)}}" method="POST">
+                      @method('PUT')
+                      @csrf
+
+                      <input type="hidden" name="active" value="false">
+                      <button class="btn btn-danger" type="submit">{{__('Деактивировать')}}</button>
+                    </form>
+                  </td>
                 @else
-                  <td><button class="btn btn-success">{{__('Активировать')}}</button></td>
+                  <td>
+                    <form action="{{route('admin.change.user.activity.status', $user->id)}}" method="POST">
+                      @method('PUT')
+                      @csrf
+                      
+                      <input type="hidden" name="active" value="true">
+                      <button class="btn btn-success" type="submit">{{__('Активировать')}}</button>
+                    </form>
+                  </td>
                 @endif
               </tr>
               @endforeach

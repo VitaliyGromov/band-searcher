@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Ads;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangeAdStatusRequest extends FormRequest
+class ChangeActiveStatusRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,8 +14,7 @@ class ChangeAdStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status_id' => ['required', 'integer'],
-            'message' => ['nullable', 'string'],
+            'active' => ['required', 'boolean'],
         ];
     }
 }

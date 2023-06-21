@@ -75,8 +75,24 @@ $idOfCloseStatus = Status::getStatusIdByStatusName('закрыто');
             <x-ads.contacts :ad="$ad"/>
 
             @if (Route::is('admin.ads.show'))
-                <x-modal id="ad_edit" modalName="Редактировать" title="{{ __('Редактровать объявление') }}">
-                    <x-form.form :ad="$ad" :title="$title"/>
+                <x-modal id="ad_edit" modalName="Изменить статус" title="{{ __('Изменить статус') }}">
+                    <form action="{{route('admin.ads.change.status', $ad->id)}}" method="POST">
+                        @method('PUT')
+                        @csrf
+
+                        <x-ads.list-element name="{{ __('Статус') }}">
+                            <x-statuses selectedStatus="{{$ad->status_id}}"/>
+                        </x-ads.list-element>
+                
+                        <div id="message" class="d-none">
+                            <x-label for="message">{{__('Пояснительная записка')}}</x-label>
+                            <x-textarea name="message">
+                            </x-textarea>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">{{__('Сохранить')}}</button>
+                        </div>
+                    </form>
                 </x-modal>
             @endif
             @if (Route::is('user.ads.show'))
@@ -115,4 +131,19 @@ $idOfCloseStatus = Status::getStatusIdByStatusName('закрыто');
         </div>
     </div>
 </div>
+<script>
+    const statusId = document.getElementById('status_id');
+
+    statusId.addEventListener('change', showMeassageInput);
+
+    function showMeassageInput(){
+        const selectedStatus = statusId.options[statusId.selectedIndex].text;
+         
+        if(selectedStatus === 'отклонено'){
+            document.getElementById('message').classList.remove('d-none');
+        } else {
+            document.getElementById('message').classList.add('d-none');
+        }
+    }
+</script>
 @endsection

@@ -10,6 +10,7 @@ use App\Actions\Ads\AdUpdateAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
+use App\Actions\Ads\AdChangeStatusAction;
 use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
 
@@ -73,11 +74,9 @@ class AdController extends Controller
         return redirect('ads');
     }
 
-    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request)
+    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, AdChangeStatusAction $adChangeStatusAction)
     {
-        $validated = $request->validated();
-
-        $ad->update($validated);
+        $adChangeStatusAction->handle($request, $ad);
 
         return redirect()->back();
     }
