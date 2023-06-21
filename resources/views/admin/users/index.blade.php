@@ -15,6 +15,7 @@
               <th scope="col">{{ __('Имя') }}</th>
               <th scope="col">{{ __('Фамилия') }}</th>
               <th scope="col">{{ __('email') }}</th>
+              <th scope="col">{{__('Активный')}}</th>
               <th scope="col"></th>
             </x-table.thead>
             <x-table.tbody>
@@ -24,6 +25,12 @@
                 <td>{{$user->name}}</td>
                 <td>{{ $user->last_name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ yesOrNo($user->active)}}</td>
+                @if ($user->active)
+                  <td><button class="btn btn-danger">{{__('Деактивировать')}}</button></td>
+                @else
+                  <td><button class="btn btn-success">{{__('Активировать')}}</button></td>
+                @endif
               </tr>
               @endforeach
           </x-table.tbody>
