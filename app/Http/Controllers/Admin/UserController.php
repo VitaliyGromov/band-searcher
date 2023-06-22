@@ -17,9 +17,8 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    public function changуUserActivityStatus(ChangeActiveStatusRequest $request, User $user)
+    public function changeUserActivityStatus(ChangeActiveStatusRequest $request, User $user)
     {
-        dd($request->all()); //TODO плка не работает
         $validated = $request->validated();
 
         $user->update($validated);

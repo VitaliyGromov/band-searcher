@@ -16,6 +16,6 @@ class ActiveMiddleware
             return $next($request);
         }
 
-        return abort(401, 'Ваш аккаунт деактивирован');
+        return abort(401);
     }
 }

@@ -32,7 +32,7 @@
                       @method('PUT')
                       @csrf
 
-                      <input type="hidden" name="active" value="false">
+                      <input type="hidden" name="active" value="0">
                       <button class="btn btn-danger" type="submit">{{__('Деактивировать')}}</button>
                     </form>
                   </td>
@@ -42,7 +42,7 @@
                       @method('PUT')
                       @csrf
                       
-                      <input type="hidden" name="active" value="true">
+                      <input type="hidden" name="active" value="1">
                       <button class="btn btn-success" type="submit">{{__('Активировать')}}</button>
                     </form>
                   </td>

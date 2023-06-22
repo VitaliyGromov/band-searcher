@@ -11,6 +11,13 @@ class ChangeActiveStatusRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'active' => boolval($this->input('active')),
+        ]);
+    }
+
     public function rules(): array
     {
         return [
