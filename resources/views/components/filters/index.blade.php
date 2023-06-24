@@ -52,7 +52,7 @@
                 <x-band-checkboxes/>
                 <div class="mt-3 d-none" id="salary">
                     <x-label for="salary">{{__('Сколько деняк?)')}}</x-label>
-                    <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях"/>
+                    <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях" value="{{request('salary')}}"/>
                 </div>
             </div>
             <div class="col-sm">

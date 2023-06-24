@@ -2,10 +2,9 @@
 namespace App\Actions\Ads;
 
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
+use App\Jobs\AdStatusChangedJob;
 use App\Models\Ad;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Ad\AdStatusChangedMail;
 
 class AdChangeStatusAction
 {
@@ -23,7 +22,7 @@ class AdChangeStatusAction
 
         $user = User::find($ad->user_id);
 
-        Mail::to($user->email)->send(new AdStatusChangedMail($ad, $user, $message));
+        dispatch(new AdStatusChangedJob($user, $ad, $message));
     }
 }
 ?>

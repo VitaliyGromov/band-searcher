@@ -14,10 +14,12 @@
           <div class="mt-3">
               <x-label for="own_experience">{{__('Ваш опыт')}}</x-label>
               <x-experience name="own_experience"/>
+              <x-error name="own_experience"/>
           </div>
           <div class="mt-3">
             <x-label for="own_concert_experience">{{__('Ваш концертный опыт')}}</x-label>
             <x-experience name="own_concert_experience"/>
+            <x-error name="own_concert_experience"/>
           </div>
           <div class="mt-3">
             <x-label for="description">{{__('Расскажите что-нибудь о себе')}}</x-label>
@@ -28,16 +30,19 @@
             <h2>{{__('Требования к группе')}}</h2>
           </div>
           <div class="mt-3">
-            <x-label for="genres">{{__('Жанр')}}</x-label>
+            <x-label for="genre_id">{{__('Жанр')}}</x-label>
             <x-genres/>
+            <x-error name="genre_id"/>
           </div>
           <div class="mt-3">
             <x-label for="applicant_experience">{{__('Опыт')}}</x-label>
             <x-experience name="applicant_experience"/>
+            <x-error name="applicant_experience"/>
           </div>
           <div class="mt-3">
             <x-label for="applicant_concert_experience">{{__('Концертный опыт')}}</x-label>
             <x-experience name="applicant_concert_experience"/>
+            <x-error name="applicant_concert_experience"/>
           </div>
           <div class="mt-3">
             <h3>{{__('Дополнительная информация')}}</h3>

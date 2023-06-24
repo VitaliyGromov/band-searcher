@@ -79,6 +79,18 @@ class AdFormRequest extends FormRequest
             'region_id.required' => 'Укажите ваше регион',
             'city_id.required' => 'Укажите ваш город',
             'skill_id' => 'Укажите ваш навык',
+            'genre_id' => 'Укажите жанр',
+
+            'vk.required' => 'Это поле обязательно для заполнения',
+            'vk.string' => 'Это поле должно быть строкой',
+            
+            'youtube.required' => 'Это поле обязательно для заполнения',
+            'youtube.string' => 'Это поле должно быть строкой',
+
+            'own_experience.required' => 'Укажите ваш опыт',
+            'own_concert_experience' => 'Укажите ваш концертный опыт',
+            'applicant_experience' => 'Укажите опыт соискателя',
+            'applicant_concert_experience' => 'Укажите концертный опыт соискателя',
 
             'name.required' => 'Поле "Имя" не должно быть пустым',
             'name.string' => 'Поле "Имя" должно быть строкой',

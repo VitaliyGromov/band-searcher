@@ -5,8 +5,7 @@ use App\Http\Requests\Ads\AdFormRequest;
 use App\Models\Ad;
 use App\Models\User;
 use App\Models\Status;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Ad\AdStatusChangedMail;
+use App\Jobs\AdStatusChangedJob;
 
 class AdUpdateAction
 {
@@ -24,7 +23,7 @@ class AdUpdateAction
 
         $user = User::find($ad->user_id);
 
-        Mail::to($user->email)->send(new AdStatusChangedMail($ad, $user));
+        dispatch(new AdStatusChangedJob($user, $ad));
     }
 }
 ?>
