@@ -3,6 +3,7 @@
 namespace App\API\HhruApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class HhRuApiClient 
 {
@@ -19,7 +20,11 @@ class HhRuApiClient
 
     public function getRegionsInRussia(): mixed
     {
-        $request = $this->hhRuApiClient->request('GET', 'areas/113'); // Russia's id is 113
+        try {
+            $request = $this->hhRuApiClient->request('GET', 'areas/113'); // Russia's id is 113
+        } catch (RequestException $e) {
+            info('Регионов не будет');
+        }
 
         $respounse = json_decode($request->getBody()->getContents());
 
@@ -28,7 +33,11 @@ class HhRuApiClient
 
     public function getCitiesByRegionId(int $regionId): mixed
     {
-        $request = $this->hhRuApiClient->request('GET', "areas/$regionId");
+        try {
+            $request = $this->hhRuApiClient->request('GET', "areas/$regionId");
+        } catch (RequestException $e) {
+            info('Городов не будет');
+        }
 
         $respounse = json_decode($request->getBody()->getContents());
 

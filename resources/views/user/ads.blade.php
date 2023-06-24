@@ -11,7 +11,7 @@ use App\Models\Status;
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <x-filters.index routeName="user.ads"/>
+        <x-filters.ads routeName="user.ads"/>
         <x-table.table>
             <x-table.thead>
                 <th scope="col">{{ __('id') }}</th>

@@ -5,6 +5,7 @@ use App\Models\Ad;
 use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
+use App\Jobs\AdCreatedJob;
 
 class AdStoreAction 
 {
@@ -14,9 +15,11 @@ class AdStoreAction
 
         $statusId = Status::getStatusIdByStatusName(config('ads.default_status'));
 
-        $userId = Auth::id();
+        $user = Auth::user();
 
-        Ad::create([...$validated, 'user_id' => $userId, 'status_id' => $statusId]);
+        $ad = Ad::create([...$validated, 'user_id' => $user->id, 'status_id' => $statusId]);
+
+        dispatch(new AdCreatedJob($user, $ad));
     }
 }
 
