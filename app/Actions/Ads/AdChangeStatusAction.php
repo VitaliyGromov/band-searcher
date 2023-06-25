@@ -1,8 +1,8 @@
 <?php
 namespace App\Actions\Ads;
 
+use App\Events\AdStatusChanged;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
-use App\Jobs\AdStatusChangedJob;
 use App\Models\Ad;
 use App\Models\User;
 
@@ -22,7 +22,7 @@ class AdChangeStatusAction
 
         $user = User::find($ad->user_id);
 
-        dispatch(new AdStatusChangedJob($user, $ad, $message));
+        event(new AdStatusChanged($user, $ad, $message));
     }
 }
 ?>

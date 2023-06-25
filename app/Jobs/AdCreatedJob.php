@@ -25,10 +25,7 @@ class AdCreatedJob implements ShouldQueue
         $this->user = $user;
         $this->ad = $ad;
     }
-
-    /**
-     * Execute the job.
-     */
+    
     public function handle(): void
     {
         Mail::to($this->user->email)->send(new AdCreatedMail($this->user, $this->ad));

@@ -1,11 +1,11 @@
 <?php
 namespace App\Actions\Ads;
 
+use App\Events\AdCreated;
 use App\Models\Ad;
 use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
-use App\Jobs\AdCreatedJob;
 
 class AdStoreAction 
 {
@@ -19,7 +19,7 @@ class AdStoreAction
 
         $ad = Ad::create([...$validated, 'user_id' => $user->id, 'status_id' => $statusId]);
 
-        dispatch(new AdCreatedJob($user, $ad));
+        event(new AdCreated($ad, $user));
     }
 }
 
