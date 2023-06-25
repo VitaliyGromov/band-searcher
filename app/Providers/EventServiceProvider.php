@@ -4,12 +4,11 @@ namespace App\Providers;
 
 use App\Events\AdCreated;
 use App\Events\AdStatusChanged;
-use App\Listeners\AdCreatedEmail;
-use App\Listeners\AdStatusChangedMail;
+use App\Listeners\AdCreatedListener;
+use App\Listeners\AdStatusChangedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,10 +22,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         AdCreated::class => [
-            AdCreatedEmail::class,
+            AdCreatedListener::class,
         ],
         AdStatusChanged::class => [
-            AdStatusChangedMail::class,
+            AdStatusChangedListener::class,
         ],
     ];
 

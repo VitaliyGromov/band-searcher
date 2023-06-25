@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\AdStatusChanged;
 use App\Jobs\AdStatusChangedJob;
 
-class AdStatusChangedMail
+class AdStatusChangedListener
 {
     public function handle(AdStatusChanged $event): void
     {

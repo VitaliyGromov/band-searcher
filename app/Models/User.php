@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasFilter;
+use App\Models\Traits\Filterable;
 use App\Notifications\SendVerifyWithQueueNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasFilter;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Filterable;
 
     protected $fillable = [
         'name',
