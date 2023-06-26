@@ -5,11 +5,11 @@ use App\Events\AdCreated;
 use App\Models\Ad;
 use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Ads\AdFormRequest;
+use Illuminate\Http\Request;
 
 class AdStoreAction 
 {
-    public function handle(AdFormRequest $request)
+    public function handle(Request $request)
     {
         $validated = $request->validated();
 

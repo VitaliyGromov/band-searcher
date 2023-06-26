@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\AdCreated;
 use App\Events\AdStatusChanged;
+use App\Events\User\ChangeUserActivityStatusEvent;
 use App\Listeners\AdCreatedListener;
 use App\Listeners\AdStatusChangedListener;
+use App\Listeners\User\SendActivityStatusChangedMail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         AdStatusChanged::class => [
             AdStatusChangedListener::class,
         ],
+        ChangeUserActivityStatusEvent::class => [
+            SendActivityStatusChangedMail::class,
+        ]
     ];
 
     /**

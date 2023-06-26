@@ -1,15 +1,15 @@
 <?php
 namespace App\Actions\Ads;
 
-use App\Http\Requests\Ads\AdFormRequest;
 use App\Models\Ad;
 use App\Models\User;
 use App\Models\Status;
 use App\Jobs\AdStatusChangedJob;
+use Illuminate\Http\Request;
 
 class AdUpdateAction
 {
-    public function handle(AdFormRequest $request, Ad $ad)
+    public function handle(Request $request, Ad $ad)
     {
         $validated = $request->validated();
 

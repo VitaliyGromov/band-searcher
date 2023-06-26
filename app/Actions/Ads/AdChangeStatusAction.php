@@ -2,13 +2,13 @@
 namespace App\Actions\Ads;
 
 use App\Events\AdStatusChanged;
-use App\Http\Requests\Ads\ChangeAdStatusRequest;
 use App\Models\Ad;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AdChangeStatusAction
 {
-    public function handle(ChangeAdStatusRequest $request, Ad $ad)
+    public function handle(Request $request, Ad $ad)
     {
         $validated = $request->validated();
 
