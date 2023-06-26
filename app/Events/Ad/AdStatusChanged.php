@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Events;
+namespace App\Events\Ad;
 
 use App\Models\Ad;
 use App\Models\User;

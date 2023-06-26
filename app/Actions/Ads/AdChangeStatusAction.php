@@ -1,7 +1,7 @@
 <?php
 namespace App\Actions\Ads;
 
-use App\Events\AdStatusChanged;
+use App\Events\Ad\AdStatusChanged;
 use App\Models\Ad;
 use App\Models\User;
 use Illuminate\Http\Request;

@@ -1,7 +1,7 @@
 <?php
 namespace App\Actions\Ads;
 
-use App\Events\AdCreated;
+use App\Events\Ad\AdCreated;
 use App\Models\Ad;
 use App\Models\Status;
 use Illuminate\Support\Facades\Auth;

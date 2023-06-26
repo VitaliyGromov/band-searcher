@@ -1,9 +1,8 @@
 <?php
+namespace App\Listeners\Ad;
 
-namespace App\Listeners;
-
-use App\Events\AdStatusChanged;
-use App\Jobs\AdStatusChangedJob;
+use App\Events\Ad\AdStatusChanged;
+use App\Jobs\Ad\AdStatusChangedJob;
 
 class AdStatusChangedListener
 {

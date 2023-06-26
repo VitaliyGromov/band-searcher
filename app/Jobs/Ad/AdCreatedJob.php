@@ -1,6 +1,7 @@
 <?php
+namespace App\Jobs\Ad;
 
-namespace App\Jobs;
+
 
 use App\Mail\Ad\AdCreatedMail;
 use App\Models\User;

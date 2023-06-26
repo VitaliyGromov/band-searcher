@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Events\AdCreated;
-use App\Events\AdStatusChanged;
+use App\Events\Ad\AdCreated;
+use App\Events\Ad\AdStatusChanged;
 use App\Events\User\ChangeUserActivityStatusEvent;
-use App\Listeners\AdCreatedListener;
-use App\Listeners\AdStatusChangedListener;
+use App\Listeners\Ad\AdCreatedListener;
+use App\Listeners\Ad\AdStatusChangedListener;
 use App\Listeners\User\SendActivityStatusChangedMail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;

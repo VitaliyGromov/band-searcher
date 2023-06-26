@@ -1,9 +1,8 @@
 <?php
+namespace App\Listeners\Ad;
 
-namespace App\Listeners;
-
-use App\Events\AdCreated;
-use App\Jobs\AdCreatedJob;
+use App\Events\Ad\AdCreated;
+use App\Jobs\Ad\AdCreatedJob;
 
 class AdCreatedListener
 {

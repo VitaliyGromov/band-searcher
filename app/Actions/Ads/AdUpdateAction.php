@@ -4,7 +4,7 @@ namespace App\Actions\Ads;
 use App\Models\Ad;
 use App\Models\User;
 use App\Models\Status;
-use App\Jobs\AdStatusChangedJob;
+use App\Jobs\Ad\AdStatusChangedJob;
 use Illuminate\Http\Request;
 
 class AdUpdateAction
