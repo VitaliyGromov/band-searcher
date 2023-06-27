@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Profile\ChangePasswordRequest;
 use App\Http\Requests\Profile\UpdateProfileRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {

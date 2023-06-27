@@ -38,6 +38,11 @@
                   </button>
                 </div>
               </form>
+              <div class="mt-3">
+                <x-button-link color="secondary" href="{{url('password/confirm')}}">
+                  {{__('Сменить пароль')}}
+                </x-button-link>
+              </div>
         </div>
     </div>
 </div>

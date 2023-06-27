@@ -1,9 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
 
-        <x-button-link href="{{ route('ads') }}" color="light">
-            {{__('Объявления')}}
-        </x-button-link>
+        <div class="m-2">
+            <x-button-link href="{{ route('ads') }}" color="light">
+                {{__('Объявления')}}
+            </x-button-link>
+        </div>
 
         @auth
             @role('admin')
