@@ -1,15 +1,15 @@
 <?php
 namespace App\Actions\Ads;
 
+use App\Events\Ad\AdStatusChanged;
 use App\Models\Ad;
 use App\Models\User;
 use App\Models\Status;
-use App\Jobs\Ad\AdStatusChangedJob;
 use Illuminate\Http\Request;
 
 class AdUpdateAction
 {
-    public function handle(Request $request, Ad $ad)
+    public function handle(Request $request, Ad $ad): void
     {
         $validated = $request->validated();
 
@@ -23,7 +23,7 @@ class AdUpdateAction
 
         $user = User::find($ad->user_id);
 
-        dispatch(new AdStatusChangedJob($user, $ad));
+        event(new AdStatusChanged($user, $ad)); // create AdUpdated event
     }
 }
 ?>

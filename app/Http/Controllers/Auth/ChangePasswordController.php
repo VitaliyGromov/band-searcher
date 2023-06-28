@@ -2,31 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Auth\ChangePasswordAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ChangePasswordRequest;
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ChangePasswordController extends Controller
 {
-    use AuthenticatesUsers;
-
-    public function show()
+    public function show(): View
     {
         return view('auth.passwords.change');
     }
 
-    public function changePassword(ChangePasswordRequest $request)
+    public function changePassword(ChangePasswordRequest $request, ChangePasswordAction $action): RedirectResponse
     {
-        $validated = $request->validated();
+        $action->handle($request);
 
-        $userId = Auth::id();
-
-        $user = User::find($userId);
-
-        $user->update(['password' => Hash::make($validated['password'])]);
+        return redirect('profile')->with('message', 'Ваш пароль был успешно обновлен');
     }
 }

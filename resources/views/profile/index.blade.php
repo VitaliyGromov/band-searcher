@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+              @if (session('message'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('message') }}
+                </div>
+              @endif
               <h2>{{__('Информация о профиле')}}</h2>
               <form class="row g-3 mt-2" action="{{ route('profile.update', Auth::user()->id) }}" method="POST">
                 @method('PUT')

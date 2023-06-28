@@ -13,10 +13,12 @@ use App\Http\Requests\Ads\AdFormRequest;
 use App\Actions\Ads\AdChangeStatusAction;
 use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AdController extends Controller
 {
-    public function index(AdFilterRequest $request)
+    public function index(AdFilterRequest $request): View
     {
         $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
 
@@ -27,7 +29,7 @@ class AdController extends Controller
         return view('ads.index', compact('ads'));
     }
 
-    public function adminAds(AdFilterRequest $request)
+    public function adminAds(AdFilterRequest $request): View
     {
         $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
 
@@ -36,7 +38,7 @@ class AdController extends Controller
         return view('admin.ads', compact('ads'));
     }
 
-    public function userAds(AdFilterRequest $request)
+    public function userAds(AdFilterRequest $request): View
     {
         $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
 
@@ -45,43 +47,43 @@ class AdController extends Controller
         return view('user.ads', compact('ads'));
     }
 
-    public function show(Ad $ad)
+    public function show(Ad $ad): View
     {
         return view('ads.show', compact('ad'));
     }
 
-    public function createAdFromBand()
+    public function createAdFromBand(): View
     {
         return view('ads.band.create');
     }
 
-    public function createAdFromArtist()
+    public function createAdFromArtist(): View
     {
         return view('ads.artist.create');
     }
 
-    public function store(AdFormRequest $request, AdStoreAction $adStoreAction)
+    public function store(AdFormRequest $request, AdStoreAction $adStoreAction): RedirectResponse
     {
         $adStoreAction->handle($request);
 
         return redirect()->route('ads');
     }
 
-    public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $adUpdateAction)
+    public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $adUpdateAction): RedirectResponse
     {
         $adUpdateAction->handle($request, $ad);
 
         return redirect('ads');
     }
 
-    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, AdChangeStatusAction $adChangeStatusAction)
+    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, AdChangeStatusAction $adChangeStatusAction): RedirectResponse
     {
         $adChangeStatusAction->handle($request, $ad);
 
         return redirect()->back();
     }
 
-    public function destroy(Ad $ad)
+    public function destroy(Ad $ad): RedirectResponse
     {
         $ad->delete();
 

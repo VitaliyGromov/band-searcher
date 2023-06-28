@@ -7,7 +7,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 
-class ChangeUserActivityStatusEvent
+class UserActivityStatusChanged
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

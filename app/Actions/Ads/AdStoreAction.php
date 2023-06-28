@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AdStoreAction 
 {
-    public function handle(Request $request)
+    public function handle(Request $request): void
     {
         $validated = $request->validated();
 

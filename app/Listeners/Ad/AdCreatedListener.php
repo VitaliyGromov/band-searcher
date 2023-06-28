@@ -2,12 +2,14 @@
 namespace App\Listeners\Ad;
 
 use App\Events\Ad\AdCreated;
-use App\Jobs\Ad\AdCreatedJob;
+use App\Mail\Ad\AdCreatedMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AdCreatedListener
+class AdCreatedListener implements ShouldQueue
 {
     public function handle(AdCreated $event): void
     {
-        dispatch(new AdCreatedJob($event->user, $event->ad));
+        Mail::to($event->user->email)->send(new AdCreatedMail($event->user, $event->ad));
     }
 }

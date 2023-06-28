@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AdChangeStatusAction
 {
-    public function handle(Request $request, Ad $ad)
+    public function handle(Request $request, Ad $ad): void
     {
         $validated = $request->validated();
 

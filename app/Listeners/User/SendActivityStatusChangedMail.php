@@ -2,13 +2,15 @@
 
 namespace App\Listeners\User;
 
-use App\Events\User\ChangeUserActivityStatusEvent;
-use App\Jobs\User\ChangeUserActivityStatusMailJob;
+use App\Events\User\UserActivityStatusChanged;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\User\UserActivityStatusChangedMail;
 
-class SendActivityStatusChangedMail
+class SendActivityStatusChangedMail implements ShouldQueue
 {
-    public function handle(ChangeUserActivityStatusEvent $event): void
+    public function handle(UserActivityStatusChanged $event): void
     {
-        dispatch(new ChangeUserActivityStatusMailJob($event->user));
+        Mail::to($event->user->email)->send(new UserActivityStatusChangedMail($event->user));
     }
 }

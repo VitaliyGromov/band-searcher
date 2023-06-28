@@ -2,12 +2,14 @@
 namespace App\Listeners\Ad;
 
 use App\Events\Ad\AdStatusChanged;
-use App\Jobs\Ad\AdStatusChangedJob;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Ad\AdStatusChangedMail;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AdStatusChangedListener
+class AdStatusChangedListener implements ShouldQueue
 {
     public function handle(AdStatusChanged $event): void
     {
-        dispatch(new AdStatusChangedJob($event->user, $event->ad, $event->message));
+        Mail::to($event->user->email)->send(new AdStatusChangedMail($event->ad, $event->user, $event->message));
     }
 }
