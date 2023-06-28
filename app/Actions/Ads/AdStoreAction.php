@@ -1,9 +1,9 @@
 <?php
 namespace App\Actions\Ads;
 
+use App\Enums\Status as EnumsStatus;
 use App\Events\Ad\AdCreated;
 use App\Models\Ad;
-use App\Models\Status;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class AdStoreAction
     {
         $validated = $request->validated();
 
-        $statusId = Status::getStatusIdByStatusName(config('ads.default_status'));
+        $statusId = EnumsStatus::UNDER_REVIEW->value;
 
         $user = Auth::user();
 

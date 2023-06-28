@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Ads;
 
 use App\Models\Ad;
-use App\Models\Status;
 use App\Http\Filters\Ads\AdFilter;
 use App\Actions\Ads\AdStoreAction;
 use App\Actions\Ads\AdUpdateAction;
@@ -11,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
 use App\Actions\Ads\AdChangeStatusAction;
+use App\Enums\Status as EnumsStatus;
 use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
 use Illuminate\Http\RedirectResponse;
@@ -22,7 +22,7 @@ class AdController extends Controller
     {
         $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
 
-        $idOfActiveStatus = Status::getStatusIdByStatusName('активно');
+        $idOfActiveStatus = EnumsStatus::ACTIVE->value;
 
         $ads = $filteredAds->where('status_id', $idOfActiveStatus)->get();
 

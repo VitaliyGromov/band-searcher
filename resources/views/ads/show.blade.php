@@ -3,12 +3,13 @@
 use App\Helpers\AdFieldsHendler;
 use App\Models\Genre;
 use App\Models\Status;
+use App\Enums\Status as EnumsStatus;
 
 $adFieldsHendler = new AdFieldsHendler($ad);
 
 $title = $ad->type ? 'себе' : 'группе';
 
-$idOfCloseStatus = Status::getStatusIdByStatusName('закрыто');
+$idOfCloseStatus = EnumsStatus::CLOSED->value;
 
 
 @endphp
@@ -102,7 +103,7 @@ $idOfCloseStatus = Status::getStatusIdByStatusName('закрыто');
                             <x-form.form :ad="$ad" :title="$title"/>
                         </x-modal>
                     </div>
-                    @if ($ad->status_id == Status::getStatusIdByStatusName('активно'))
+                    @if ($ad->status_id == EnumsStatus::ACTIVE->value)
                         <div class="col-sm">
                             <form action="{{route('user.ads.change.status', $ad->id)}}" method="POST">
                                 @csrf
