@@ -6,7 +6,7 @@ use App\Models\Ad;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdChangeStatusAction
+class ChangeAdStatusAction
 {
     public function handle(Request $request, Ad $ad): void
     {

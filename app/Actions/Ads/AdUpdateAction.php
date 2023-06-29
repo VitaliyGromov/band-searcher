@@ -23,7 +23,7 @@ class AdUpdateAction
 
         $user = User::find($ad->user_id);
 
-        event(new AdStatusChanged($user, $ad)); // create AdUpdated event
+        event(new AdStatusChanged($user, $ad));
     }
 }
 ?>

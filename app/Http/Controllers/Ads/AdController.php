@@ -9,7 +9,7 @@ use App\Actions\Ads\AdUpdateAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
-use App\Actions\Ads\AdChangeStatusAction;
+use App\Actions\Ads\ChangeAdStatusAction;
 use App\Enums\Status as EnumsStatus;
 use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
@@ -76,7 +76,7 @@ class AdController extends Controller
         return redirect('ads');
     }
 
-    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, AdChangeStatusAction $adChangeStatusAction): RedirectResponse
+    public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, ChangeAdStatusAction $adChangeStatusAction): RedirectResponse
     {
         $adChangeStatusAction->handle($request, $ad);
 

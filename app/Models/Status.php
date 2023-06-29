@@ -9,13 +9,6 @@ class Status extends Model
 {
     use HasFactory;
 
-    public static function getStatusIdByStatusName(string $statusName):int
-    {
-        $arrayOfStatusFields = self::where('name', $statusName)->first()->toArray();
-
-        return $arrayOfStatusFields['id'];
-    }
-
     public static function getStatusNameById(int $statusId): string
     {
         $arrayOfStatusFields = self::where('id', $statusId)->first()->toArray();

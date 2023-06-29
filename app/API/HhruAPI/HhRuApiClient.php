@@ -4,6 +4,7 @@ namespace App\API\HhruApi;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Message;
 
 class HhRuApiClient 
 {
@@ -23,7 +24,8 @@ class HhRuApiClient
         try {
             $request = $this->hhRuApiClient->request('GET', 'areas/113'); // Russia's id is 113
         } catch (RequestException $e) {
-            info('Регионов не будет');
+            echo Message::toString($e->getRequest());
+            echo Message::toString($e->getResponse());
         }
 
         $respounse = json_decode($request->getBody()->getContents());
@@ -36,7 +38,8 @@ class HhRuApiClient
         try {
             $request = $this->hhRuApiClient->request('GET', "areas/$regionId");
         } catch (RequestException $e) {
-            info('Городов не будет');
+            echo Message::toString($e->getRequest());
+            echo Message::toString($e->getResponse());
         }
 
         $respounse = json_decode($request->getBody()->getContents());
