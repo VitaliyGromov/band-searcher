@@ -19,7 +19,7 @@ class AdStoreAction
 
         $ad = Ad::create([...$validated, 'user_id' => $user->id, 'status_id' => $statusId]);
 
-        event(new AdCreated($ad, $user));
+        event(new AdCreated($ad));
     }
 }
 

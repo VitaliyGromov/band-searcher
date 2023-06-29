@@ -3,11 +3,15 @@
 namespace App\Providers;
 
 use App\Events\Ad\AdCreated;
+use App\Events\Ad\AdDeleted;
 use App\Events\Ad\AdStatusChanged;
+use App\Events\Ad\AdUpdated;
 use App\Events\Auth\PasswordChanged;
 use App\Events\User\UserActivityStatusChanged;
-use App\Listeners\Ad\AdCreatedListener;
-use App\Listeners\Ad\AdStatusChangedListener;
+use App\Listeners\Ad\SendAdCreatedEmail;
+use App\Listeners\Ad\SendAdDeleteMail;
+use App\Listeners\Ad\SendAdStatusChangedMail;
+use App\Listeners\Ad\SendAdUpdatedMail;
 use App\Listeners\Auth\SendPasswordChangedMail;
 use App\Listeners\User\SendActivityStatusChangedMail;
 use Illuminate\Auth\Events\Registered;
@@ -25,15 +29,27 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
         AdCreated::class => [
-            AdCreatedListener::class,
+            SendAdCreatedEmail::class,
         ],
+
+        AdUpdated::class => [
+            SendAdUpdatedMail::class,
+        ],
+
+        AdDeleted::class => [
+            SendAdDeleteMail::class,
+        ],
+
         AdStatusChanged::class => [
-            AdStatusChangedListener::class,
+            SendAdStatusChangedMail::class,
         ],
+
         UserActivityStatusChanged::class => [
             SendActivityStatusChangedMail::class,
         ],
+
         PasswordChanged::class => [
             SendPasswordChangedMail::class,
         ]

@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Ads;
 
+use AdDeleteAction;
 use App\Models\Ad;
 use App\Http\Filters\Ads\AdFilter;
 use App\Actions\Ads\AdStoreAction;
@@ -22,9 +22,7 @@ class AdController extends Controller
     {
         $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
 
-        $idOfActiveStatus = EnumsStatus::ACTIVE->value;
-
-        $ads = $filteredAds->where('status_id', $idOfActiveStatus)->get();
+        $ads = $filteredAds->where('status_id', EnumsStatus::ACTIVE->value)->get();
 
         return view('ads.index', compact('ads'));
     }
@@ -83,9 +81,9 @@ class AdController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Ad $ad): RedirectResponse
+    public function destroy(Ad $ad, AdDeleteAction $action): RedirectResponse
     {
-        $ad->delete();
+        $action->handle($ad);
 
         return redirect('ads');
     }

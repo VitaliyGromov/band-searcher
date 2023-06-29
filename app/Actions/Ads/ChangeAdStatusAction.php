@@ -3,7 +3,6 @@ namespace App\Actions\Ads;
 
 use App\Events\Ad\AdStatusChanged;
 use App\Models\Ad;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ChangeAdStatusAction
@@ -20,9 +19,7 @@ class ChangeAdStatusAction
 
         $ad->update(['status_id' => $validated['status_id']]);
 
-        $user = User::find($ad->user_id);
-
-        event(new AdStatusChanged($user, $ad, $message));
+        event(new AdStatusChanged($ad, $message));
     }
 }
 ?>

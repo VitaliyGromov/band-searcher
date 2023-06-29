@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Ad\AdStatusChangedMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AdStatusChangedListener implements ShouldQueue
+class SendAdStatusChangedMail implements ShouldQueue
 {
     public function handle(AdStatusChanged $event): void
     {

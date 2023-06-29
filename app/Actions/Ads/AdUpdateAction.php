@@ -3,8 +3,8 @@ namespace App\Actions\Ads;
 
 use App\Enums\Status as EnumsStatus;
 use App\Events\Ad\AdStatusChanged;
+use App\Events\Ad\AdUpdated;
 use App\Models\Ad;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdUpdateAction
@@ -21,9 +21,8 @@ class AdUpdateAction
 
         $ad->update([...$validated, 'status_id' => $statusId]);
 
-        $user = User::find($ad->user_id);
-
-        event(new AdStatusChanged($user, $ad));
+        event(new AdUpdated($ad));
+        event(new AdStatusChanged($ad));
     }
 }
 ?>
