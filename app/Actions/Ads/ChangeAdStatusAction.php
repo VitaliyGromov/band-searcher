@@ -11,9 +11,9 @@ class ChangeAdStatusAction
     {
         $validated = $request->validated();
 
-        $message = $validated['message'];
-
-        if($message === null){
+        if(isset($validated['message'])){
+            $message = $validated['message'];
+        } else {
             $message = '';
         }
 

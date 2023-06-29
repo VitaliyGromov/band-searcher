@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Ads;
 
-use AdDeleteAction;
+use App\Actions\Ads\AdDeleteAction;
 use App\Models\Ad;
 use App\Http\Filters\Ads\AdFilter;
 use App\Actions\Ads\AdStoreAction;
