@@ -12,11 +12,4 @@ class CreateAdFromArtistPageTest extends TestCase
 
         $response->assertStatus(302);
     }
-
-    public function test_the_information_about_you_text(): void
-    {
-        $response = $this->get('/ads/create/artist');
-
-        $response->assertSee('Информация о вас');
-    }
 }

@@ -20,14 +20,6 @@ class UserSeeder extends Seeder
 
         $admin->assignRole('admin');
 
-        $user = User::create([
-            'name' => 'Джеймс',
-            'last_name' => 'Хетфилд',
-            'email' => 'james@hatfields.com',
-            'phone' => '89345672312',
-            'password' => Hash::make('metallica'),
-        ]);
-
-        $user->assignRole('user');
+        User::factory(10)->create();
     }
 }

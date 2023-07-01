@@ -2,7 +2,6 @@
 
 namespace App\Mail\Ad;
 
-use App\Models\Ad;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -16,14 +15,14 @@ class AdDeletedMail extends Mailable
 
     public User $user;
 
-    public Ad $ad;
+    // public string $dateOfAdCreation;
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user, Ad $ad)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->ad = $ad;
+        // $this->dateOfAdCreation = $dateOfAdCreation;
     }
 
     /**

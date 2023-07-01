@@ -15,4 +15,9 @@ class Region extends Model
 
         return $arrayOfRegionFields['name'];
     }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class, 'region_id', 'id');
+    }
 }

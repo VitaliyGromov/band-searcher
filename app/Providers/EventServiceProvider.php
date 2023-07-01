@@ -8,7 +8,7 @@ use App\Events\Ad\AdStatusChanged;
 use App\Events\Ad\AdUpdated;
 use App\Events\Auth\PasswordChanged;
 use App\Events\User\UserActivityStatusChanged;
-use App\Listeners\Ad\SendAdCreatedEmail;
+use App\Listeners\Ad\SendAdCreatedMail;
 use App\Listeners\Ad\SendAdDeleteMail;
 use App\Listeners\Ad\SendAdStatusChangedMail;
 use App\Listeners\Ad\SendAdUpdatedMail;
@@ -31,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         AdCreated::class => [
-            SendAdCreatedEmail::class,
+            SendAdCreatedMail::class,
         ],
 
         AdUpdated::class => [

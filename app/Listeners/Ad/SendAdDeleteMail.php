@@ -11,6 +11,6 @@ class SendAdDeleteMail implements ShouldQueue
 {
     public function handle(AdDeleted $event): void
     {
-        Mail::to($event->user->email)->send(new AdDeletedMail($event->user, $event->ad));
+        Mail::to($event->user->email)->send(new AdDeletedMail($event->user));
     }
 }

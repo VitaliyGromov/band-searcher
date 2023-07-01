@@ -12,14 +12,8 @@ class AdUpdateAction
     public function handle(Request $request, Ad $ad): void
     {
         $validated = $request->validated();
-
-        if(isset($validated['status_id'])){
-            $statusId = $validated['status_id'];
-        } else {
-            $statusId = EnumsStatus::UNDER_REVIEW->value;
-        }
-
-        $ad->update([...$validated, 'status_id' => $statusId]);
+        
+        $ad->update([...$validated, 'status_id' => EnumsStatus::UNDER_REVIEW->value]);
 
         event(new AdUpdated($ad));
         event(new AdStatusChanged($ad));

@@ -6,7 +6,7 @@ use App\Mail\Ad\AdCreatedMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendAdCreatedEmail implements ShouldQueue
+class SendAdCreatedMail implements ShouldQueue
 {
     public function handle(AdCreated $event): void
     {

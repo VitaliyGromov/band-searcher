@@ -11,7 +11,6 @@ $title = $ad->type ? 'себе' : 'группе';
 
 $idOfCloseStatus = EnumsStatus::CLOSED->value;
 
-
 @endphp
 
 @extends('layouts.app')
@@ -95,6 +94,13 @@ $idOfCloseStatus = EnumsStatus::CLOSED->value;
                         </div>
                     </form>
                 </x-modal>
+                <div class="col-sm">
+                    <form action="{{route('ads.destroy', $ad->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">{{__('Удалить')}}</button>
+                    </form>
+                </div>
             @endif
             @if (Route::is('user.ads.show'))
                 <div class="row">

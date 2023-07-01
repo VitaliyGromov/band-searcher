@@ -12,12 +12,10 @@ class AdStoreAction
     public function handle(Request $request): void
     {
         $validated = $request->validated();
-
-        $statusId = EnumsStatus::UNDER_REVIEW->value;
-
+        
         $user = Auth::user();
 
-        $ad = Ad::create([...$validated, 'user_id' => $user->id, 'status_id' => $statusId]);
+        $ad = Ad::create([...$validated, 'user_id' => $user->id, 'status_id' => EnumsStatus::UNDER_REVIEW->value]);
 
         event(new AdCreated($ad));
     }
