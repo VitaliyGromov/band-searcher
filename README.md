@@ -67,7 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Installation
 
-Clone this repo and then run this commands in terminal
+Clone this repo and then run these commands in terminal
 
 ```
 docker-compose up -d
