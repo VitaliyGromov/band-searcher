@@ -7,8 +7,11 @@ use App\Mail\Ad\AdDeletedMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendAdDeleteMail implements ShouldQueue
+class SendAdDeletedMail implements ShouldQueue
 {
+    /**
+     * Handle the event.
+     */
     public function handle(AdDeleted $event): void
     {
         Mail::to($event->user->email)->send(new AdDeletedMail($event->user));

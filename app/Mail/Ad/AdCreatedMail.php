@@ -33,12 +33,7 @@ class AdCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'ads.mail.ads-created',
+            markdown: 'ads.mail.created',
         );
-    }
-
-    public function attachments(): array
-    {
-        return [];
     }
 }

@@ -14,15 +14,13 @@ class AdDeletedMail extends Mailable
     use Queueable, SerializesModels;
 
     public User $user;
-
-    // public string $dateOfAdCreation;
+    
     /**
      * Create a new message instance.
      */
     public function __construct(User $user)
     {
         $this->user = $user;
-        // $this->dateOfAdCreation = $dateOfAdCreation;
     }
 
     /**
@@ -41,7 +39,7 @@ class AdDeletedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'ads.mail.ad-deleted',
+            markdown: 'ads.mail.deleted',
         );
     }
 }

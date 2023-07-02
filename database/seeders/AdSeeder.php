@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Ad;
-use App\Models\Region;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class AdSeeder extends Seeder

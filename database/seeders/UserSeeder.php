@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
             'name' => 'Виталий',
             'last_name' => 'Громов',
             'email' => 'gromov.vitaliy03@gmail.com',
+            'email_verified_at' => now(),
             'phone' => '89373743794',
             'password' => Hash::make('qwert.ru228'),
         ]);

@@ -9,7 +9,7 @@ use App\Events\Ad\AdUpdated;
 use App\Events\Auth\PasswordChanged;
 use App\Events\User\UserActivityStatusChanged;
 use App\Listeners\Ad\SendAdCreatedMail;
-use App\Listeners\Ad\SendAdDeleteMail;
+use App\Listeners\Ad\SendAdDeletedMail;
 use App\Listeners\Ad\SendAdStatusChangedMail;
 use App\Listeners\Ad\SendAdUpdatedMail;
 use App\Listeners\Auth\SendPasswordChangedMail;
@@ -38,12 +38,12 @@ class EventServiceProvider extends ServiceProvider
             SendAdUpdatedMail::class,
         ],
 
-        AdDeleted::class => [
-            SendAdDeleteMail::class,
-        ],
-
         AdStatusChanged::class => [
             SendAdStatusChangedMail::class,
+        ],
+
+        AdDeleted::class => [
+            SendAdDeletedMail::class,
         ],
 
         UserActivityStatusChanged::class => [
