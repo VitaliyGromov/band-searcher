@@ -78,7 +78,7 @@ npm run build
 
 ```
 
-if you want ti test mails, run in your terminal:
+if you want to test mails, run in your terminal:
 
 ```
 php artisan queue:listen
