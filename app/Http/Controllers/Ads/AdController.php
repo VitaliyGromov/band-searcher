@@ -20,9 +20,7 @@ class AdController extends Controller
 {
     public function index(AdFilterRequest $request): View
     {
-        $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
-
-        $ads = $filteredAds->where('status_id', EnumsStatus::ACTIVE->value)->get();
+        $ads = Ad::all();
 
         return view('ads.index', compact('ads'));
     }

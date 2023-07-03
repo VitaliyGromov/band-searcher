@@ -1,12 +1,24 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Enums;
 
-enum Status: int
+enum Status: string
 {
-    case ACTIVE = 1;
-    case CLOSED = 2;
-    case UNDER_REVIEW = 3;
-    case CANCELED = 4;
+    case active = 'active';
+    case closed = 'closed';
+    case underReview = 'under review';
+    case canceled = 'canceled';
+
+    public static function getAllStatusesAsArray(): array
+    {
+        $statuses = [];
+
+        foreach (Status::cases() as $status) {
+            array_push($statuses, $status);
+        }
+
+        return $statuses;
+    }
 }
 
-?>

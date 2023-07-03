@@ -24,6 +24,7 @@ class HhRuApiClient
         try {
             $request = $this->hhRuApiClient->request('GET', 'areas/113'); // Russia's id is 113
         } catch (RequestException $e) {
+            //TODO make logs
             echo Message::toString($e->getRequest());
             echo Message::toString($e->getResponse());
         }
@@ -38,6 +39,7 @@ class HhRuApiClient
         try {
             $request = $this->hhRuApiClient->request('GET', "areas/$regionId");
         } catch (RequestException $e) {
+            //TODO make logs
             echo Message::toString($e->getRequest());
             echo Message::toString($e->getResponse());
         }

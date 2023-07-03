@@ -35,18 +35,18 @@ return new class extends Migration
             $table->text('description')->nullable();
 
 
-            $table->foreignId('own_experience')->constrained('experiences')->nullable();
-            $table->foreignId('own_concert_experience')->constrained('experiences')->nullable();
+            $table->string('own_experience');
+            $table->string('own_concert_experience');
 
-            $table->foreignId('applicant_experience')->constrained('experiences')->nullable();
-            $table->foreignId('applicant_concert_experience')->constrained('experiences')->nullable();
+            $table->string('applicant_experience');
+            $table->string('applicant_concert_experience');
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
             $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
-            $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');
+            $table->string('status');
 
             $table->boolean('type');
 
