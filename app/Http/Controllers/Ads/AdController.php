@@ -20,7 +20,7 @@ class AdController extends Controller
 {
     public function index(AdFilterRequest $request): View
     {
-        $ads = Ad::all();
+        $ads = Ad::filter($request->validated())->get();
 
         return view('ads.index', compact('ads'));
     }
