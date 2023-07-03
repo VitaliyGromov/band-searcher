@@ -164,6 +164,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        EloquentFilter\ServiceProvider::class,
 
     ],
 

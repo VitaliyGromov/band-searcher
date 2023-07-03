@@ -1,43 +1,54 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\City;
 use App\Models\Region;
 use Illuminate\Database\Seeder;
-use App\API\HhruApi\HhRuApiClient;
 
 class RegionCitySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $hhRuApiClient = new HhRuApiClient();
+        $regions = [
+            "Московская область",
+            "Санкт-Петербург",
+            "Нижегородская область",
+            "Красноярский край",
+            "Республика Татарстан",
+            "Ростовская область",
+            "Свердловская область",
+            "Приморский край",
+            "Краснодарский край",
+            "Ханты-Мансийский автономный округ"
+        ];
 
-        $regions = $hhRuApiClient->getRegionsInRussia();
+        $cities = [
+            "Москва",
+            "Санкт-Петербург",
+            "Нижний Новгород",
+            "Екатеринбург",
+            "Красноярск",
+            "Казань",
+            "Ростов-на-Дону",
+            "Владивосток",
+            "Краснодар",
+            "Тюмень"
+        ];
 
-        foreach($regions->areas as $region){
+        foreach($regions as $region){
             Region::create([
-                'id' => intval($region->id),
-                'name' => $region->name,
+                'name' => $region,
             ]);
-
-            $citiesByRegion = $hhRuApiClient->getCitiesByRegionId($region->id);
-
-            foreach($citiesByRegion->areas as $city){
-                City::create([
-                    'id' => intval($city->id),
-                    'name' => $city->name,
-                    'region_id' => intval($city->parent_id),
-                ]);
-            }
         }
 
-        City::create([
-            'name' => 'Москва',
-            'region_id' => '1',
-        ]);
+        foreach($cities as $key => $value){
+            City::create([
+                'name' => $value,
+                'region_id' => $key + 1,
+            ]);
+        }
     }
 }
