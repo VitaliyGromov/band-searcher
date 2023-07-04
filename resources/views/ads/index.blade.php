@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="row">
-            <x-filters.ads/>
+            {{-- <x-filters.ads/> --}}
+            @livewire('experiences', ['experienceName' => 'OOO'])
             @if (sizeof($ads) == 0)
                 <div class="text-center">
                     <h3>{{__('Пока нет объявлений')}}</h3>

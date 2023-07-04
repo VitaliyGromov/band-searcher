@@ -20,16 +20,14 @@ class AdController extends Controller
 {
     public function index(AdFilterRequest $request): View
     {
-        $ads = Ad::filter($request->validated())->get();
+        $ads = Ad::filter($request->validated())->where('status', EnumsStatus::active->value)->get();
 
         return view('ads.index', compact('ads'));
     }
 
     public function adminAds(AdFilterRequest $request): View
     {
-        $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
-
-        $ads = $filteredAds->get();
+        $ads = Ad::filter($request->validated())->get();
 
         return view('admin.ads', compact('ads'));
     }

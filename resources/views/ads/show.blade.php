@@ -9,8 +9,6 @@ $adFieldsHendler = new AdFieldsHendler($ad);
 
 $title = $ad->type ? 'себе' : 'группе';
 
-$idOfCloseStatus = EnumsStatus::CLOSED->value;
-
 @endphp
 
 @extends('layouts.app')
@@ -81,7 +79,7 @@ $idOfCloseStatus = EnumsStatus::CLOSED->value;
                         @csrf
 
                         <x-ads.list-element name="{{ __('Статус') }}">
-                            <x-statuses selectedStatus="{{$ad->status_id}}"/>
+                            <x-statuses selectedStatus="{{$ad->status}}"/>
                         </x-ads.list-element>
                 
                         <div id="message" class="d-none">
@@ -109,17 +107,17 @@ $idOfCloseStatus = EnumsStatus::CLOSED->value;
                             <x-form.form :ad="$ad" :title="$title"/>
                         </x-modal>
                     </div>
-                    @if ($ad->status_id == EnumsStatus::ACTIVE->value)
+                    @if ($ad->status == EnumsStatus::active->value)
                         <div class="col-sm">
                             <form action="{{route('user.ads.change.status', $ad->id)}}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" name="status_id" value="{{$idOfCloseStatus}}">
+                                <input type="hidden" name="status" value="{{EnumsStatus::closed->value}}">
                                 <button class="btn btn-danger" type="submit">{{__('Закрыть')}}</button>
                             </form>
                         </div>
                     @endif
-                    @if ($ad->status_id == $idOfCloseStatus)
+                    @if ($ad->status == EnumsStatus::closed->value)
                         <div class="col-sm">
                             <x-modal id="ad_edit" modalName="Возобновить" title="{{ __('Возобновить объявление') }}">
                                 <x-form.form :ad="$ad" :title="$title"/>
@@ -139,7 +137,7 @@ $idOfCloseStatus = EnumsStatus::CLOSED->value;
     </div>
 </div>
 <script>
-    const statusId = document.getElementById('status_id');
+    const statusId = document.getElementById('status');
 
     statusId.addEventListener('change', showMeassageInput);
 

@@ -39,7 +39,7 @@ use App\Models\Status;
                         <td>-</td>
                       @endif
                         <td>{{ $adFieldsHendler->handleType() }}</td>
-                        <td> {{Status::getStatusNameById($ad->status_id) }} </td>
+                        <td> {{Status::getStatusNameById($ad->status) }} </td>
                       <td>
                         <x-button-link href="{{ route('user.ads.show', $ad->id) }}">
                           {{ __('Перейти к объявлению')}}

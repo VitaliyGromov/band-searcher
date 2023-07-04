@@ -32,7 +32,7 @@ class AdFilter extends AbstractFilter
 
             'type' => [$this, 'type'],
 
-            'status_id' => [$this, 'statusId'],
+            'status' => [$this, 'statusId'],
         ];
     }
 
@@ -113,7 +113,7 @@ class AdFilter extends AbstractFilter
 
     public function statusId(Builder $builder, $value)
     {
-        $builder->where('status_id', $value);
+        $builder->where('status', $value);
     }
 }
 

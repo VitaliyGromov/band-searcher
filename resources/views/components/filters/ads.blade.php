@@ -10,7 +10,7 @@
             @if (!Route::is('ads'))
             <div class="col-sm">
                 <x-label for="type">{{__('Статус')}}</x-label>
-                <x-statuses selectedStatus="{{request('status_id')}}"/>
+                <x-statuses selectedStatus="{{request('status')}}"/>
             </div>
             @endif
         </div>

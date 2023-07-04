@@ -1,4 +1,4 @@
-const statusId = document.getElementById('status_id');
+const statusId = document.getElementById('status');
 
 statusId.addEventListener('change', showMeassageInput);
 

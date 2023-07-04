@@ -41,7 +41,7 @@ class AdStatusChangedMail extends Mailable
             markdown: 'ads.mail.status-changed',
 
             with:[
-                'status' => Status::getStatusNameById($this->ad->status_id),
+                'status' => Status::getStatusNameById($this->ad->status),
                 'message' => $this->message,
             ]
         );

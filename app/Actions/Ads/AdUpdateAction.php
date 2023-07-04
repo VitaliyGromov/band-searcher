@@ -13,7 +13,7 @@ class AdUpdateAction
     {
         $validated = $request->validated();
         
-        $ad->update([...$validated, 'status_id' => EnumsStatus::UNDER_REVIEW->value]);
+        $ad->update([...$validated, 'status' => EnumsStatus::UNDER_REVIEW->value]);
 
         event(new AdUpdated($ad));
         event(new AdStatusChanged($ad));

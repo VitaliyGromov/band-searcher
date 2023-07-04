@@ -2,11 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Genre;
-use App\Models\Skill;
-use App\Models\Status;
-use App\Models\Experience;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -18,20 +13,6 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        View::composer('components.skills', function($view){
-            $view->with('skills', Skill::all());
-        });
-
-        View::composer('components.experience', function($view){
-            $view->with('experience', Experience::all());
-        });
-
-        View::composer('components.genres', function($view){
-            $view->with('genres', Genre::all());
-        });
-
-        View::composer('components.statuses', function($view){
-            $view->with('statuses', Status::all());
-        });
+        //
     }
 }

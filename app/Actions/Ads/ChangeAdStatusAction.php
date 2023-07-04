@@ -17,7 +17,7 @@ class ChangeAdStatusAction
             $message = '';
         }
 
-        $ad->update(['status_id' => $validated['status_id']]);
+        $ad->update(['status' => $validated['status']]);
 
         event(new AdStatusChanged($ad, $message));
     }

@@ -69,7 +69,7 @@ class AdFormRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'regex:/^8|\+7[0-9]{10}/'],
 
-            'status_id' => ['sometimes', 'integer'],
+            'status' => ['sometimes', 'integer'],
         ];
     }
 

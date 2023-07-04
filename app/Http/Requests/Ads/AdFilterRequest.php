@@ -37,7 +37,7 @@ class AdFilterRequest extends FormRequest
 
             'type' => ['nullable', 'integer'],
 
-            'status_id' => ['nullable', 'integer'],
+            'status' => ['nullable', 'integer'],
         ];
     }
 }

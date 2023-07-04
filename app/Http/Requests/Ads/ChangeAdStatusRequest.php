@@ -14,7 +14,7 @@ class ChangeAdStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status_id' => ['required', 'integer'],
+            'status' => ['required', 'integer'],
             'message' => ['nullable', 'string'],
         ];
     }

@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Experience;
+use App\Enums\Experience as EnumsExperience;
+use App\Enums\Status as EnumsStatus;
 use App\Models\Genre;
 use App\Models\Region;
 use App\Models\Skill;
-use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +19,9 @@ class AdFactory extends Factory
     {
         $region = Region::get()->random();
         $cityId = $region->cities->random()->id;
+
+        $statuses = EnumsStatus::getAllStatusesAsArray();
+        $experiences = EnumsExperience::getAllExperiencesAsArray();
 
         return [
             'name' => fake()->firstName(),
@@ -36,15 +39,15 @@ class AdFactory extends Factory
             'vk' => 'https://vk.com',
             'youtube' => 'https://youtube',
             'description' => fake()->paragraph(12),
-            'own_experience' => Experience::all('id')->random()->id,
-            'own_concert_experience' => Experience::all('id')->random()->id,
-            'applicant_experience' => Experience::all('id')->random()->id,
-            'applicant_concert_experience' => Experience::all('id')->random()->id,
+            'own_experience' => $experiences[array_rand($experiences)],
+            'own_concert_experience' => $experiences[array_rand($experiences)],
+            'applicant_experience' => $experiences[array_rand($experiences)],
+            'applicant_concert_experience' => $experiences[array_rand($experiences)],
             'user_id' => User::all('id')->random()->id,
             'genre_id' => Genre::all('id')->random()->id,
             'region_id' => $region->id,
             'city_id' => $cityId,
-            'status_id' => Status::all('id')->random()->id,
+            'status' => $statuses[array_rand($statuses)],
             'skill_id' => Skill::all('id')->random()->id,
             'type' => fake()->boolean(),
         ];
