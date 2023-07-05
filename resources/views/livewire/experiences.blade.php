@@ -1,10 +1,12 @@
 @props(['selectedExperience' => ''])
 
-<div class="mt-3">
-    <select name="{{$experienceName}}" class="form-control">
+<div>
+    <select wire:model="selectedExperience" name="{{$experienceName}}" class="form-control">
         <option value="">{{__('- Выбрать -')}}</option>
         @foreach ($experiences as $item)
-            <option value="{{ $item }}">{{$item}}</option>
+            <option value="{{ $item }}" @if ($item == $selectedExperience)
+                selected
+            @endif>{{$item}}</option>
         @endforeach
     </select>
 </div>

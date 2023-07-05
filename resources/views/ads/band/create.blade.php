@@ -14,15 +14,18 @@
             @livewire('region-city')
             <div class="mt-3">
               <x-label for="own_experience">{{__('Ваш опыт')}}</x-label>
-              <x-experience name="own_experience"/>
+              @livewire('experiences', ['experienceName' => 'own_experience'])
+              <x-error name="own_experience"/>
             </div>
             <div class="mt-3">
               <x-label for="own_concert_experience">{{__('Ваш концернтый опыт')}}</x-label>
-              <x-experience name="own_concert_experience"/>
+              @livewire('experiences', ['experienceName' => 'own_concert_experience'])
+              <x-error name="own_concert_experience"/>
             </div>
             <div class="mt-3">
                 <label class="form-check-label" for="genres">{{__('Жанр')}}</label>
-                <x-genres/>
+                @livewire('genres')
+                <x-error name="genre_id"/>
             </div>
             <div class="mt-3">
               <x-label for="description">{{__('Расскажите что-нибудь о вашей группе')}}</x-label>
@@ -37,15 +40,17 @@
               <h2>{{__('Требования к соискателю')}}</h2>
             </div>
             <div class="mt-3">
-              <x-skills/>
+              @livewire('skills')
             </div>
             <div class="mt-3">
               <x-label for="applicant_experience">{{__('Опыт')}}</x-label>
-              <x-experience name="applicant_experience"/>
+              @livewire('experiences', ['experienceName' => 'applicant_experience'])
+              <x-error name="applicant_experience"/>
             </div>
             <div class="mt-3">
               <x-label for="applicant_concert_experience">{{__('Концертный опыт')}}</x-label>
-              <x-experience name="applicant_concert_experience"/>
+              @livewire('experiences', ['experienceName' => 'applicant_concert_experience'])
+              <x-error name="applicant_concert_experience"/>
             </div>
             <x-musician-checkboxes/>
             <x-links-fields/>

@@ -9,7 +9,7 @@ class Experiences extends Component
 {
     public $experiences;
     public $experienceName;
-    // public $selectedExperience;
+    public $selectedExperience;
 
     public function mount()
     {

@@ -9,16 +9,16 @@
           @livewire('region-city')
           <div class="mt-3">
             <x-label for="skill_id">{{__('Ваш навык')}}</x-label>
-            <x-skills/>
+            @livewire('skills')
           </div>
           <div class="mt-3">
               <x-label for="own_experience">{{__('Ваш опыт')}}</x-label>
-              <x-experience name="own_experience"/>
+              @livewire('experiences', ['experienceName' => 'own_experience'])
               <x-error name="own_experience"/>
           </div>
           <div class="mt-3">
             <x-label for="own_concert_experience">{{__('Ваш концертный опыт')}}</x-label>
-            <x-experience name="own_concert_experience"/>
+            @livewire('experiences', ['experienceName' => 'own_concert_experience'])
             <x-error name="own_concert_experience"/>
           </div>
           <div class="mt-3">
@@ -31,17 +31,17 @@
           </div>
           <div class="mt-3">
             <x-label for="genre_id">{{__('Жанр')}}</x-label>
-            <x-genres/>
+            @livewire('genres')
             <x-error name="genre_id"/>
           </div>
           <div class="mt-3">
             <x-label for="applicant_experience">{{__('Опыт')}}</x-label>
-            <x-experience name="applicant_experience"/>
+            @livewire('experiences', ['experienceName' => 'applicant_experience'])
             <x-error name="applicant_experience"/>
           </div>
           <div class="mt-3">
             <x-label for="applicant_concert_experience">{{__('Концертный опыт')}}</x-label>
-            <x-experience name="applicant_concert_experience"/>
+            @livewire('experiences', ['experienceName' => 'applicant_concert_experience'])
             <x-error name="applicant_concert_experience"/>
           </div>
           <div class="mt-3">

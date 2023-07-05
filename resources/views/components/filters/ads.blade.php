@@ -10,7 +10,7 @@
             @if (!Route::is('ads'))
             <div class="col-sm">
                 <x-label for="type">{{__('Статус')}}</x-label>
-                <x-statuses selectedStatus="{{request('status')}}"/>
+                @livewire('statuses', ['selectedStatus' => request('status')])
             </div>
             @endif
         </div>
@@ -26,24 +26,24 @@
         <div class="row">
             <div class="col-sm">
                 <x-label for="genre_id">{{__('Жанр')}}</x-label>
-                <x-genres selectedGenre="{{request('genre_id')}}"/>
+                @livewire('genres', ['selectedGenreId' => request('genre_id')])
             </div>
             <div class="col-sm">
                 <x-label for="skill_id">{{__('Навык')}}</x-label>
-                <x-skills skill_id="{{request('skill_id')}}"/>
+                @livewire('skills', ['selectedSkillId' => request('skill_id')])
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
                 <div class="mt-3">
                     <x-label for="applicant_concert_experience">{{__('Концернтый опыт соискателя')}}</x-label>
-                    <x-experience name="applicant_concert_experience" selectedExperienceId="{{ request('applicant_concert_experience') }}"/>
+                    @livewire('experiences', ['experienceName' => 'applicant_concert_experience', 'selectedExperience'=> request('applicant_concert_experience')])
                 </div>
             </div>
             <div class="col-sm">
                 <div class="mt-3">
                     <x-label for="applicant_experience">{{__('Опыт соискателя')}}</x-label>
-                    <x-experience name="applicant_experience" selectedExperienceId="{{ request('applicant_experience') }}"/>
+                    @livewire('experiences', ['experienceName' => 'applicant_experience', 'selectedExperience'=> request('applicant_experience')])
                   </div>
             </div>
         </div>
