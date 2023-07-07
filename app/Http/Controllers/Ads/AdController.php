@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Ads;
 
 use App\Actions\Ads\AdDeleteAction;
 use App\Models\Ad;
-use App\Http\Filters\Ads\AdFilter;
 use App\Actions\Ads\AdStoreAction;
 use App\Actions\Ads\AdUpdateAction;
 use App\Http\Controllers\Controller;
@@ -34,9 +33,7 @@ class AdController extends Controller
 
     public function userAds(AdFilterRequest $request): View
     {
-        $filteredAds = getFilteredModel($request, Ad::class, AdFilter::class);
-
-        $ads = $filteredAds->where('user_id', Auth::id())->get();
+        $ads = Ad::filter($request->validated())->where('user_id', Auth::id())->get();
 
         return view('user.ads', compact('ads'));
     }

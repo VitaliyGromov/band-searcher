@@ -48,7 +48,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->string('status');
 
-            $table->boolean('type');
+            $table->string('type');
 
         });
     }

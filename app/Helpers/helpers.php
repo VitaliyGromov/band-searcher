@@ -22,7 +22,7 @@ if(!function_exists('getFilteredModel')){
         $filter = app()->make($filterName, ['queryParams' => array_filter($validated, 'strlen')]);
 
         return $model::filter($filter);
-    }
+    } //TODO remove this function
 }
 
 ?>

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Filterable;
 use App\Notifications\SendVerifyWithQueueNotification;
+use EloquentFilter\Filterable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,6 +35,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new SendVerifyWithQueueNotification());
+        $this->notify(new SendVerifyWithQueueNotification()); // TODO delete this method, move this logic to mails.
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\Experience as EnumsExperience;
 use App\Enums\Status as EnumsStatus;
+use App\Enums\Types;
 use App\Models\Genre;
 use App\Models\Region;
 use App\Models\Skill;
@@ -22,6 +23,8 @@ class AdFactory extends Factory
 
         $statuses = EnumsStatus::getAllStatusesAsArray();
         $experiences = EnumsExperience::getAllExperiencesAsArray();
+
+        $types = Types::getAllTypesAsArray();
 
         return [
             'name' => fake()->firstName(),
@@ -49,7 +52,7 @@ class AdFactory extends Factory
             'city_id' => $cityId,
             'status' => $statuses[array_rand($statuses)],
             'skill_id' => Skill::all('id')->random()->id,
-            'type' => fake()->boolean(),
+            'type' => $types[array_rand($types)],
         ];
     }
 }

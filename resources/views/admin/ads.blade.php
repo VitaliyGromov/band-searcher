@@ -1,11 +1,10 @@
 @php
-use App\Helpers\AdFieldsHendler;
 use App\Models\Region;
 use App\Models\City;
 use App\Models\Skill;
 use App\Models\Status;
-
 @endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -25,9 +24,6 @@ use App\Models\Status;
               </x-table.thead>
                 <x-table.tbody>
                     @foreach ($ads as $ad)
-                    @php
-                        $adFieldsHendler = new AdFieldsHendler($ad);
-                    @endphp
                     <tr>
                       <th scope="row">{{ $ad->id}}</th>
                       <td>{{ Region::getRegionNameById($ad->region_id) }}</td>
@@ -38,7 +34,7 @@ use App\Models\Status;
                       @else
                         <td>-</td>
                       @endif
-                        <td>{{ $adFieldsHendler->handleType() }}</td>
+                        <td>{{ $ad->type }}</td>
                         <td> {{$ad->status }} </td>
                       <td>
                         <x-button-link href="{{ route('admin.ads.show', $ad->id) }}">

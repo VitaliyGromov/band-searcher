@@ -14,8 +14,8 @@ class AdFilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'applicant_experience' => ['nullable', 'integer'],
-            'applicant_concert_experience' => ['nullable', 'integer'],
+            'applicant_experience' => ['nullable', 'string'],
+            'applicant_concert_experience' => ['nullable', 'string'],
 
             'region_id' => ['nullable', 'integer'],
             'city_id' => ['nullable', 'integer'],
@@ -35,9 +35,9 @@ class AdFilterRequest extends FormRequest
 
             'salary' => ['nullable', 'integer'],
 
-            'type' => ['nullable', 'integer'],
+            'type' => ['nullable', 'string'],
 
-            'status' => ['nullable', 'integer'],
+            'status' => ['nullable', 'string'],
         ];
     }
 }

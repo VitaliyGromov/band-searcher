@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm">
                 <x-label for="type">{{__('Тип объявлений')}}</x-label>
-                <x-type/>
+                @livewire('types', ['selectedType' => request('type')])
             </div>
             @if (!Route::is('ads'))
             <div class="col-sm">
