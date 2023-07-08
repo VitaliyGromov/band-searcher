@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordAction
 {
-    public function handle(Request $request): void
+    public function handle(array $validated): void
     {
-        $validated = $request->validated();
-
         $userId = Auth::id();
 
         $user = User::find($userId);

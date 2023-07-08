@@ -55,21 +55,27 @@ class AdController extends Controller
 
     public function store(AdFormRequest $request, AdStoreAction $adStoreAction): RedirectResponse
     {
-        $adStoreAction->handle($request);
+        $validated = $request->validated();
+
+        $adStoreAction->handle($validated);
 
         return redirect()->route('ads');
     }
 
     public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $adUpdateAction): RedirectResponse
     {
-        $adUpdateAction->handle($request, $ad);
+        $validated = $request->validated();
+
+        $adUpdateAction->handle($validated, $ad);
 
         return redirect('ads');
     }
 
     public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, ChangeAdStatusAction $adChangeStatusAction): RedirectResponse
     {
-        $adChangeStatusAction->handle($request, $ad);
+        $validated = $request->validated();
+        
+        $adChangeStatusAction->handle($validated, $ad);
 
         return redirect()->back();
     }

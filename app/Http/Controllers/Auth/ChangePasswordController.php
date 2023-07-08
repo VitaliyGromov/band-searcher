@@ -17,7 +17,7 @@ class ChangePasswordController extends Controller
 
     public function changePassword(ChangePasswordRequest $request, ChangePasswordAction $action): RedirectResponse
     {
-        $action->handle($request);
+        $action->handle($request->validated());
 
         return redirect('profile')->with('message', 'Ваш пароль был успешно обновлен');
     }

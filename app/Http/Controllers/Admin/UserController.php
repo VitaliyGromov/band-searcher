@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function changeUserActivityStatus(ChangeActiveStatusRequest $request, User $user, ChangeUserActivityStatusAction $action): RedirectResponse
     {
-        $action->handle($request, $user);
+        $action->handle($request->validated(), $user);
 
         return redirect()->back();
     }

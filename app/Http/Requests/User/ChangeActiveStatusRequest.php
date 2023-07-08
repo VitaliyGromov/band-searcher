@@ -14,7 +14,7 @@ class ChangeActiveStatusRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'active' => boolval($this->input('active')),
+            'active' => (bool)$this->input('active'),
         ]);
     }
 
