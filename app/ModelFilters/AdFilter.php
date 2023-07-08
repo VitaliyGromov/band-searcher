@@ -49,11 +49,41 @@ class AdFilter extends ModelFilter
 
     public function bandName(string $bandName): static
     {
-        return $this->where('band_name', $bandName);
+        return $this->where('band_name', 'ILIKE', "%$bandName%");
     }
 
-    public function salary(int $salary)
+    public function salary(int $salary): static
     {
         return $this->where('salary', $salary);
+    }
+
+    public function ownInstrument(int $ownInstrument): static
+    {
+        return $this->where('own_instrument', (bool)$ownInstrument);
+    }
+
+    public function readyToMove(int $readyToMove): static
+    {
+        return $this->where('ready_to_move', (bool)$readyToMove);
+    }
+
+    public function readyToTour(int $readyToTour): static
+    {
+        return $this->where('ready_to_tour', (bool)$readyToTour);
+    }
+
+    public function ownMusic(int $ownMusic): static
+    {
+        return $this->where('own_music', (bool)$ownMusic);
+    }
+
+    public function coverBand(int $coverBand): static
+    {
+        return $this->where('cover_band', (bool)$coverBand);
+    }
+
+    public function commercialProject(int $commercialProject): static
+    {
+        return $this->where('commercial_project', (bool)$commercialProject);
     }
 }
