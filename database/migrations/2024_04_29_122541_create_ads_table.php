@@ -34,20 +34,20 @@ return new class extends Migration
             $table->string('youtube');
             $table->text('description')->nullable();
 
-
             $table->string('own_experience');
             $table->string('own_concert_experience');
 
             $table->string('applicant_experience');
             $table->string('applicant_concert_experience');
 
+            $table->string('region');
+            $table->string('city');
+
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
             $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
-            $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
-            $table->string('status');
 
+            $table->string('status');
             $table->string('type');
 
         });

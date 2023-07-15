@@ -6,7 +6,6 @@ use App\Enums\Experience as EnumsExperience;
 use App\Enums\Status as EnumsStatus;
 use App\Enums\Types;
 use App\Models\Genre;
-use App\Models\Region;
 use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,9 +17,6 @@ class AdFactory extends Factory
 {
     public function definition(): array
     {
-        $region = Region::get()->random();
-        $cityId = $region->cities->random()->id;
-
         $statuses = EnumsStatus::getAllStatusesAsArray();
         $experiences = EnumsExperience::getAllExperiencesAsArray();
 
@@ -48,8 +44,8 @@ class AdFactory extends Factory
             'applicant_concert_experience' => $experiences[array_rand($experiences)],
             'user_id' => User::all('id')->random()->id,
             'genre_id' => Genre::all('id')->random()->id,
-            'region_id' => $region->id,
-            'city_id' => $cityId,
+            'region' => 'Чувашская Республика',
+            'city' => 'Чебоксары',
             'status' => $statuses[array_rand($statuses)],
             'skill_id' => Skill::all('id')->random()->id,
             'type' => $types[array_rand($types)],

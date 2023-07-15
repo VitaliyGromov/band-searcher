@@ -26,8 +26,8 @@ use App\Models\Status;
                     @foreach ($ads as $ad)
                     <tr>
                       <th scope="row">{{ $ad->id}}</th>
-                      <td>{{ Region::getRegionNameById($ad->region_id) }}</td>
-                      <td>{{ City::getCityNameById($ad->city_id) }}</td>
+                      <td>{{ $ad->region }}</td>
+                      <td>{{ $ad->city }}</td>
                       <td>{{ Skill::getSkillNameById($ad->skill_id) }}</td>
                       @if (!is_null($ad->band_name))
                         <td>{{$ad->band_name}}</td>

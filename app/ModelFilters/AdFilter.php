@@ -19,12 +19,12 @@ class AdFilter extends ModelFilter
 
     public function region(int $id): static
     {
-        return $this->where('region_id', $id);
+        return $this->where('region', $id);
     }
 
     public function city(int $id): static
     {
-        return $this->where('city_id', $id);
+        return $this->where('city', $id);
     }
 
     public function applicantExperience(string $applicantExperience): static

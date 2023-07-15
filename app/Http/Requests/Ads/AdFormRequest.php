@@ -25,8 +25,6 @@ class AdFormRequest extends FormRequest
             'own_music' => $this->has('own_music')?true:false,
             'cover_band' => $this->has('cover_band')?true:false,
             'commercial_project' => $this->has('commercial_project')?true:false,
-
-            'type'=> boolval($this->input('type')),
         ]);
     }
 
@@ -34,8 +32,8 @@ class AdFormRequest extends FormRequest
     {
         return [
             'band_name' => ['sometimes', 'string', 'max:255'],
-            'region_id' => ['required'],
-            'city_id' => ['required'],
+            'region' => ['required', 'string'],
+            'city' => ['required', 'string'],
             'skill_id' => ['required'],
             'type' => ['required', 'boolean'],
 
@@ -69,15 +67,17 @@ class AdFormRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'regex:/^8|\+7[0-9]{10}/'],
 
-            'status' => ['sometimes', 'integer'],
+            'status' => ['sometimes', 'string'],
+            'type' => ['required', 'string'],
+
         ];
     }
 
     public function messages(): array
     {
         return [
-            'region_id.required' => 'Укажите ваше регион',
-            'city_id.required' => 'Укажите ваш город',
+            'region.required' => 'Укажите ваше регион',
+            'city.required' => 'Укажите ваш город',
             'skill_id' => 'Укажите ваш навык',
             'genre_id' => 'Укажите жанр',
 

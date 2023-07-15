@@ -8,4 +8,6 @@ interface LocationsContract
     public function getRegions();
 
     public function getCitiesByRegionId(int $regionId);
+
+    public function getRegionNameById(int $regionId): string;
 }

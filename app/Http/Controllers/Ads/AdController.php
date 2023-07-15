@@ -6,7 +6,6 @@ use App\Models\Ad;
 use App\Actions\Ads\AdStoreAction;
 use App\Actions\Ads\AdUpdateAction;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Ads\AdFormRequest;
 use App\Actions\Ads\ChangeAdStatusAction;
 use App\Enums\Status as EnumsStatus;
@@ -22,20 +21,6 @@ class AdController extends Controller
         $ads = Ad::filter($request->validated())->where('status', EnumsStatus::active->value)->get();
 
         return view('ads.index', compact('ads'));
-    }
-
-    public function adminAds(AdFilterRequest $request): View
-    {
-        $ads = Ad::filter($request->validated())->get();
-
-        return view('admin.ads', compact('ads'));
-    }
-
-    public function userAds(AdFilterRequest $request): View
-    {
-        $ads = Ad::filter($request->validated())->where('user_id', Auth::id())->get();
-
-        return view('user.ads', compact('ads'));
     }
 
     public function show(Ad $ad): View

@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-sm">
-                @livewire('region-city', ['selectedRussianRegion' => request('region_id'), 'selectedCityByRegion' => request('city_id')])
+                @livewire('region-city', ['selectedRussianRegion' => request('region'), 'selectedCityByRegion' => request('city')])
             </div>
             <div class="col-sm mt-3">
                 <label for="band_name">{{__('Название группы')}}</label>

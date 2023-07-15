@@ -1,3 +1,6 @@
+@php
+    use App\Enums\Types;
+@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -55,7 +58,7 @@
             <x-musician-checkboxes/>
             <x-links-fields/>
             <x-contact-fields/>
-            <input type="hidden" name="type" value="0">
+            <input type="hidden" name="type" value="{{Types::fromBand->value}}">
             <button type="submit" class="btn btn-primary mt-3">{{__('Создать')}}</button>
           </form>
     </div>

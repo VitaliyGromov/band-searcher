@@ -1,3 +1,6 @@
+@php
+  use App\Enums\Types;  
+@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -54,7 +57,7 @@
           </div>
           <x-links-fields/>
           <x-contact-fields/>
-          <input type="hidden" name="type" value="1">
+          <input type="hidden" name="type" value="{{Types::fromArtist->value}}">
           <button type="submit" class="btn btn-primary mt-3">{{__('Создать')}}</button>
         </form>
     </div>

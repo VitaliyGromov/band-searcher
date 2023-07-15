@@ -17,8 +17,8 @@ class AdFilterRequest extends FormRequest
             'applicant_experience' => ['nullable', 'string'],
             'applicant_concert_experience' => ['nullable', 'string'],
 
-            'region_id' => ['nullable', 'integer'],
-            'city_id' => ['nullable', 'integer'],
+            'region' => ['nullable', 'integer'],
+            'city' => ['nullable', 'integer'],
 
             'skill_id' => ['nullable', 'integer'],
             'genre_id' => ['nullable', 'integer'],
