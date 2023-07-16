@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-
         <div class="m-2">
             <x-button-link href="{{ route('ads') }}" color="light">
                 {{__('Объявления')}}
@@ -9,15 +8,7 @@
 
         @auth
             @role('admin')
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary m-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{__('Админка')}}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('admin.ads') }}">{{__('Объявления')}}</a></li>
-                        <li><a class="dropdown-item" href="{{ route('admin.users') }}">{{__('Пользователи')}}</a></li>
-                    </ul>
-                </div>
+                <x-header.admin.dropdown/>
             @endrole
         @endauth
        
@@ -42,40 +33,9 @@
 
             <ul class="navbar-nav ms-auto">
                 @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Вход') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Регистрация') }}</a>
-                        </li>
-                    @endif
+                    <x-header.login.buttons/>
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} {{Auth::user()->last_name}}
-                        </a>
-                        
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                            <a class="dropdown-item" href="{{ route('profile') }}">
-                                {{ __('Мой профиль') }}
-                            </a>
-
-                            <a class="dropdown-item" href="{{ route('user.ads') }}">
-                                {{ __('Мои объявления') }}
-                            </a>
-                            <form action="{{ route('logout') }}" method="POST">
-                                <button class="dropdown-item" type="submit">
-                                    {{ __('Выход') }}
-                                </button>
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                    <x-header.user.dropdown/>
                 @endguest
             </ul>
         </div>

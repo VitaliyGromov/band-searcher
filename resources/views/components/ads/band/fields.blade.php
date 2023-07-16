@@ -1,20 +1,13 @@
-@php
-    use App\Helpers\AdFieldsHendler;
-    
-    $adFieldsHendler = new AdFieldsHendler($ad);
-
-@endphp
-
 <x-ads.list-element name="{{ __('Свой материал') }}">
-    {{ $adFieldsHendler->isOwnMusic() }}
+    {{ yesOrNo($ad->own_music) }}
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Кавер группа') }}">
-    {{ $adFieldsHendler->isCoverBand() }}
+    {{ yesOrNo($ad->cover_band) }}
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Коммерческий проект') }}">
-    {{ $adFieldsHendler->isCommercialProject() }}
+    {{ yesOrNo($ad->commercial_project) }}
 </x-ads.list-element>
 
 @if ($ad->commercial_project)

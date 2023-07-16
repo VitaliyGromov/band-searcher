@@ -3,7 +3,6 @@ namespace App\Actions\Auth;
 
 use App\Events\Auth\PasswordChanged;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 

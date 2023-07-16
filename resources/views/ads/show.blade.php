@@ -1,13 +1,17 @@
 @php
 
-use App\Helpers\AdFieldsHendler;
 use App\Models\Genre;
 use App\Models\Status;
 use App\Enums\Status as EnumsStatus;
-
-$adFieldsHendler = new AdFieldsHendler($ad);
+use App\Enums\Types;
 
 $title = $ad->type ? 'себе' : 'группе';
+
+if($ad->type == Types::fromBand->value){
+    $title = 'группе';
+} else {
+    $title = 'себе';
+}
 
 @endphp
 
@@ -25,12 +29,11 @@ $title = $ad->type ? 'себе' : 'группе';
         <x-ads.description :ad="$ad"/>
 
         <div class="m-3">
-
             <x-ads.section-title>
                 {{ __('Требования к соискателю')}}
             </x-ads.section-title>
 
-            @if (!$ad->type)
+            @if ($ad->type == Types::fromBand->value)
                 <x-ads.skill :ad="$ad"/>
             @endif
 
@@ -38,17 +41,17 @@ $title = $ad->type ? 'себе' : 'группе';
 
             <x-ads.experiences :ad="$ad"/>
 
-            @if ($ad->type)
-                <x-ads.band.fields :ad="$ad"/>
-            @else
+            @if ($ad->type == Types::fromBand->value)
                 <x-ads.artist.fields :ad="$ad"/>
+            @else
+                <x-ads.band.fields :ad="$ad"/>
             @endif
 
             <x-ads.section-title>
                 {{ __("О $title") }}
             </x-ads.section-title>
 
-            @if ($ad->type)
+            @if ($ad->type == Types::fromArtist->value)
                 <x-ads.skill :ad="$ad"/>
             @endif
 
@@ -56,7 +59,7 @@ $title = $ad->type ? 'себе' : 'группе';
 
             <x-ads.experiences :ad="$ad"/>
 
-            @if ($ad->type)
+            @if ($ad->type == Types::fromArtist->value)
                 <x-ads.artist.fields :ad="$ad"/>
             @else
                 <x-ads.band.fields :ad="$ad"/>
@@ -73,13 +76,13 @@ $title = $ad->type ? 'себе' : 'группе';
             <x-ads.contacts :ad="$ad"/>
 
             @if (Route::is('admin.ads.show'))
-                <x-modal id="ad_edit" modalName="Изменить статус" title="{{ __('Изменить статус') }}">
+                <x-modal id="ad_edit" modalName="{{__('Изменить статус')}}" title="{{ __('Изменить статус') }}">
                     <form action="{{route('admin.ads.change.status', $ad->id)}}" method="POST">
                         @method('PUT')
                         @csrf
 
                         <x-ads.list-element name="{{ __('Статус') }}">
-                            <x-statuses selectedStatus="{{$ad->status}}"/>
+                            @livewire('statuses', ['selectedStatus' => $ad->status])
                         </x-ads.list-element>
                 
                         <div id="message" class="d-none">

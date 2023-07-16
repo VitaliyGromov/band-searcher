@@ -1,18 +1,11 @@
-@php
-    use App\Helpers\AdFieldsHendler;
-    
-    $adFieldsHendler = new AdFieldsHendler($ad);
-
-@endphp
-
 <x-ads.list-element name="{{ __('Готов у переезду') }}">
-    {{ $adFieldsHendler->isReadyToMove() }}
+    {{ yesOrNo($ad->ready_to_move) }}
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Готов ехать в тур') }}">
-    {{ $adFieldsHendler->isReadyToTour() }}
+    {{ yesOrNo($ad->ready_to_tour) }}
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Есть свой инструмент') }}">
-    {{ $adFieldsHendler->isOwnInstrument() }}
+    {{ yesOrNo($ad->own_instrument) }}
 </x-ads.list-element>

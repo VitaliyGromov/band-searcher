@@ -1,3 +1,7 @@
+@php
+    use App\Enums\Types;
+@endphp
+
 <form action="{{ route('ads.update', $ad->id) }}" method="POST">
     @csrf
     @method('PUT')
@@ -6,25 +10,25 @@
         {{ __('Требования к соискателю')}}
     </x-ads.section-title>
 
-    @if (!$ad->type)
+    @if ($ad->type == Types::fromBand->value)
         <x-ads.list-element name="{{ __('Навык') }}">
-            <x-skills skill_id="{{$ad->skill_id}}"/>
+            @livewire('skills', ['selectedSkillId' => $ad->skill_id])
         </x-ads.list-element> 
     @endif 
 
     <x-ads.list-element name="{{ __('Жанр') }}">
-        <x-genres selectedGenre="{{$ad->genre_id}}"/>
+        @livewire('genres', ['selectedGenreId' => $ad->genre_id])
     </x-ads.list-element>
 
     <x-ads.list-element name="{{ __('Опыт') }}">
-        <x-experience name="applicant_experience" selectedExperienceId="{{$ad->applicant_experience}}"/>
+        @livewire('experiences', ['selectedExperience' => $ad->own_experience, 'experienceName' => 'applicant_experience'])
     </x-ads.list-element>
 
     <x-ads.list-element name="{{ __('Концертный опыт') }}">
-        <x-experience name="applicant_concert_experience" selectedExperienceId="{{$ad->applicant_concert_experience}}"/>
+        @livewire('experiences', ['selectedExperience' => $ad->applicant_concert_experience, 'experienceName' => 'applicant_concert_experience'])
     </x-ads.list-element>
 
-    @if ($ad->type)
+    @if ($ad->type == Types::fromArtist->value)
         <x-form.band-checkboxes :ad="$ad"/>
 
         @if ($ad->commercial_project)
@@ -40,27 +44,27 @@
         {{ __("О $title") }}
     </x-ads.section-title>
 
-    @if (!$ad->type)
+    @if ($ad->type == Types::fromBand->value)
         <x-ads.list-element name="{{ __('Название группы') }}">
             <input type="text" class="form-control" value="{{$ad->band_name}}"/>
         </x-ads.list-element>
     @endif
 
-    @if ($ad->type)
+    @if ($ad->type == Types::fromArtist->value)
         <x-ads.list-element name="{{ __('Навык') }}">
-            <x-skills skill_id="{{$ad->skill_id}}"/>
+            @livewire('skills', ['selectedSkillId' => $ad->skill_id])
         </x-ads.list-element> 
     @endif 
 
     <x-ads.list-element name="{{ __('Опыт') }}">
-        <x-experience name="own_experience" selectedExperienceId="{{$ad->own_experience}}"/>
+        @livewire('experiences', ['selectedExperience' => $ad->own_experience, 'experienceName' => 'own_experience'])
     </x-ads.list-element>
 
     <x-ads.list-element name="{{ __('Концертный опыт') }}">
-        <x-experience name="own_concert_experience" selectedExperienceId="{{$ad->own_concert_experience}}"/>
+            @livewire('experiences', ['selectedExperience' => $ad->own_concert_experience, 'experienceName' => 'own_concert_experience'])
     </x-ads.list-element>
 
-    @if ($ad->type)
+    @if ($ad->type == Types::fromArtist->value)
         <x-form.artist-checkboxes :ad="$ad"/>
     @else
         <x-form.band-checkboxes :ad="$ad"/>
@@ -101,9 +105,9 @@
         <input type="text" name="phone" class="form-control" value="{{$ad->phone}}">
     </x-ads.list-element>
 
-    <x-ads.list-element name="{{ __('География') }}">
+    {{-- <x-ads.list-element name="{{ __('География') }}">
         @livewire('region-city', ['selectedRussianRegion' => $ad->region, 'selectedCityByRegion' => $ad->city])
-    </x-ads.list-element>
+    </x-ads.list-element> --}}
 
     <x-ads.section-title class="text-center">
         {{ __('Описание') }}
