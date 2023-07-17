@@ -6,12 +6,13 @@ use App\Models\Ad;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AdStatusChangedMail extends Mailable
+class AdStatusChangedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -21,10 +22,10 @@ class AdStatusChangedMail extends Mailable
 
     public string $message;
 
-    public function __construct(Ad $ad, User $user, string $message = '')
+    public function __construct(Ad $ad, string $message = '')
     {
         $this->ad = $ad;
-        $this->user = $user;
+        $this->user = $ad->user;
         $this->message = $message;
     }
 
@@ -41,7 +42,7 @@ class AdStatusChangedMail extends Mailable
             markdown: 'ads.mail.status-changed',
 
             with:[
-                'status' => Status::getStatusNameById($this->ad->status),
+                'status' => $this->ad->status,
                 'message' => $this->message,
             ]
         );

@@ -9,6 +9,10 @@ class Genre extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public static function getGenreNameById(int $genreId): string
     {
         $arrayOfGenreFields = self::where('id', $genreId)->first()->toArray();

@@ -2,27 +2,29 @@
 
 namespace App\Mail\Ad;
 
+use App\Models\Ad;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AdUpdatedMail extends Mailable
+class AdUpdatedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public User $user;
 
-    public int $adId;
+    public Ad $ad;
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user, int $adId)
+    public function __construct(Ad $ad)
     {
-        $this->user = $user;
-        $this->adId = $adId;
+        $this->user = $ad->user;
+        $this->ad = $ad;
     }
 
     /**

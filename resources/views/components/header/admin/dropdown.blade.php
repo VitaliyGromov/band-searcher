@@ -5,5 +5,7 @@
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{{ route('admin.ads') }}">{{__('Объявления')}}</a></li>
         <li><a class="dropdown-item" href="{{ route('admin.users') }}">{{__('Пользователи')}}</a></li>
+        <li><a class="dropdown-item" href="{{ route('admin.genres') }}">{{__('Жанры')}}</a></li>
+        <li><a class="dropdown-item" href="{{ route('admin.skills') }}">{{__('Навыки')}}</a></li>
     </ul>
 </div>

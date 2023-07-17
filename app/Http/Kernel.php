@@ -49,6 +49,5 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'own_ad' => \App\Http\Middleware\OwnAdMiddleware::class,
         'active' => \App\Http\Middleware\ActiveMiddleware::class,
-        'locations' => \App\Http\Middleware\ChangeIdToLocationNamesInRequest::class,
     ];
 }

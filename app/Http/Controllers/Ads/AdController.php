@@ -1,18 +1,19 @@
 <?php
 namespace App\Http\Controllers\Ads;
 
-use App\Actions\Ads\AdDeleteAction;
 use App\Models\Ad;
-use App\Actions\Ads\AdStoreAction;
-use App\Actions\Ads\AdUpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Ads\AdFormRequest;
 use App\Actions\Ads\ChangeAdStatusAction;
 use App\Enums\Status as EnumsStatus;
 use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
+use App\Mail\Ad\AdCreatedMail;
+use App\Mail\Ad\AdUpdatedMail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdController extends Controller
 {
@@ -38,20 +39,24 @@ class AdController extends Controller
         return view('ads.artist.create');
     }
 
-    public function store(AdFormRequest $request, AdStoreAction $adStoreAction): RedirectResponse
+    public function store(AdFormRequest $request): RedirectResponse
     {
-        $validated = $request->validated();
+        $status = EnumsStatus::underReview->value;
 
-        $adStoreAction->handle($validated);
+        $ad = Ad::create([...$request->validated(), 'user_id' => Auth::id(), 'status' => $status]);
+
+        Mail::to($ad->user)->send(new AdCreatedMail($ad));
 
         return redirect()->route('ads');
     }
 
-    public function update(AdFormRequest $request, Ad $ad, AdUpdateAction $adUpdateAction): RedirectResponse
+    public function update(AdFormRequest $request, Ad $ad): RedirectResponse
     {
         $validated = $request->validated();
 
-        $adUpdateAction->handle($validated, $ad);
+        $ad->update([...$validated, 'status' => EnumsStatus::underReview->value]);
+
+        Mail::to($ad->user)->send(new AdUpdatedMail($ad));
 
         return redirect('ads');
     }
@@ -65,9 +70,9 @@ class AdController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Ad $ad, AdDeleteAction $action): RedirectResponse
+    public function destroy(Ad $ad): RedirectResponse
     {
-        $action->handle($ad);
+        $ad->delete();
 
         return redirect('ads');
     }

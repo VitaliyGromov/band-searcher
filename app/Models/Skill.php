@@ -9,6 +9,10 @@ class Skill extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public static function getSkillNameById(int $skillId): string
     {
         $arrayOfSkillFields = self::where('id', $skillId)->first()->toArray();

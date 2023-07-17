@@ -36,7 +36,7 @@ class LocationsService implements LocationsContract
         return Utils::jsonDecode((string)$request->getBody(), true);
     }
 
-    public function getCitiesByRegionId(int $regionId)
+    public function getCitiesByRegionId(int $regionId): array
     {
         try {
             $request = $this->locationsClient->request('GET', "areas/$regionId");
@@ -60,7 +60,7 @@ class LocationsService implements LocationsContract
         return $region['name'];
     }
 
-    public function getCityNameById(int $cityId, int $regionId)
+    public function getCityNameById(int $cityId, int $regionId): string
     {
         try{
             $cities = $this->getCitiesByRegionId($regionId);

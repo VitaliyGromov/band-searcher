@@ -40,8 +40,8 @@ return new class extends Migration
             $table->string('applicant_experience');
             $table->string('applicant_concert_experience');
 
-            $table->string('region');
-            $table->string('city');
+            $table->integer('region');
+            $table->integer('city');
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');

@@ -29,10 +29,8 @@ class RegionCity extends Component
         if($regionId){
 
             $locations = app(LocationsContract::class);
-
-            $citiesByRegionId = $locations->getCitiesByRegionId($regionId)['areas'];
-
-            $this->citesByRegion = $citiesByRegionId;
+            
+            $this->citesByRegion = $locations->getCitiesByRegionId($regionId)['areas'];
             $this->selectedCityByRegion = NULL;
 
         } else {

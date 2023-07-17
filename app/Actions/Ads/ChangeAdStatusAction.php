@@ -1,8 +1,9 @@
 <?php
 namespace App\Actions\Ads;
 
-use App\Events\Ad\AdStatusChanged;
+use App\Mail\Ad\AdStatusChangedMail;
 use App\Models\Ad;
+use Illuminate\Support\Facades\Mail;
 
 class ChangeAdStatusAction
 {
@@ -16,7 +17,7 @@ class ChangeAdStatusAction
 
         $ad->update(['status' => $validated['status']]);
 
-        event(new AdStatusChanged($ad, $message));
+        Mail::to($ad->user)->send(new AdStatusChangedMail($ad, $message));
     }
 }
 ?>
