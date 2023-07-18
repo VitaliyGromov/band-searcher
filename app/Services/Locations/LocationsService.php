@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Exception\RequestException;
 use App\Services\Locations\Contracts\LocationsContract;
+use Illuminate\Support\Facades\Cache;
 
 class LocationsService implements LocationsContract
 {
@@ -27,13 +28,23 @@ class LocationsService implements LocationsContract
     public function getRegions(): array
     {
         try {
-            $russiaId = self::RUSSIA_ID;
-            $request = $this->locationsClient->request('GET', "areas/$russiaId");
+            if(Cache::has('regions')){
+                return Cache::get('regions');
+
+            } else{
+                $russiaId = self::RUSSIA_ID;
+                $request = $this->locationsClient->request('GET', "areas/$russiaId");
+
+                $regions = Utils::jsonDecode((string)$request->getBody(), true);
+
+                Cache::put('regions', $regions);
+            }
+
         } catch (RequestException $e) {
             Log::error($e->getMessage());
         }
 
-        return Utils::jsonDecode((string)$request->getBody(), true);
+        return Cache::get('regions');
     }
 
     public function getCitiesByRegionId(int $regionId): array

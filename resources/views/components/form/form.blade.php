@@ -105,9 +105,9 @@
         <input type="text" name="phone" class="form-control" value="{{$ad->phone}}">
     </x-ads.list-element>
 
-    {{-- <x-ads.list-element name="{{ __('География') }}">
-        @livewire('region-city', ['selectedRussianRegion' => $ad->region, 'selectedCityByRegion' => $ad->city])
-    </x-ads.list-element> --}}
+    <x-ads.list-element name="{{ __('География') }}">
+        @livewire('region-city', ['selectedRussianRegion' => $ad->region])
+    </x-ads.list-element>
 
     <x-ads.section-title class="text-center">
         {{ __('Описание') }}

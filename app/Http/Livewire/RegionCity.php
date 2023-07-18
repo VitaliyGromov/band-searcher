@@ -24,13 +24,13 @@ class RegionCity extends Component
         return view('livewire.region-city');
     }
 
-    public function updatedSelectedRussianRegion($regionId)
+    public function updatedSelectedRussianRegion($region)
     {
-        if($regionId){
+        if($region){
 
             $locations = app(LocationsContract::class);
             
-            $this->citesByRegion = $locations->getCitiesByRegionId($regionId)['areas'];
+            $this->citesByRegion = $locations->getCitiesByRegionId($region)['areas'];
             $this->selectedCityByRegion = NULL;
 
         } else {
