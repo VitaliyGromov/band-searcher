@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Ads;
 
+use App\Actions\Ads\AdCreactedAction;
+use App\Actions\Ads\AdUpdatedAction;
 use App\Models\Ad;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Ads\AdFormRequest;
@@ -8,12 +10,8 @@ use App\Actions\Ads\ChangeAdStatusAction;
 use App\Enums\Status as EnumsStatus;
 use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
-use App\Mail\Ad\AdCreatedMail;
-use App\Mail\Ad\AdUpdatedMail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class AdController extends Controller
 {
@@ -39,33 +37,23 @@ class AdController extends Controller
         return view('ads.artist.create');
     }
 
-    public function store(AdFormRequest $request): RedirectResponse
+    public function store(AdFormRequest $request, AdCreactedAction $action): RedirectResponse
     {
-        $status = EnumsStatus::underReview->value;
-
-        $ad = Ad::create([...$request->validated(), 'user_id' => Auth::id(), 'status' => $status]);
-
-        Mail::to($ad->user)->send(new AdCreatedMail($ad));
+        $action->handle($request->validated());
 
         return redirect()->route('ads');
     }
 
-    public function update(AdFormRequest $request, Ad $ad): RedirectResponse
+    public function update(AdFormRequest $request, Ad $ad, AdUpdatedAction $action): RedirectResponse
     {
-        $validated = $request->validated();
-
-        $ad->update([...$validated, 'status' => EnumsStatus::underReview->value]);
-
-        Mail::to($ad->user)->send(new AdUpdatedMail($ad));
+        $action->handle($request->validated(), $ad);
 
         return redirect('ads');
     }
 
     public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, ChangeAdStatusAction $adChangeStatusAction): RedirectResponse
-    {
-        $validated = $request->validated();
-        
-        $adChangeStatusAction->handle($validated, $ad);
+    { 
+        $adChangeStatusAction->handle($request->validated(), $ad);
 
         return redirect()->back();
     }

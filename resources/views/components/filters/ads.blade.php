@@ -16,11 +16,11 @@
         </div>
         <div class="row">
             <div class="col-sm">
-                @livewire('region-city', ['selectedRussianRegion' => request('region'), 'selectedCityByRegion' => request('city')])
+                @livewire('region-city')
             </div>
             <div class="col-sm mt-3">
                 <label for="band_name">{{__('Название группы')}}</label>
-                <input class="form-control" name="band_name" value="{{request('band_name')}}" type="text"/>
+                <input class="form-control" name="band_name" value="{{ request('band_name') }}" type="text"/>
             </div>
         </div>
         <div class="row">
@@ -52,7 +52,7 @@
                 <x-band-checkboxes/>
                 <div class="mt-3 d-none" id="salary">
                     <x-label for="salary">{{__('Сколько деняк?)')}}</x-label>
-                    <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях" value="{{request('salary')}}"/>
+                    <input type="number" name="salary" class="form-control" placeholder="Введите сумму в рублях" value="{{ request('salary') }}"/>
                 </div>
             </div>
             <div class="col-sm">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Services\Locations\Contracts\LocationsContract;
+use App\Services\Locations\Facades\LocationFacade;
 use Livewire\Component;
 
 class RegionCity extends Component
@@ -10,12 +10,12 @@ class RegionCity extends Component
     public $russianRegions;
     public $citesByRegion;
 
-    public $selectedRussianRegion;
-    public $selectedCityByRegion;
+    public $selectedRussianRegion = NULL;
+    public $selectedCityByRegion = NULL;
 
-    public function mount(LocationsContract $locations)
+    public function mount()
     {
-        $this->russianRegions = $locations->getRegions()['areas'];
+        $this->russianRegions = LocationFacade::getRegions();
         $this->citesByRegion = NULL;
     }
     
@@ -27,10 +27,7 @@ class RegionCity extends Component
     public function updatedSelectedRussianRegion($region)
     {
         if($region){
-
-            $locations = app(LocationsContract::class);
-            
-            $this->citesByRegion = $locations->getCitiesByRegionId($region)['areas'];
+            $this->citesByRegion = LocationFacade::getCitiesByRegionId($region);
             $this->selectedCityByRegion = NULL;
 
         } else {

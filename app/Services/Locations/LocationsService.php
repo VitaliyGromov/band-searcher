@@ -28,7 +28,7 @@ class LocationsService implements LocationsContract
     public function getRegions(): array
     {
         try {
-            if(Cache::has('regions')){
+            if (Cache::has('regions')) {
                 return Cache::get('regions');
 
             } else{
@@ -37,52 +37,79 @@ class LocationsService implements LocationsContract
 
                 $regions = Utils::jsonDecode((string)$request->getBody(), true);
 
-                Cache::put('regions', $regions);
+                Cache::put('regions', $regions['areas']);
+
+                return Cache::get('regions');
             }
 
         } catch (RequestException $e) {
             Log::error($e->getMessage());
         }
-
-        return Cache::get('regions');
     }
 
     public function getCitiesByRegionId(int $regionId): array
     {
         try {
-            $request = $this->locationsClient->request('GET', "areas/$regionId");
+            if (Cache::has("cities_by_region_id_$regionId")) {
+                return Cache::get("cities_by_region_id_$regionId");
+
+            } else {
+                $request = $this->locationsClient->request('GET', "areas/$regionId");
+
+                $cities = Utils::jsonDecode((string)$request->getBody(), true);
+
+                Cache::put("cities_by_region_id_$regionId", $cities['areas']);
+
+                return $cities['areas'];
+            }
+            
         } catch (RequestException $e) {
             Log::error($e->getMessage());
         }
-
-        return Utils::jsonDecode((string)$request->getBody(), true);
     }
 
     public function getRegionNameById(int $regionId): string
     {
         try {
-            $request = $this->locationsClient->request('GET', "areas/$regionId");
+            if (Cache::has("region_name_by_id_$regionId")) {
+                return Cache::get("region_name_by_id_$regionId");
+
+            } else {
+                $request = $this->locationsClient->request('GET', "areas/$regionId");
+
+                $region = Utils::jsonDecode((string)$request->getBody(), true);
+
+                Cache::put("region_name_by_id_$regionId", $region['name']);
+
+                return $region['name'];
+            }
+        
+
         } catch (RequestException $e) {
             Log::error($e->getMessage());
         }
-
-        $region = Utils::jsonDecode((string)$request->getBody(), true);
-
-        return $region['name'];
     }
 
     public function getCityNameById(int $cityId, int $regionId): string
     {
         try{
-            $cities = $this->getCitiesByRegionId($regionId);
+            if (Cache::has("city_name_by_id_$cityId")) {
+                return Cache::get("city_name_by_id_$cityId");
+                
+            } else {
+                $cities = $this->getCitiesByRegionId($regionId);
+
+                foreach($cities as $city){
+                    if($city['id'] == $cityId){
+                        return $city['name'];
+
+                        Cache::put("city_name_by_id_$cityId", $city['name']);
+                    }
+                }
+            }
+
         } catch(RequestException $e) {
             Log::error($e->getMessage());
-        }
-
-        foreach($cities['areas'] as $city){
-            if($city['id'] == $cityId){
-                return $city['name'];
-            }
         }
     }
 }

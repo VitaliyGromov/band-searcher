@@ -35,3 +35,12 @@ services:
       - POSTGRES_PASSWORD=metallica
       - PGDATA=/var/lib/postgresql/data/some_name/ 
     container_name: database
+
+  redis:
+    image: redis:7.2-rc3
+    restart: always
+    container_name: redis
+    volumes:
+      - ./redis_volume_data:/data
+    ports:
+      - "6379:6379"

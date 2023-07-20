@@ -1,13 +1,11 @@
 @php
-    use App\Services\Locations\Contracts\LocationsContract;
-
-    $locations = app(LocationsContract::class);
+    use App\Services\Locations\Facades\LocationFacade;
 @endphp
 
 <x-ads.list-element name="{{ __('Регион') }}">
-    {{ $locations->getRegionNameById($ad->region) }}
+    {{ LocationFacade::getRegionNameById($ad->region) }}
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Город') }}">
-    {{ $locations->getCityNameBYId($ad->city, $ad->region)}}
+    {{ LocationFacade::getCityNameById($ad->city, $ad->region)}}
 </x-ads.list-element>

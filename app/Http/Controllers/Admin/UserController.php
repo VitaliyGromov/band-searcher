@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\User\UserActivityStatusChangedAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ChangeActiveStatusRequest;
 use App\Http\Requests\User\UserFilterRequest;
@@ -18,9 +19,9 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    public function changeUserActivityStatus(ChangeActiveStatusRequest $request, User $user): RedirectResponse
+    public function changeUserActivityStatus(ChangeActiveStatusRequest $request, User $user, UserActivityStatusChangedAction $action): RedirectResponse
     {
-        $user->update($request->validated());
+        $action->handle($request->validated(), $user);
 
         return redirect()->back();
     }

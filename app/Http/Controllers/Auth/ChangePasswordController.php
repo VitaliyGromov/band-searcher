@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Auth\PasswordChangedAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ChangePasswordRequest;
 use Illuminate\Http\RedirectResponse;
@@ -14,11 +15,9 @@ class ChangePasswordController extends Controller
         return view('auth.passwords.change');
     }
 
-    public function changePassword(ChangePasswordRequest $request): RedirectResponse
+    public function changePassword(ChangePasswordRequest $request, PasswordChangedAction $action): RedirectResponse
     {
-        $user = $request->user();
-
-        $user->update($request->validated());
+        $action->handle($request->validated(), $request->user());
 
         return redirect('profile')->with('message', 'Ваш пароль был успешно обновлен');
     }
