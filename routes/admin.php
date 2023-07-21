@@ -16,7 +16,7 @@ Route::middleware('auth', 'role:admin', 'verified', 'active')->group(function(){
     Route::put('/admin/users/{user}', [UserController::class, 'changeUserActivityStatus'])->name('admin.change.user.activity.status');
 
     Route::get('admin/genres', [GenreController::class, 'index'])->name('admin.genres');
+    Route::delete('admin/genres/{genre}', [GenreController::class, 'destroy'])->name('admin.genres.delete');
 
     Route::get('admin/skills', [SkillController::class, 'index'])->name('admin.skills');
-    
 });
