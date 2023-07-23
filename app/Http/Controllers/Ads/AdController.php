@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Ads;
 
-use App\Actions\Ads\AdCreactedAction;
+use App\Actions\Ads\AdCreatedAction;
 use App\Actions\Ads\AdUpdatedAction;
 use App\Models\Ad;
 use App\Http\Controllers\Controller;
@@ -37,7 +37,7 @@ class AdController extends Controller
         return view('ads.artist.create');
     }
 
-    public function store(AdFormRequest $request, AdCreactedAction $action): RedirectResponse
+    public function store(AdFormRequest $request, AdCreatedAction $action): RedirectResponse
     {
         $action->handle($request->validated());
 

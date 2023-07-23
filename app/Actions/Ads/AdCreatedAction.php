@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Ad;
 use App\Mail\Ad\AdCreatedMail;
 
-class AdCreactedAction
+class AdCreatedAction
 {
     public function handle(array $validated)
     {

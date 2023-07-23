@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('Город') }}</label>
             <select wire:model="selectedCityByRegion" name="city" class="form-control">
-                <option value="" selected>{{__('- Выберите город -')}}</option>
+                <option value="">{{__('- Выберите город -')}}</option>
                 @foreach($citesByRegion as $city)
                     <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                 @endforeach

@@ -16,7 +16,7 @@ class RegionCity extends Component
     public function mount()
     {
         $this->russianRegions = LocationFacade::getRegions();
-        $this->citesByRegion = collect();
+        $this->citesByRegion = [];
     }
     
     public function render()
@@ -26,10 +26,9 @@ class RegionCity extends Component
 
     public function updatedSelectedRussianRegion($region)
     {
-        if($region){
+        if ($region) {
             $this->citesByRegion = LocationFacade::getCitiesByRegionId($region);
             $this->selectedCityByRegion = NULL;
-
         } else {
             return $this->selectedRussianRegion = NULL;
         }

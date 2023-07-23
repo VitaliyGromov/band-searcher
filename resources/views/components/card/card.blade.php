@@ -4,7 +4,7 @@ use App\Models\Skill;
 use App\Enums\Types;
 
 if($ad->salary){
-    $salary = number_format($ad->salary, 2, '.', ' ').' руб.';
+    $salary = salaryFormat($ad->salary);
 } else {
     $salary = 'Не указана';
 }

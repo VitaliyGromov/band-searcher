@@ -90,6 +90,7 @@ if($ad->type == Types::fromBand->value){
                             <x-textarea name="message">
                             </x-textarea>
                         </div>
+        
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">{{__('Сохранить')}}</button>
                         </div>

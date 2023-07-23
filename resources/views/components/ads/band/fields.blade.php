@@ -12,6 +12,6 @@
 
 @if ($ad->commercial_project)
     <x-ads.list-element name="{{ __('Зарплата: ') }}">
-        {{number_format($ad->salary, 2, '.', ' ')}} {{__(' руб.')}}
+        {{ salaryFormat($ad->salary) }}
     </x-ads.list-element>
 @endif
