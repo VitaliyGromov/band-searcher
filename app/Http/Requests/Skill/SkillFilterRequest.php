@@ -4,7 +4,7 @@ namespace App\Http\Requests\Skill;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SkillFormRequest extends FormRequest
+class SkillFilterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class SkillFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:skills'],
+            'name' => ['nullable', 'string'],
         ];
     }
 }

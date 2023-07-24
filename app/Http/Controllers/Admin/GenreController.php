@@ -13,19 +13,23 @@ class GenreController extends Controller
 {
     public function index(GenreFilterRequest $request): View
     {
-        $genres = Genre::filter($request->validated())->get();
+        $genres = Genre::filter($request->validated())->orderBy('id')->get();
 
         return view('admin.genres.index', compact('genres'));
     }
 
-    public function store(GenreFormRequest $request)
+    public function store(GenreFormRequest $request): RedirectResponse
     {
-        //
+        Genre::create([...$request->validated()]);
+
+        return redirect()->back();
     }
 
-    public function update(GenreFormRequest $request, string $id)
+    public function update(GenreFormRequest $request, Genre $genre): RedirectResponse
     {
-        //
+        $genre->update([...$request->validated()]);
+
+        return redirect()->back();
     }
 
     public function destroy(Genre $genre): RedirectResponse

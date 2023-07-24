@@ -10,9 +10,7 @@ class Genre extends Model
 {
     use HasFactory, Filterable;
 
-    protected $fillable = [
-        'name',
-    ];
+    protected $guarded = [];
 
     public static function getGenreNameById(int $genreId): string
     {

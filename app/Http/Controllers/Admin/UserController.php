@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index(UserFilterRequest $request): View
     {
-        $users = User::filter($request->validated())->get();
+        $users = User::filter($request->validated())->orderBy('id')->get();
 
         return view('admin.users.index', compact('users'));
     }

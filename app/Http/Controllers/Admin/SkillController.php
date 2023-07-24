@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Skill\SkillFilterRequest;
+use App\Http\Requests\Skill\SkillFormRequest;
 use App\Models\Skill;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class SkillController extends Controller
@@ -12,58 +14,40 @@ class SkillController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(SkillFilterRequest $request): View
     {
-        $skills = Skill::all();
+        $skills = Skill::filter($request->validated())->orderBy('id')->get();
 
         return view('admin.skills.index', compact('skills'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SkillFormRequest $request): RedirectResponse
     {
-        //
-    }
+        Skill::create([...$request->validated()]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return redirect()->back();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SkillFormRequest $request, Skill $skill): RedirectResponse
     {
-        //
+        $skill->update([...$request->validated()]);
+
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+
+        return redirect()->back();
     }
 }
