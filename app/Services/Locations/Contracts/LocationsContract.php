@@ -5,9 +5,11 @@ namespace App\Services\Locations\Contracts;
 
 interface LocationsContract
 {
-    public function getRegions();
+    public function getRegions(): array;
 
     public function getCitiesByRegionId(int $regionId);
 
     public function getRegionNameById(int $regionId): string;
+
+    public function getCityNameById(int $cityId, int $regionId): string;
 }

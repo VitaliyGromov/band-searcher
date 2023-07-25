@@ -5,16 +5,16 @@ namespace App\Services\Locations;
 
 use GuzzleHttp\Utils;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Log;
-use GuzzleHttp\Exception\RequestException;
 use App\Services\Locations\Contracts\LocationsContract;
+use App\Services\Locations\Exceptions\LocationException;
 use Illuminate\Support\Facades\Cache;
+use Throwable;
 
 class LocationsService implements LocationsContract
 {
     private Client $locationsClient;
     
-    private const BASE_URI = 'https://api.hh.ru';
+    private const BASE_URI = 'https://api.hh.ruo';
 
     private const RUSSIA_ID = '113'; // Russia's id is 113
 
@@ -33,6 +33,7 @@ class LocationsService implements LocationsContract
 
             } else{
                 $russiaId = self::RUSSIA_ID;
+
                 $request = $this->locationsClient->request('GET', "areas/$russiaId");
 
                 $regions = Utils::jsonDecode((string)$request->getBody(), true);
@@ -42,8 +43,8 @@ class LocationsService implements LocationsContract
                 return Cache::get('regions');
             }
 
-        } catch (RequestException $e) {
-            Log::error($e->getMessage());
+        } catch (Throwable $e) {
+            throw new LocationException($e->getMessage(), 0, $e);
         }
     }
 
@@ -63,8 +64,8 @@ class LocationsService implements LocationsContract
                 return $cities['areas'];
             }
             
-        } catch (RequestException $e) {
-            Log::error($e->getMessage());
+        } catch (Throwable $e) {
+            throw new LocationException($e->getMessage(), 0, $e);
         }
     }
 
@@ -85,8 +86,8 @@ class LocationsService implements LocationsContract
             }
         
 
-        } catch (RequestException $e) {
-            Log::error($e->getMessage());
+        } catch (Throwable $e) {
+            throw new LocationException($e->getMessage(), 0, $e);
         }
     }
 
@@ -108,8 +109,8 @@ class LocationsService implements LocationsContract
                 }
             }
 
-        } catch(RequestException $e) {
-            Log::error($e->getMessage());
+        } catch(Throwable $e) {
+            throw new LocationException($e->getMessage(), 0, $e);
         }
     }
 }

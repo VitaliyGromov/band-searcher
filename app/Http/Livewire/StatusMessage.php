@@ -22,6 +22,8 @@ class StatusMessage extends Component
 
         if ($this->status == Status::canceled->value) {
             $this->class = '';
+        } else {
+            $this->class = 'd-none';
         }
     }
 
