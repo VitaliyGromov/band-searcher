@@ -85,11 +85,7 @@ if($ad->type == Types::fromBand->value){
                             @livewire('statuses', ['selectedStatus' => $ad->status])
                         </x-ads.list-element>
                 
-                        <div id="message" class="d-none">
-                            <x-label for="message">{{__('Пояснительная записка')}}</x-label>
-                            <x-textarea name="message">
-                            </x-textarea>
-                        </div>
+                        @livewire('status-message', ['user'=> $ad->user])
         
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">{{__('Сохранить')}}</button>

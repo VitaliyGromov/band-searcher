@@ -106,7 +106,7 @@
     </x-ads.list-element>
 
     <x-ads.list-element name="{{ __('География') }}">
-        @livewire('region-city')
+        @livewire('region-city', ['selectedRussianRegion' => $ad->region, 'selectedCityByRegion' => $ad->city])
     </x-ads.list-element>
 
     <x-ads.section-title class="text-center">

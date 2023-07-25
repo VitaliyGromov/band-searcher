@@ -19,4 +19,9 @@ class Statuses extends Component
     {
         return view('livewire.statuses');
     }
+
+    public function updatedSelectedStatus($status)
+    {
+        $this->emit('statusChanged', $status);
+    }
 }
