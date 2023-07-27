@@ -7,7 +7,7 @@ interface LocationsContract
 {
     public function getRegions(): array;
 
-    public function getCitiesByRegionId(int $regionId);
+    public function getCitiesByRegionId(int $regionId): array;
 
     public function getRegionNameById(int $regionId): string;
 

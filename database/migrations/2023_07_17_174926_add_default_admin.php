@@ -14,10 +14,10 @@ return new class extends Migration
         $admin = User::create([
             'name' => 'Виталий',
             'last_name' => 'Громов',
-            'email' => 'gromov.vitaliy03@gmail.com',
+            'email' => env('DEFAULT_ADMIN_EMAIL'),
             'email_verified_at' => now(),
             'phone' => '89373743794',
-            'password' => Hash::make('qwert.ru228'),
+            'password' => Hash::make(env('DEFAULT_ADMIN_PASSWORD')),
         ]);
 
         $admin->assignRole('admin');

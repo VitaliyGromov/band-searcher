@@ -33,7 +33,7 @@ class AdFormRequest extends FormRequest
         return [
             'band_name' => ['sometimes', 'string', 'max:255'],
             'region' => ['required', 'string'],
-            'city' => ['required', 'string'],
+            'city' => ['nullable', 'string'],
             'skill_id' => ['required'],
             'type' => ['required', 'boolean'],
 
@@ -77,7 +77,6 @@ class AdFormRequest extends FormRequest
     {
         return [
             'region.required' => 'Укажите ваше регион',
-            'city.required' => 'Укажите ваш город',
             'skill_id' => 'Укажите ваш навык',
             'genre_id' => 'Укажите жанр',
 

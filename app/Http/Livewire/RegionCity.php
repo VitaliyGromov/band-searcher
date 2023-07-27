@@ -7,8 +7,8 @@ use Livewire\Component;
 
 class RegionCity extends Component
 {
-    public $russianRegions;
-    public $citesByRegion;
+    public $russianRegions = [];
+    public $citesByRegion = [];
 
     public $selectedRussianRegion = NULL;
     public $selectedCityByRegion = NULL;

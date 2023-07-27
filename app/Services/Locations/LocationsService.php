@@ -6,15 +6,16 @@ namespace App\Services\Locations;
 use GuzzleHttp\Utils;
 use GuzzleHttp\Client;
 use App\Services\Locations\Contracts\LocationsContract;
-use App\Services\Locations\Exceptions\LocationException;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Throwable;
 
 class LocationsService implements LocationsContract
 {
     private Client $locationsClient;
     
-    private const BASE_URI = 'https://api.hh.ruo';
+    private const BASE_URI = 'https://api.hh.ru';
 
     private const RUSSIA_ID = '113'; // Russia's id is 113
 
@@ -38,13 +39,17 @@ class LocationsService implements LocationsContract
 
                 $regions = Utils::jsonDecode((string)$request->getBody(), true);
 
-                Cache::put('regions', $regions['areas']);
+                Cache::put('regions', $regions['areas'], 60*60*24);
 
                 return Cache::get('regions');
             }
 
         } catch (Throwable $e) {
-            throw new LocationException($e->getMessage(), 0, $e);
+            Log::error($e->getMessage());
+            
+            Redirect::with('error', $e->getMessage());
+
+            return $regions = [];
         }
     }
 
@@ -59,13 +64,17 @@ class LocationsService implements LocationsContract
 
                 $cities = Utils::jsonDecode((string)$request->getBody(), true);
 
-                Cache::put("cities_by_region_id_$regionId", $cities['areas']);
+                Cache::put("cities_by_region_id_$regionId", $cities['areas'], 60*60*24);
 
                 return $cities['areas'];
             }
             
         } catch (Throwable $e) {
-            throw new LocationException($e->getMessage(), 0, $e);
+            Log::error($e->getMessage());
+            
+            Redirect::with('error', $e->getMessage());
+
+            return $cities = [];
         }
     }
 
@@ -80,20 +89,24 @@ class LocationsService implements LocationsContract
 
                 $region = Utils::jsonDecode((string)$request->getBody(), true);
 
-                Cache::put("region_name_by_id_$regionId", $region['name']);
+                Cache::put("region_name_by_id_$regionId", $region['name'], 60*60*24);
 
                 return $region['name'];
             }
         
 
         } catch (Throwable $e) {
-            throw new LocationException($e->getMessage(), 0, $e);
+            Log::error($e->getMessage());
+            
+            Redirect::with('error', $e->getMessage());
+
+            return 'Произошла ошибка';
         }
     }
 
     public function getCityNameById(int $cityId, int $regionId): string
     {
-        try{
+        try {
             if (Cache::has("city_name_by_id_$cityId")) {
                 return Cache::get("city_name_by_id_$cityId");
                 
@@ -101,16 +114,19 @@ class LocationsService implements LocationsContract
                 $cities = $this->getCitiesByRegionId($regionId);
 
                 foreach($cities as $city){
-                    if($city['id'] == $cityId){
+                    if ($city['id'] == $cityId) {
                         return $city['name'];
 
-                        Cache::put("city_name_by_id_$cityId", $city['name']);
+                        Cache::put("city_name_by_id_$cityId", $city['name'], 60*60*24);
                     }
                 }
             }
 
-        } catch(Throwable $e) {
-            throw new LocationException($e->getMessage(), 0, $e);
-        }
+        } catch (Throwable $e) {
+            Log::error($e->getMessage());
+            
+            Redirect::with('error', $e->getMessage());
+
+        } return 'Произошла ошибка';
     }
 }

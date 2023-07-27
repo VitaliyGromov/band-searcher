@@ -18,7 +18,9 @@
     <div id="app">
         @include('include.header')
         <main class="py-4">
-            <x-alert/>
+            <div class="container">
+                <x-alert/>
+            </div>
             @yield('content')
         </main>
         @if (Route::is('ads'))
