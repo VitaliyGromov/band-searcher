@@ -15,6 +15,12 @@ Set DB_PASSWORD
 ```
 DB_PASSWORD=
 ```
+Set admin password and email
+
+```
+DEFAULT_ADMIN_PASSWORD=
+DEFAULT_ADMIN_EMAIL=
+```
 
 configurate this mail block
 
