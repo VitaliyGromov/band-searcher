@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Ads;
 
 use App\Actions\Ads\AdCreatedAction;
@@ -52,7 +55,7 @@ class AdController extends Controller
     }
 
     public function changeAdStatus(Ad $ad, ChangeAdStatusRequest $request, ChangeAdStatusAction $adChangeStatusAction): RedirectResponse
-    { 
+    {
         $adChangeStatusAction->handle($request->validated(), $ad);
 
         return redirect()->back();

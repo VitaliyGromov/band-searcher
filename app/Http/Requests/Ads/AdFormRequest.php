@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Ads;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,18 +15,18 @@ class AdFormRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if($this->input('band_name') == null){
+        if ($this->input('band_name') == null) {
             $this->request->remove('band_name');
         }
 
         $this->merge([
-            'own_instrument' => $this->has('own_instrument')?true:false,
-            'ready_to_move' => $this->has('ready_to_move')?true:false,
-            'ready_to_tour' => $this->has('ready_to_tour')?true:false,
+            'own_instrument' => $this->has('own_instrument') ? true : false,
+            'ready_to_move' => $this->has('ready_to_move') ? true : false,
+            'ready_to_tour' => $this->has('ready_to_tour') ? true : false,
 
-            'own_music' => $this->has('own_music')?true:false,
-            'cover_band' => $this->has('cover_band')?true:false,
-            'commercial_project' => $this->has('commercial_project')?true:false,
+            'own_music' => $this->has('own_music') ? true : false,
+            'cover_band' => $this->has('cover_band') ? true : false,
+            'commercial_project' => $this->has('commercial_project') ? true : false,
         ]);
     }
 
@@ -82,7 +84,7 @@ class AdFormRequest extends FormRequest
 
             'vk.required' => 'Это поле обязательно для заполнения',
             'vk.string' => 'Это поле должно быть строкой',
-            
+
             'youtube.required' => 'Это поле обязательно для заполнения',
             'youtube.string' => 'Это поле должно быть строкой',
 

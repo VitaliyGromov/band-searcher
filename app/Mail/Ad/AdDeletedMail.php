@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail\Ad;
 
 use App\Models\User;
@@ -15,7 +17,7 @@ class AdDeletedMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public User $user;
-    
+
     /**
      * Create a new message instance.
      */

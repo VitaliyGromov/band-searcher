@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail\Ad;
 
 use App\Models\Ad;
-use App\Models\Status;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -41,7 +42,7 @@ class AdStatusChangedMail extends Mailable implements ShouldQueue
         return new Content(
             markdown: 'ads.mail.status-changed',
 
-            with:[
+            with: [
                 'status' => $this->ad->status,
                 'message' => $this->message,
             ]

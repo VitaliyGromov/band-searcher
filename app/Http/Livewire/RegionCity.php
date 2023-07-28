@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Services\Locations\Facades\LocationFacade;
@@ -23,7 +25,7 @@ class RegionCity extends Component
             $this->citesByRegion = [];
         }
     }
-    
+
     public function render()
     {
         return view('livewire.region-city');

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Actions\Ads;
 
 use App\Mail\Ad\AdStatusChangedMail;
@@ -20,4 +23,3 @@ class ChangeAdStatusAction
         Mail::to($ad->user)->send(new AdStatusChangedMail($ad, $message));
     }
 }
-?>

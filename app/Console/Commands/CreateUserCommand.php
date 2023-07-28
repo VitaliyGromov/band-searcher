@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\User;
@@ -27,13 +29,13 @@ class CreateUserCommand extends Command
         $email = fake()->email();
         $phone = fake()->phoneNumber();
         $password = fake()->password();
-        
+
         $user = User::create([
             'name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => $email,
             'phone' => $phone,
-            'password' => Hash::make($password), 
+            'password' => Hash::make($password),
         ]);
 
         $role = $this->argument('role');
