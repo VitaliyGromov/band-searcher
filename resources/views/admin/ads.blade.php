@@ -21,6 +21,7 @@ use App\Services\Locations\Facades\LocationFacade;
                 <th scope="col">{{ __('Название группы')}}</th>
                 <th scope="col">{{ __('Тип') }}</th>
                 <th scope="col">{{ __('Статус') }}</th>
+                <th scope="col">{{ __('Автор') }}</th>
                 <th scope="col"></th>
               </x-table.thead>
                 <x-table.tbody>
@@ -37,6 +38,7 @@ use App\Services\Locations\Facades\LocationFacade;
                       @endif
                         <td>{{ $ad->type }}</td>
                         <td> {{$ad->status }} </td>
+                        <td>{{$ad->user->name}} {{$ad->user->last_name}}</td>
                       <td>
                         <x-button-link href="{{ route('admin.ads.show', $ad->id) }}">
                           {{ __('Перейти к объявлению')}}

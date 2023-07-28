@@ -58,8 +58,8 @@ class AdFormRequest extends FormRequest
 
             'genre_id' => ['required'],
 
-            'vk' => ['required', 'string'],
-            'youtube' => ['required', 'string'],
+            'vk' => ['required', 'string', 'url'],
+            'youtube' => ['required', 'string', 'url'],
 
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],

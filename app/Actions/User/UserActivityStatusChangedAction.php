@@ -10,7 +10,7 @@ class UserActivityStatusChangedAction
 {
     public function handle(array $validated, User $user)
     {
-        $user->update(...$validated);
+        $user->update($validated);
 
         Mail::to($user)->send(new UserActivityStatusChangedMail($user));
     }
