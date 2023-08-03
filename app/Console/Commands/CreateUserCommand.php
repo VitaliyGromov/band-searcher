@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Mail\User\UserCreatedMail;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
@@ -38,19 +40,33 @@ class CreateUserCommand extends Command
 
         $validator = Validator::make($userData, [
             'name' => ['required', 'string', 'max:256'],
-            'last__name' => ['required', 'string, max:256'],
+            'last_name' => ['required', 'string', 'max:256'],
             'email' => ['required', 'string', 'email', 'unique:users', 'max:256'],
-            'phone' => ['required', 'string', 'max:11'],
+            'phone' => ['required', 'string', 'min:12', 'max:12'],
             'password' => ['required', Password::default()],
-        ])->validate();
+        ]);
+
+        $validated = $validator->validate();
+
+        if ($validator->failed()) {
+            foreach ($validator->errors() as $error) {
+                $this->info($error);
+
+                return -1;
+            }
+        }
 
         $role = $this->choice('Choise the role of new user', Role::all()->pluck('name')->toArray());
 
-        DB::transaction(function () use ($validator, $role) {
-            $user = User::create($validator);
+        DB::transaction(function () use ($validated, $role) {
+            $user = User::create($validated);
 
             $user->assignRole($role);
         });
+
+        $newUser = User::where('email', $validated['email'])->first();
+
+        Mail::to($newUser->email)->send(new UserCreatedMail($newUser));
 
         $this->info("User created successfully");
 

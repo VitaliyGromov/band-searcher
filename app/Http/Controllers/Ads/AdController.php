@@ -15,15 +15,12 @@ use App\Http\Requests\Ads\AdFilterRequest;
 use App\Http\Requests\Ads\ChangeAdStatusRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Spatie\Permission\Models\Role;
 
 class AdController extends Controller
 {
     public function index(AdFilterRequest $request): View
     {
         $ads = Ad::filter($request->validated())->where('status', EnumsStatus::active->value)->get();
-
-        dd(Role::all()->pluck('name')->toArray());
 
         return view('ads.index', compact('ads'));
     }
