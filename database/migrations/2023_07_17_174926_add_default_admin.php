@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -11,16 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $admin = User::create([
+        DB::transaction(function(){
+            $admin = User::create([
             'name' => 'Виталий',
             'last_name' => 'Громов',
             'email' => env('DEFAULT_ADMIN_EMAIL'),
             'email_verified_at' => now(),
             'phone' => '89373743794',
             'password' => Hash::make(env('DEFAULT_ADMIN_PASSWORD')),
-        ]);
+            ]);
 
-        $admin->assignRole('admin');
+            $admin->assignRole('admin');
+        });
     }
 
     /**

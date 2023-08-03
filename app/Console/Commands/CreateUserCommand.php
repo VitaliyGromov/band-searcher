@@ -6,7 +6,11 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
+use Spatie\Permission\Models\Role;
 
 class CreateUserCommand extends Command
 {
@@ -15,7 +19,7 @@ class CreateUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:create {role}';
+    protected $signature = 'user:create';
 
     /**
      * The console command description.
@@ -24,24 +28,32 @@ class CreateUserCommand extends Command
      */
     protected $description = 'Create user command';
 
-    public function handle()
+    public function handle(): int
     {
-        $email = fake()->email();
-        $phone = fake()->phoneNumber();
-        $password = fake()->password();
+        $userData['name'] = $this->ask('Name of ew user', fake()->name());
+        $userData['last_name'] = $this->ask('Lastname of new user', fake()->lastName());
+        $userData['email'] = $this->ask('Email of new user', fake()->email());
+        $userData['phone'] = $this->ask('Phone of new user', fake()->phoneNumber());
+        $userData['password'] = Hash::make(fake()->password());
 
-        $user = User::create([
-            'name' => fake()->firstName(),
-            'last_name' => fake()->lastName(),
-            'email' => $email,
-            'phone' => $phone,
-            'password' => Hash::make($password),
-        ]);
+        $validator = Validator::make($userData, [
+            'name' => ['required', 'string', 'max:256'],
+            'last__name' => ['required', 'string, max:256'],
+            'email' => ['required', 'string', 'email', 'unique:users', 'max:256'],
+            'phone' => ['required', 'string', 'max:11'],
+            'password' => ['required', Password::default()],
+        ])->validate();
 
-        $role = $this->argument('role');
+        $role = $this->choice('Choise the role of new user', Role::all()->pluck('name')->toArray());
 
-        $user->assignRole($role);
+        DB::transaction(function () use ($validator, $role) {
+            $user = User::create($validator);
 
-        $this->info("Created new $role with email $email, password $password");
+            $user->assignRole($role);
+        });
+
+        $this->info("User created successfully");
+
+        return 0;
     }
 }
