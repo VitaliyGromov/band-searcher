@@ -8,9 +8,7 @@ use Tests\TestCase;
 
 class GenresPageTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
+    use RefreshDatabase;
     public function test_the_genres_page_returns_successful_respounse(): void
     {
         $response = $this->get('/admin/genres');
