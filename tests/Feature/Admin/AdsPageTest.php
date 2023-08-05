@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Tests\Traits\CreateUsers;
@@ -18,7 +17,6 @@ class AdsPageTest extends TestCase
         $this->actingAs($admin);
 
         $response = $this->get('/admin/ads');
-
         $response->assertStatus(200);
 
         $user = $this->user();
@@ -26,7 +24,6 @@ class AdsPageTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->get('/admin/ads');
-
         $response->assertForbidden();
     }
 }

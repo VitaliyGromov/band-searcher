@@ -18,7 +18,6 @@ class SkillsPageTest extends TestCase
         $this->actingAs($admin);
 
         $response = $this->get('/admin/skills');
-
         $response->assertStatus(200);
 
         $user = $this->user();
@@ -26,7 +25,6 @@ class SkillsPageTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->get('/admin/skills');
-
         $response->assertForbidden();
     }
 }

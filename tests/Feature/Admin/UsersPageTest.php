@@ -17,7 +17,6 @@ class UsersPageTest extends TestCase
         $this->actingAs($admin);
 
         $response = $this->get('/admin/users');
-
         $response->assertStatus(200);
 
         $user = $this->user();
@@ -25,7 +24,6 @@ class UsersPageTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->get('/admin/users');
-
         $response->assertForbidden();
     }
 }
