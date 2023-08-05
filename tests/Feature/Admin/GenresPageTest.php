@@ -4,14 +4,28 @@ namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Tests\Traits\CreateUsers;
 
 class GenresPageTest extends TestCase
 {
-    use RefreshDatabase;
-    public function test_the_genres_page_returns_successful_respounse(): void
+    use RefreshDatabase, CreateUsers;
+
+    public function test_only_admin_can_visit_genres_page(): void
     {
+        $admin = $this->admin();
+
+        $this->actingAs($admin);
+
         $response = $this->get('/admin/genres');
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
+
+        $user = $this->user();
+
+        $this->actingAs($user);
+
+        $response = $this->get('/admin/genres');
+
+        $response->assertForbidden();
     }
 }

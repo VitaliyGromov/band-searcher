@@ -39,4 +39,11 @@ class LoginTest extends TestCase
 
         $this->assertGuest();
     }
+
+    public function test_user_can_logout(): void
+    {
+        $this->post('/logout');
+
+        $this->assertGuest();
+    }
 }

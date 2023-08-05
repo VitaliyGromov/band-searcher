@@ -14,7 +14,7 @@
                   <x-error name="name"/>
 
                   <div class="mt-3">
-                      <button type="submit" class="btn btn-primary">{{__('Сохранить')}}</button>
+                      <x-button buttonType="submit">{{__('Сохранить')}}</x-button>
                   </div>
               </form>
             </x-modal>
@@ -37,12 +37,12 @@
                           <form action="{{route('admin.skills.update', $skill->id)}}" method="POST">
                               @method('PUT')
                               @csrf
-
-                              <input type="text" name="name" class="form-control" value="{{ $skill->name }}">
+                              
+                              <x-input inputName="name" inputValue="{{$skill->name}}"/>
                               <x-error name="name"/>
 
                               <div class="mt-3">
-                                  <button type="submit" class="btn btn-primary">{{__('Сохранить')}}</button>
+                                  <x-button buttonType="submit">{{__('Сохранить')}}</x-button>
                               </div>
                           </form>
                         </x-modal>
@@ -51,9 +51,9 @@
                         <form action="{{ route('admin.skills.delete', $skill->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
+                            <x-button buttonType="submit" buttonColor="danger">
                               {{__('Удалить')}}
-                            </button>
+                            </x-button>
                         </form>
                       </td>
                     </tr>
