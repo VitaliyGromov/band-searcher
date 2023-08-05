@@ -10,11 +10,6 @@ composer install
 ```
 create .env file, copy .env.example to .env;
 
-Set DB_PASSWORD
-
-```
-DB_PASSWORD=
-```
 Set admin password and email
 
 ```
