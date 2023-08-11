@@ -25,4 +25,18 @@ trait CreateUsers
 
         return $user;
     }
+
+    public function actingAsAdmin()
+    {
+        $admin = $this->admin();
+
+        return parent::actingAs($admin);
+    }
+
+    public function actingAsUser()
+    {
+        $user = $this->user();
+
+        return parent::actingAs($user);
+    }
 }

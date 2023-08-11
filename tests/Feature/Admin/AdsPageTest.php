@@ -12,9 +12,7 @@ class AdsPageTest extends TestCase
     
     public function test_only_admin_can_visit_ads_page(): void
     {
-        $admin = $this->admin();
-
-        $this->actingAs($admin);
+        $this->actingAsAdmin();
 
         $response = $this->get('/admin/ads');
         $response->assertStatus(200);
