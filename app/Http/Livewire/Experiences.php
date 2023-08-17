@@ -10,7 +10,9 @@ use Livewire\Component;
 class Experiences extends Component
 {
     public $experiences;
+
     public $experienceName;
+
     public $selectedExperience;
 
     public function mount()

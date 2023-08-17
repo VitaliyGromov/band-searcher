@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail\User;
 
 use App\Models\User;
@@ -15,6 +17,7 @@ class UserActivityStatusChangedMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public User $user;
+
     /**
      * Create a new message instance.
      */

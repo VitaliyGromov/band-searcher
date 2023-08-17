@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
@@ -9,6 +11,7 @@ use Tests\TestCase;
 class RegisterTest extends TestCase
 {
     use RefreshDatabase;
+
     public function test_the_login_page_returns_successful_respounse(): void
     {
         $response = $this->get('/register');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Spatie\Permission\Models\Role;
 
@@ -11,14 +13,14 @@ return new class extends Migration
 
     public function up(): void
     {
-        foreach($this->roles as $role){
+        foreach ($this->roles as $role) {
             Role::create(['name' => $role]);
         }
     }
 
     public function down(): void
     {
-        foreach($this->roles as $role){
+        foreach ($this->roles as $role) {
             $role = Role::findByName($role);
             $role->delete();
         }

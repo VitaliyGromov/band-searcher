@@ -68,7 +68,7 @@ class CreateUserCommand extends Command
 
         Mail::to($newUser->email)->send(new UserCreatedMail($newUser));
 
-        $this->info("User created successfully");
+        $this->info('User created successfully');
 
         return 0;
     }

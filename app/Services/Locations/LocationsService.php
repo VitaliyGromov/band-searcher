@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services\Locations;
 
-use GuzzleHttp\Utils;
-use GuzzleHttp\Client;
 use App\Services\Locations\Contracts\LocationsContract;
+use GuzzleHttp\Client;
+use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -37,7 +37,7 @@ class LocationsService implements LocationsContract
 
                 $request = $this->locationsClient->request('GET', "areas/$russiaId");
 
-                $regions = Utils::jsonDecode((string)$request->getBody(), true);
+                $regions = Utils::jsonDecode((string) $request->getBody(), true);
 
                 Cache::put('regions', $regions['areas'], 60 * 60 * 24);
 
@@ -60,7 +60,7 @@ class LocationsService implements LocationsContract
             } else {
                 $request = $this->locationsClient->request('GET', "areas/$regionId");
 
-                $cities = Utils::jsonDecode((string)$request->getBody(), true);
+                $cities = Utils::jsonDecode((string) $request->getBody(), true);
 
                 Cache::put("cities_by_region_id_$regionId", $cities['areas'], 60 * 60 * 24);
 
@@ -83,7 +83,7 @@ class LocationsService implements LocationsContract
             } else {
                 $request = $this->locationsClient->request('GET', "areas/$regionId");
 
-                $region = Utils::jsonDecode((string)$request->getBody(), true);
+                $region = Utils::jsonDecode((string) $request->getBody(), true);
 
                 Cache::put("region_name_by_id_$regionId", $region['name'], 60 * 60 * 24);
 
@@ -120,6 +120,7 @@ class LocationsService implements LocationsContract
 
             Redirect::with('error', $e->getMessage());
         }
+
         return 'Произошла ошибка';
     }
 }

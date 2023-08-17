@@ -10,16 +10,18 @@ use Livewire\Component;
 class RegionCity extends Component
 {
     public $russianRegions = [];
+
     public $citesByRegion = [];
 
-    public $selectedRussianRegion = NULL;
-    public $selectedCityByRegion = NULL;
+    public $selectedRussianRegion = null;
+
+    public $selectedCityByRegion = null;
 
     public function mount()
     {
         $this->russianRegions = LocationFacade::getRegions();
 
-        if (!is_null($this->selectedRussianRegion)) {
+        if (! is_null($this->selectedRussianRegion)) {
             $this->citesByRegion = LocationFacade::getCitiesByRegionId($this->selectedRussianRegion);
         } else {
             $this->citesByRegion = [];
@@ -35,9 +37,9 @@ class RegionCity extends Component
     {
         if ($region) {
             $this->citesByRegion = LocationFacade::getCitiesByRegionId($region);
-            $this->selectedCityByRegion = NULL;
+            $this->selectedCityByRegion = null;
         } else {
-            return $this->selectedRussianRegion = NULL;
+            return $this->selectedRussianRegion = null;
         }
     }
 }

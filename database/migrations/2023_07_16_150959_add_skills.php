@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Skill;
 use Illuminate\Database\Migrations\Migration;
 
@@ -8,17 +10,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
     public array $skills = [
-        'Акустическая гитара', 
-        'Классическая гитара', 
-        'Электрогитара', 
+        'Акустическая гитара',
+        'Классическая гитара',
+        'Электрогитара',
         'Бас гитара',
         'Домра',
         'Балалайка',
-        'Барабаны', 
-        'Клавишный синтезатор', 
-        'Фортепиано', 
+        'Барабаны',
+        'Клавишный синтезатор',
+        'Фортепиано',
         'Эстрадный вокал',
         'Эстардный вокал(владение техниками расщепления)',
         'Академический вокал',
@@ -40,14 +41,14 @@ return new class extends Migration
 
     public function up(): void
     {
-        foreach($this->skills as $skill){
+        foreach ($this->skills as $skill) {
             Skill::create(['name' => $skill]);
         }
     }
 
     public function down(): void
     {
-        foreach(Skill::all() as $skill){
+        foreach (Skill::all() as $skill) {
             $skill->delete();
         }
     }

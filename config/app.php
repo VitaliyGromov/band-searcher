@@ -1,6 +1,7 @@
 <?php
 
-use App\Providers\ViewServiceProvider;
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -115,13 +116,11 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-
     'maintenance' => [
         'driver' => 'file',
         // 'store'  => 'redis',
     ],
 
- 
     'providers' => [
 
         /*
@@ -167,7 +166,6 @@ return [
         EloquentFilter\ServiceProvider::class,
 
     ],
-
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,

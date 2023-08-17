@@ -10,6 +10,7 @@ use Livewire\Component;
 class Types extends Component
 {
     public $types;
+
     public $selectedType;
 
     public function mount()

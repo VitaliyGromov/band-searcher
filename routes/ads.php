@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\Ads\AdController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'ads');
 
-Route::middleware('auth', 'verified', 'active')->group(function(){
+Route::middleware('auth', 'verified', 'active')->group(function () {
     Route::get('ads/create/artist', [AdController::class, 'createAdFromArtist'])->name('ads.artist.create');
     Route::get('ads/create/band', [AdController::class, 'createAdFromBand'])->name('ads.band.create');
     Route::delete('ads/{ad}', [AdController::class, 'destroy'])->name('ads.destroy');

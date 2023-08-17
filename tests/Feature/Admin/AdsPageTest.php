@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Admin;
 
 use App\Enums\Status;
@@ -11,7 +13,7 @@ use Tests\Traits\CreateUsers;
 class AdsPageTest extends TestCase
 {
     use RefreshDatabase, CreateUsers;
-    
+
     public function test_only_admin_can_visit_ads_page(): void
     {
         $this->actingAsAdmin();
@@ -32,7 +34,7 @@ class AdsPageTest extends TestCase
         $ad = Ad::factory()->create();
 
         $response = $this->get("admin/ads/$ad->id");
-        $response->assertOk(); 
+        $response->assertOk();
     }
 
     public function test_admin_can_delete_ad(): void

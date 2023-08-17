@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -14,10 +16,10 @@ class OwnAdMiddleware
 
         $user = $request->user();
 
-        if($user->id === $ad->user_id){
+        if ($user->id === $ad->user_id) {
             return $next($request);
         }
-        
+
         return redirect('ads');
     }
 }

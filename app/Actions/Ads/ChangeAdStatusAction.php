@@ -12,7 +12,7 @@ class ChangeAdStatusAction
 {
     public function handle(array $validated, Ad $ad): void
     {
-        if(isset($validated['message'])){
+        if (isset($validated['message'])) {
             $message = $validated['message'];
         } else {
             $message = '';

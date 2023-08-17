@@ -10,6 +10,6 @@ class GenreFilter extends ModelFilter
 {
     public function name(string $name): static
     {
-        return $this->where('name', "ILIKE", "%$name%");
+        return $this->where('name', 'ILIKE', "%$name%");
     }
 }

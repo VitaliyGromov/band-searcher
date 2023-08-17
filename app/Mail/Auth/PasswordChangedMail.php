@@ -17,6 +17,7 @@ class PasswordChangedMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public User $user;
+
     /**
      * Create a new message instance.
      */

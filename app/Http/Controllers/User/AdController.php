@@ -6,9 +6,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Ads\AdFilterRequest;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Ad;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AdController extends Controller
 {

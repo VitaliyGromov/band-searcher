@@ -10,6 +10,7 @@ use Tests\TestCase;
 class AdsPageTest extends TestCase
 {
     use RefreshDatabase;
+
     public function test_the_ads_page_returns_successful_response(): void
     {
         $response = $this->get('/ads');

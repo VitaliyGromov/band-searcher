@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+declare(strict_types=1);
+
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -12,14 +14,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::transaction(function(){
+        DB::transaction(function () {
             $admin = User::create([
-            'name' => 'Виталий',
-            'last_name' => 'Громов',
-            'email' => env('DEFAULT_ADMIN_EMAIL'),
-            'email_verified_at' => now(),
-            'phone' => '89373743794',
-            'password' => Hash::make(env('DEFAULT_ADMIN_PASSWORD')),
+                'name' => 'Виталий',
+                'last_name' => 'Громов',
+                'email' => env('DEFAULT_ADMIN_EMAIL'),
+                'email_verified_at' => now(),
+                'phone' => '89373743794',
+                'password' => Hash::make(env('DEFAULT_ADMIN_PASSWORD')),
             ]);
 
             $admin->assignRole('admin');

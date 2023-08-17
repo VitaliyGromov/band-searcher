@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Actions\Ads;
 
 use App\Enums\Status as EnumsStatus;
+use App\Mail\Ad\AdCreatedMail;
+use App\Models\Ad;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Models\Ad;
-use App\Mail\Ad\AdCreatedMail;
 
 class AdCreatedAction
 {

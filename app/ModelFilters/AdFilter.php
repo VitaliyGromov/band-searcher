@@ -60,31 +60,31 @@ class AdFilter extends ModelFilter
 
     public function ownInstrument(int $ownInstrument): static
     {
-        return $this->where('own_instrument', (bool)$ownInstrument);
+        return $this->where('own_instrument', (bool) $ownInstrument);
     }
 
     public function readyToMove(int $readyToMove): static
     {
-        return $this->where('ready_to_move', (bool)$readyToMove);
+        return $this->where('ready_to_move', (bool) $readyToMove);
     }
 
     public function readyToTour(int $readyToTour): static
     {
-        return $this->where('ready_to_tour', (bool)$readyToTour);
+        return $this->where('ready_to_tour', (bool) $readyToTour);
     }
 
     public function ownMusic(int $ownMusic): static
     {
-        return $this->where('own_music', (bool)$ownMusic);
+        return $this->where('own_music', (bool) $ownMusic);
     }
 
     public function coverBand(int $coverBand): static
     {
-        return $this->where('cover_band', (bool)$coverBand);
+        return $this->where('cover_band', (bool) $coverBand);
     }
 
     public function commercialProject(int $commercialProject): static
     {
-        return $this->where('commercial_project', (bool)$commercialProject);
+        return $this->where('commercial_project', (bool) $commercialProject);
     }
 }

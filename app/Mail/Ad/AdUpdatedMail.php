@@ -20,6 +20,7 @@ class AdUpdatedMail extends Mailable implements ShouldQueue
     public User $user;
 
     public Ad $ad;
+
     /**
      * Create a new message instance.
      */

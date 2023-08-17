@@ -10,6 +10,7 @@ use Livewire\Component;
 class Skills extends Component
 {
     public $skills;
+
     public $selectedSkillId;
 
     public function mount()

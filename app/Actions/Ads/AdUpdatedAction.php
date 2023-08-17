@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Actions\Ads;
 
-use App\Models\Ad;
 use App\Enums\Status as EnumsStatus;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\Ad\AdUpdatedMail;
+use App\Models\Ad;
+use Illuminate\Support\Facades\Mail;
 
 class AdUpdatedAction
 {

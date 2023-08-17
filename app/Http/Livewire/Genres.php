@@ -10,6 +10,7 @@ use Livewire\Component;
 class Genres extends Component
 {
     public $genres;
+
     public $selectedGenreId;
 
     public function mount()
