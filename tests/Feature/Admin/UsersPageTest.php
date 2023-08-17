@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Tests\Traits\CreateUsers;
-use App\Models\User;
 
 class UsersPageTest extends TestCase
 {
@@ -24,14 +24,13 @@ class UsersPageTest extends TestCase
         $response->assertForbidden();
     }
 
-    public function test_admin_can_deactivate_user(): void
+    public function test_admin_can_deactive_user(): void
     {
         $this->actingAsAdmin();
 
         $user = User::factory()->create();
 
-        $this->put("/admin/users/{$user->id}", ['active' => false]);
-
+        $this->put("/admin/users/$user->id", ['active' => 0]);
         $this->assertFalse($user->active);
-    } //TODO fix this test
+    }
 }

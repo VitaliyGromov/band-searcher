@@ -31,7 +31,6 @@ class SkillsPageTest extends TestCase
         $skillName = fake()->company();
 
         $this->post('/admin/skills', ['name' => $skillName]);
-
         $this->assertDatabaseHas('skills', ['name' => $skillName]);
     }
 
@@ -44,7 +43,6 @@ class SkillsPageTest extends TestCase
         $amountOfSkills = Skill::count();
 
         $this->post('/admin/skills', ['name' => $skill->name]);
-
         $this->assertDatabaseCount('skills', $amountOfSkills);
     }
 }

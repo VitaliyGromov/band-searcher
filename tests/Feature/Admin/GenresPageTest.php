@@ -31,7 +31,6 @@ class GenresPageTest extends TestCase
         $genreName = fake()->company();
 
         $this->post('/admin/genres', ['name' => $genreName]);
-
         $this->assertDatabaseHas('genres', ['name' => $genreName]);
     }
 
@@ -44,7 +43,6 @@ class GenresPageTest extends TestCase
         $amountOfGenres = Genre::count();
 
         $this->post('/admin/genres', ['name' => $genre->name]);
-
         $this->assertDatabaseCount('genres', $amountOfGenres);
     }
 
@@ -57,7 +55,6 @@ class GenresPageTest extends TestCase
         $newGenreName = fake()->company();
 
         $this->put("/admin/genres/$genre->id", ['name' => $newGenreName]);
-
         $this->assertDatabaseHas('genres', ['name' => $newGenreName]);
     }
 
@@ -68,7 +65,6 @@ class GenresPageTest extends TestCase
         $genre = Genre::factory()->create();
 
         $this->delete("/admin/genres/$genre->id");
-
         $this->assertDatabaseMissing('genres', ['name' => $genre->name]);
     }
 }
