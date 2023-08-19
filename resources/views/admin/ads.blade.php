@@ -3,7 +3,8 @@ use App\Models\Region;
 use App\Models\City;
 use App\Models\Skill;
 use App\Models\Status;
-use App\Services\Locations\Facades\LocationFacade;
+use App\Services\Regions\Facades\RegionsFacade;
+use App\Services\Cities\Facades\CitiesFacade;
 @endphp
 
 @extends('layouts.app')
@@ -28,8 +29,8 @@ use App\Services\Locations\Facades\LocationFacade;
                     @foreach ($ads as $ad)
                     <tr>
                       <th scope="row">{{ $ad->id}}</th>
-                      <td>{{ LocationFacade::getRegionNameById($ad->region) }}</td>
-                      <td>{{ LocationFacade::getCityNameById($ad->city, $ad->region) }}</td>
+                      <td>{{ RegionsFacade::getRegionNameById($ad->region) }}</td>
+                      <td>{{ CitiesFacade::getCityNameById($ad->city, $ad->region) }}</td>
                       <td>{{ Skill::getSkillNameById($ad->skill_id) }}</td>
                       @if (!is_null($ad->band_name))
                         <td>{{$ad->band_name}}</td>

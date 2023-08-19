@@ -10,7 +10,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->register(LocationsServiceProvider::class);
+        $this->app->register(RegionsServiceProvider::class);
+        $this->app->register(CitiesServiceProvider::class);
     }
 
     public function boot(): void

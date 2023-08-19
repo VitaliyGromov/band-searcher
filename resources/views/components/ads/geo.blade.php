@@ -1,11 +1,12 @@
 @php
-    use App\Services\Locations\Facades\LocationFacade;
+    use App\Services\Regions\Facades\RegionsFacade;
+    use App\Services\Cities\Facades\CitiesFacade;
 @endphp
 
 <x-ads.list-element name="{{ __('Регион') }}">
-    {{ LocationFacade::getRegionNameById($ad->region) }}
+    {{ RegionsFacade::getRegionNameById($ad->region) }}
 </x-ads.list-element>
 
 <x-ads.list-element name="{{ __('Город') }}">
-    {{ LocationFacade::getCityNameById($ad->city, $ad->region)}}
+    {{ CitiesFacade::getCityNameById($ad->city, $ad->region)}}
 </x-ads.list-element>
