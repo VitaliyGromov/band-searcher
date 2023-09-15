@@ -12,22 +12,11 @@
 
     @livewireStyles
 
-    @vite(['resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        @include('include.header')
-        <main class="py-4">
-            <div class="container">
-                <x-alert/>
-            </div>
-            @yield('content')
-        </main>
-        @if (Route::is('ads'))
-            @include('include.footer')
-        @endif
     </div>
 </body>
-
 @livewireScripts
 </html>

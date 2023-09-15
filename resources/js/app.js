@@ -1,9 +1,7 @@
 import './bootstrap';
 
-import '../sass/app.scss';
+import { createApp } from 'vue';
 
-import * as bootstrap from 'bootstrap';
+import App from './components/App.vue';
 
-import '../js/ads/showSalary';
-
-import '../js/ads/showMessageInput';
+createApp(App).mount('#app');
