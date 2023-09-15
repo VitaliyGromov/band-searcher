@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Spatie\Permission\Models\Role;
 
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
+
 class CreateUserCommand extends Command
 {
     /**
@@ -32,17 +35,17 @@ class CreateUserCommand extends Command
 
     public function handle(): int
     {
-        $userData['name'] = $this->ask('Name of ew user', fake()->name());
-        $userData['last_name'] = $this->ask('Lastname of new user', fake()->lastName());
-        $userData['email'] = $this->ask('Email of new user', fake()->email());
-        $userData['phone'] = $this->ask('Phone of new user', fake()->phoneNumber());
+        $userData['name'] = text('Name of new user', 'name', fake()->name());
+        $userData['last_name'] = text('Lastname of new user', 'lastname', fake()->lastName());
+        $userData['email'] = text('Email of new user', 'email', fake()->email());
+        $userData['phone'] = text('Phone of new user', 'phone', fake()->phoneNumber());
         $userData['password'] = Hash::make(fake()->password());
 
         $validator = Validator::make($userData, [
             'name' => ['required', 'string', 'max:256'],
             'last_name' => ['required', 'string', 'max:256'],
             'email' => ['required', 'string', 'email', 'unique:users', 'max:256'],
-            'phone' => ['required', 'string', 'min:12', 'max:12'],
+            'phone' => ['required', 'string', 'max:30'],
             'password' => ['required', Password::default()],
         ]);
 
@@ -56,7 +59,7 @@ class CreateUserCommand extends Command
             }
         }
 
-        $role = $this->choice('Choise the role of new user', Role::all()->pluck('name')->toArray());
+        $role = select('Choise the role of new user', Role::all()->pluck('name')->toArray());
 
         DB::transaction(function () use ($validated, $role) {
             $user = User::create($validated);
